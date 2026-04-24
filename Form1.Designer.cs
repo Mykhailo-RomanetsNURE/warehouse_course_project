@@ -404,6 +404,7 @@
             Delete_ViewSpecificProduct_Button.TabIndex = 20;
             Delete_ViewSpecificProduct_Button.Text = "Видалити";
             Delete_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
+            Delete_ViewSpecificProduct_Button.Click += Delete_ViewSpecificProduct_Button_Click;
             // 
             // CopyId_ViewSpecificProduct_Button
             // 
@@ -413,6 +414,7 @@
             CopyId_ViewSpecificProduct_Button.TabIndex = 19;
             CopyId_ViewSpecificProduct_Button.Text = "Скопіювати id";
             CopyId_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
+            CopyId_ViewSpecificProduct_Button.Click += CopyId_ViewSpecificProduct_Button_Click;
             // 
             // SaveAndClose_ViewSpecificProduct_Button
             // 

@@ -388,7 +388,7 @@ namespace Курсовий_проєкт_на_тему_склад
             {
                 newInfoProduct.Height = 0;
             }
-            else 
+            else
             {
                 if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double resultHeight))
                 {
@@ -507,6 +507,44 @@ namespace Курсовий_проєкт_на_тему_склад
                 MessageBox.Show("Помилка при додаванні товару, перевірте правильність введених даних");
             }
         }
-    
+        private void CopyId_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        {
+            if (Id_ViewSpecificProduct_Label.Text != "" || Id_ViewSpecificProduct_Label.Text != null)
+            {
+                Clipboard.SetText(Id_ViewSpecificProduct_Label.Text);
+            }
+        }
+        private void Delete_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        {
+            warehouse.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + warehouse.Products.FirstOrDefault(p => p.Id == Convert.ToInt32(Id_ViewSpecificProduct_Label.Text)), Convert.ToInt32(Id_ViewSpecificProduct_Label.Text)), warehouse);
+            warehouse.Products.RemoveAll(p => p.Id == Convert.ToInt32(Id_ViewSpecificProduct_Label.Text));
+            AllProductInfo_ViewProducts_Panel.Visible = false;
+            string inputPageNumder = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+            if (inputPageNumder == "")
+            {
+                LoadDataToTable(1);
+                AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+            }
+            else
+            {
+                if (int.TryParse(inputPageNumder, out int pageNumber))
+                {
+                    if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
+                    {
+                        LoadDataToTable(1);
+                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    }
+                    else
+                    {
+                        LoadDataToTable(pageNumber);
+                    }
+                }
+                else
+                {
+                    LoadDataToTable(1);
+                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                }
+            }
+        }
     }
 }

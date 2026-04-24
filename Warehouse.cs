@@ -11,7 +11,7 @@ namespace Курсовий_проєкт_на_тему_склад
 		public Warehouse()
 		{
 			Products = new List<Product>();
-			MaxId = 100000;
+			MaxId = 1;
 			History = new List<Incident>();
 		}
 		public void AddIncident(Incident incident, Warehouse warehouseMhetod)
