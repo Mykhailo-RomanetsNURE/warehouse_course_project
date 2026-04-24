@@ -4,31 +4,27 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Курсовий_проєкт_на_тему_склад
 {
-    public partial class Form1 : Form
+    public partial class Warehouse_Window_Form : Form
     {
         public Warehouse warehouse;
-        public Form1(Warehouse warehouse)
+        public Warehouse_Window_Form(Warehouse warehouse)
         {
             this.InitializeComponent();
             this.warehouse = warehouse;
-            LoadDataToTable(1);
+            loadDataToTable(1);
         }
         private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
-        private void Name_AddProduct_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void AddProduct_Addproduct_Button_Click(object sender, EventArgs e)
+        private void addProduct_Addproduct_Button_Click(object sender, EventArgs e)
         {
             bool isAllTrue = true;
 
-            string name = Name_AddProduct_TextBox.Text.Trim();
+            string name = name_AddProduct_TextBox.Text.Trim();
             double price = 0;
             double height = 0;
             double width = 0;
             double length = 0;
             double weight = 0;
-            string note = Note_AddProduct_TextBox.Text.Trim();
+            string note = note_AddProduct_TextBox.Text.Trim();
 
             if (name == "")
             {
@@ -44,7 +40,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
 
-            string input = Price_AddProduct_TextBox.Text.Trim();
+            string input = price_AddProduct_TextBox.Text.Trim();
             if (input == "")
             {
                 isAllTrue = false;
@@ -65,7 +61,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 goto erorr_end;
             }
 
-            input = Height_AddProduct_TextBox.Text.Trim();
+            input = height_AddProduct_TextBox.Text.Trim();
             if (input != "")
             {
                 if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
@@ -79,7 +75,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
 
-            input = Width_AddProduct_TextBox.Text.Trim();
+            input = width_AddProduct_TextBox.Text.Trim();
             if (input != "")
             {
                 if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
@@ -93,7 +89,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
 
-            input = Length_AddProduct_TextBox.Text.Trim();
+            input = length_AddProduct_TextBox.Text.Trim();
             if (input != "")
             {
                 if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
@@ -107,7 +103,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
 
-            input = Weight_AddProduct_TextBox.Text.Trim();
+            input = weight_AddProduct_TextBox.Text.Trim();
             if (input != "")
             {
                 if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
@@ -126,64 +122,64 @@ namespace Курсовий_проєкт_на_тему_склад
             {
                 Product product = new Product(name, price, height, width, length, weight, note, warehouse);
                 warehouse.Products.Add(product);
-                Notification_AddProduct("Товар успішно додано, йому приділено ID: " + product.Id, 10000);
-                Name_AddProduct_TextBox.Clear();
-                Price_AddProduct_TextBox.Clear();
-                Height_AddProduct_TextBox.Clear();
-                Width_AddProduct_TextBox.Clear();
-                Length_AddProduct_TextBox.Clear();
-                Weight_AddProduct_TextBox.Clear();
-                Note_AddProduct_TextBox.Clear();
+                notification_AddProduct("Товар успішно додано, йому приділено ID: " + product.Id, 5000);
+                name_AddProduct_TextBox.Clear();
+                price_AddProduct_TextBox.Clear();
+                height_AddProduct_TextBox.Clear();
+                width_AddProduct_TextBox.Clear();
+                length_AddProduct_TextBox.Clear();
+                weight_AddProduct_TextBox.Clear();
+                note_AddProduct_TextBox.Clear();
             }
             else
             {
-                Notification_AddProduct("Помилка при додаванні товару, перевірте правильність введених даних", 5000);
+                notification_AddProduct("Помилка при додаванні товару, перевірте правильність введених даних", 3000);
             }
         }
-        private void Notification_AddProduct(string message, int time)
+        private void notification_AddProduct(string message, int time)
         {
             notificationTimer.Stop();
-            Notification_AddProduct_Label.Text = message;
+            notification_AddProduct_Label.Text = message;
             notificationTimer.Interval = time;
-            notificationTimer.Tick -= Timer_tick;
-            notificationTimer.Tick += Timer_tick;
+            notificationTimer.Tick -= timerTick;
+            notificationTimer.Tick += timerTick;
             notificationTimer.Start();
         }
-        private void Timer_tick(object sender, EventArgs e)
+        private void timerTick(object sender, EventArgs e)
         {
-            Notification_AddProduct_Label.Text = "";
+            notification_AddProduct_Label.Text = "";
             notificationTimer.Stop();
         }
-        private void LoadDataToTable(int PageNumber)
+        private void loadDataToTable(int PageNumber)
         {
             int pageSize = 10;
             var itemsForPage = warehouse.Products
                 .Skip((PageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
-            AllProductTable_ViewProducts_DataGridView.AutoGenerateColumns = false;
-            AllProductTable_ViewProducts_DataGridView.DataSource = null;
-            AllProductTable_ViewProducts_DataGridView.DataSource = itemsForPage;
-            AllProductsThisPage_ViewProducts_Label.Text = $"Поточна сторінка: {PageNumber}";
-            AllProductsLastPage_ViewProducts_Label.Text = $"Остання сторінка: {Math.Ceiling((double)warehouse.Products.Count / pageSize)}";
+            allProductTable_ViewProducts_DataGridView.AutoGenerateColumns = false;
+            allProductTable_ViewProducts_DataGridView.DataSource = null;
+            allProductTable_ViewProducts_DataGridView.DataSource = itemsForPage;
+            allProductsThisPage_ViewProducts_Label.Text = $"Поточна сторінка: {PageNumber}";
+            allProductsLastPage_ViewProducts_Label.Text = $"Остання сторінка: {Math.Ceiling((double)warehouse.Products.Count / pageSize)}";
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 0)
+            if (program_TabControl.SelectedIndex == 0)
             {
-                AllProductsGetPage_ViewProducts_TextBox.Text = "1";
-                LoadDataToTable(1);
+                allProductsGetPage_ViewProducts_TextBox.Text = "1";
+                loadDataToTable(1);
             }
         }
-        private void AllProductsGetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void allProductsGetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string input = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+                string input = allProductsGetPage_ViewProducts_TextBox.Text.Trim();
                 if (input == "")
                 {
-                    LoadDataToTable(1);
-                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    loadDataToTable(1);
+                    allProductsGetPage_ViewProducts_TextBox.Text = "1";
                 }
                 else
                 {
@@ -191,29 +187,29 @@ namespace Курсовий_проєкт_на_тему_склад
                     {
                         if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
                         {
-                            LoadDataToTable(1);
-                            AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                            loadDataToTable(1);
+                            allProductsGetPage_ViewProducts_TextBox.Text = "1";
                         }
                         else
                         {
-                            LoadDataToTable(pageNumber);
+                            loadDataToTable(pageNumber);
                         }
                     }
                     else
                     {
-                        LoadDataToTable(1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                        loadDataToTable(1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = "1";
                     }
                 }
             }
         }
-        private void AllProductsPreviousPage_ViewProducts_Button_Click(object sender, EventArgs e)
+        private void allProductsPreviousPage_ViewProducts_Button_Click(object sender, EventArgs e)
         {
-            string input = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+            string input = allProductsGetPage_ViewProducts_TextBox.Text.Trim();
             if (input == "")
             {
-                LoadDataToTable(1);
-                AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                loadDataToTable(1);
+                allProductsGetPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
@@ -221,29 +217,29 @@ namespace Курсовий_проєкт_на_тему_склад
                 {
                     if ((pageNumber - 1) <= 0 || warehouse.Products.Count < (pageNumber - 2) * 10)
                     {
-                        LoadDataToTable(1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                        loadDataToTable(1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = "1";
                     }
                     else
                     {
-                        LoadDataToTable(pageNumber - 1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = (pageNumber - 1).ToString();
+                        loadDataToTable(pageNumber - 1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = (pageNumber - 1).ToString();
                     }
                 }
                 else
                 {
-                    LoadDataToTable(1);
-                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    loadDataToTable(1);
+                    allProductsGetPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }
-        private void AllProductsNextPage_ViewProducts_Button_Click(object sender, EventArgs e)
+        private void allProductsNextPage_ViewProducts_Button_Click(object sender, EventArgs e)
         {
-            string input = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+            string input = allProductsGetPage_ViewProducts_TextBox.Text.Trim();
             if (input == "")
             {
-                LoadDataToTable(1);
-                AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                loadDataToTable(1);
+                allProductsGetPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
@@ -251,65 +247,65 @@ namespace Курсовий_проєкт_на_тему_склад
                 {
                     if ((pageNumber + 1) <= 0)
                     {
-                        LoadDataToTable(1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                        loadDataToTable(1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = "1";
                     }
                     else
                     {
                         if (warehouse.Products.Count < pageNumber * 10)
                         {
-                            LoadDataToTable(warehouse.Products.Count / 10 + 1);
-                            AllProductsGetPage_ViewProducts_TextBox.Text = (warehouse.Products.Count / 10 + 1).ToString();
+                            loadDataToTable(warehouse.Products.Count / 10 + 1);
+                            allProductsGetPage_ViewProducts_TextBox.Text = (warehouse.Products.Count / 10 + 1).ToString();
                         }
                         else
                         {
-                            LoadDataToTable(pageNumber + 1);
-                            AllProductsGetPage_ViewProducts_TextBox.Text = (pageNumber + 1).ToString();
+                            loadDataToTable(pageNumber + 1);
+                            allProductsGetPage_ViewProducts_TextBox.Text = (pageNumber + 1).ToString();
                         }
                     }
                 }
                 else
                 {
-                    LoadDataToTable(1);
-                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    loadDataToTable(1);
+                    allProductsGetPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }
-        private void AllProductTable_ViewProducts_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void allProductTable_ViewProducts_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                AllProductInfo_ViewProducts_Panel.Visible = true;
-                var row = AllProductTable_ViewProducts_DataGridView.Rows[e.RowIndex];
-                int thisId = Convert.ToInt32(row.Cells["Id"].Value);
+                allProductInfo_ViewProducts_Panel.Visible = true;
+                var row = allProductTable_ViewProducts_DataGridView.Rows[e.RowIndex];
+                int thisId = Convert.ToInt32(row.Cells["id_AllProduct_TableColumn"].Value);
                 Product thisProduct = warehouse.Products.FirstOrDefault(p => p.Id == thisId);
-                Name_ViewSpecificProduct_TextBox.Clear();
-                Price_ViewSpecificProduct_TextBox.Clear();
-                Height_ViewSpecificProduct_TextBox.Clear();
-                Width_ViewSpecificProduct_TextBox.Clear();
-                Length_ViewSpecificProduct_TextBox.Clear();
-                Weight_ViewSpecificProduct_TextBox.Clear();
-                Note_ViewSpecificProduct_TextBox.Clear();
-                Name_ViewSpecificProduct_TextBox.Text = thisProduct.Name;
-                Id_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.Id);
-                Price_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Price);
-                Height_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Height);
-                Width_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Width);
-                Length_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Length);
-                Weight_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Weight);
-                Note_ViewSpecificProduct_TextBox.Text = thisProduct.Note;
-                Quantity_ViewSpecificProduct_Lable.Text = Convert.ToString(thisProduct.Quantity);
-                Time_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.DateAndTime);
+                name_ViewSpecificProduct_TextBox.Clear();
+                price_ViewSpecificProduct_TextBox.Clear();
+                height_ViewSpecificProduct_TextBox.Clear();
+                width_ViewSpecificProduct_TextBox.Clear();
+                length_ViewSpecificProduct_TextBox.Clear();
+                weight_ViewSpecificProduct_TextBox.Clear();
+                note_ViewSpecificProduct_TextBox.Clear();
+                name_ViewSpecificProduct_TextBox.Text = thisProduct.Name;
+                id_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.Id);
+                price_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Price);
+                height_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Height);
+                width_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Width);
+                length_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Length);
+                weight_ViewSpecificProduct_TextBox.Text = Convert.ToString(thisProduct.Weight);
+                note_ViewSpecificProduct_TextBox.Text = thisProduct.Note;
+                quantity_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.Quantity);
+                time_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.DateAndTime);
             }
         }
-        private void Close_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void close_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            AllProductInfo_ViewProducts_Panel.Visible = false;
-            string input = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+            allProductInfo_ViewProducts_Panel.Visible = false;
+            string input = allProductsGetPage_ViewProducts_TextBox.Text.Trim();
             if (input == "")
             {
-                LoadDataToTable(1);
-                AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                loadDataToTable(1);
+                allProductsGetPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
@@ -317,28 +313,28 @@ namespace Курсовий_проєкт_на_тему_склад
                 {
                     if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
                     {
-                        LoadDataToTable(1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                        loadDataToTable(1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = "1";
                     }
                     else
                     {
-                        LoadDataToTable(pageNumber);
+                        loadDataToTable(pageNumber);
                     }
                 }
                 else
                 {
-                    LoadDataToTable(1);
-                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    loadDataToTable(1);
+                    allProductsGetPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }
-        private void SaveAndClose_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void saveAndClose_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             bool isAllTrue = true;
-            Product newInfoProduct = warehouse.Products.FirstOrDefault(p => p.Id == Convert.ToInt32(Id_ViewSpecificProduct_Label.Text));
-            string name = Name_ViewSpecificProduct_TextBox.Text.Trim();
+            Product newInfoProduct = warehouse.Products.FirstOrDefault(p => p.Id == Convert.ToInt32(id_ViewSpecificProduct_Label.Text));
+            string name = name_ViewSpecificProduct_TextBox.Text.Trim();
             bool isNameUnique = true;
-            newInfoProduct.Note = Note_ViewSpecificProduct_TextBox.Text.Trim();
+            newInfoProduct.Note = note_ViewSpecificProduct_TextBox.Text.Trim();
             // Name
             if (name == "")
             {
@@ -360,7 +356,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
             // Price
-            string input = Price_ViewSpecificProduct_TextBox.Text.Trim();
+            string input = price_ViewSpecificProduct_TextBox.Text.Trim();
             if (input == "")
             {
                 isAllTrue = false;
@@ -383,7 +379,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 goto erorr_end;
             }
             // Height
-            input = Height_ViewSpecificProduct_TextBox.Text.Trim();
+            input = height_ViewSpecificProduct_TextBox.Text.Trim();
             if (input == "")
             {
                 newInfoProduct.Height = 0;
@@ -403,7 +399,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
             //Width
-            input = Width_ViewSpecificProduct_TextBox.Text.Trim();
+            input = width_ViewSpecificProduct_TextBox.Text.Trim();
             if (input == "")
             {
                 newInfoProduct.Width = 0;
@@ -423,7 +419,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
             // Length
-            input = Length_ViewSpecificProduct_TextBox.Text.Trim();
+            input = length_ViewSpecificProduct_TextBox.Text.Trim();
             if (input == "")
             {
                 newInfoProduct.Length = 0;
@@ -443,7 +439,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
             // Weight
-            input = Weight_ViewSpecificProduct_TextBox.Text.Trim();
+            input = weight_ViewSpecificProduct_TextBox.Text.Trim();
             if (input == "")
             {
                 newInfoProduct.Weight = 0;
@@ -473,12 +469,12 @@ namespace Курсовий_проєкт_на_тему_склад
                         break;
                     }
                 }
-                AllProductInfo_ViewProducts_Panel.Visible = false;
-                string inputPageNumder = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+                allProductInfo_ViewProducts_Panel.Visible = false;
+                string inputPageNumder = allProductsGetPage_ViewProducts_TextBox.Text.Trim();
                 if (inputPageNumder == "")
                 {
-                    LoadDataToTable(1);
-                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    loadDataToTable(1);
+                    allProductsGetPage_ViewProducts_TextBox.Text = "1";
                 }
                 else
                 {
@@ -486,18 +482,18 @@ namespace Курсовий_проєкт_на_тему_склад
                     {
                         if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
                         {
-                            LoadDataToTable(1);
-                            AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                            loadDataToTable(1);
+                            allProductsGetPage_ViewProducts_TextBox.Text = "1";
                         }
                         else
                         {
-                            LoadDataToTable(pageNumber);
+                            loadDataToTable(pageNumber);
                         }
                     }
                     else
                     {
-                        LoadDataToTable(1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                        loadDataToTable(1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = "1";
                     }
                 }
                 warehouse.AddIncident(new Incident(DateTime.Now, "Змінено інформацію про товар: " + newInfoProduct.Name, newInfoProduct.Id), warehouse);
@@ -507,23 +503,23 @@ namespace Курсовий_проєкт_на_тему_склад
                 MessageBox.Show("Помилка при додаванні товару, перевірте правильність введених даних");
             }
         }
-        private void CopyId_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void copyId_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            if (Id_ViewSpecificProduct_Label.Text != "" || Id_ViewSpecificProduct_Label.Text != null)
+            if (id_ViewSpecificProduct_Label.Text != "" || id_ViewSpecificProduct_Label.Text != null)
             {
-                Clipboard.SetText(Id_ViewSpecificProduct_Label.Text);
+                Clipboard.SetText(id_ViewSpecificProduct_Label.Text);
             }
         }
-        private void Delete_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void delete_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            warehouse.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + warehouse.Products.FirstOrDefault(p => p.Id == Convert.ToInt32(Id_ViewSpecificProduct_Label.Text)), Convert.ToInt32(Id_ViewSpecificProduct_Label.Text)), warehouse);
-            warehouse.Products.RemoveAll(p => p.Id == Convert.ToInt32(Id_ViewSpecificProduct_Label.Text));
-            AllProductInfo_ViewProducts_Panel.Visible = false;
-            string inputPageNumder = AllProductsGetPage_ViewProducts_TextBox.Text.Trim();
+            warehouse.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + warehouse.Products.FirstOrDefault(p => p.Id == Convert.ToInt32(id_ViewSpecificProduct_Label.Text)), Convert.ToInt32(id_ViewSpecificProduct_Label.Text)), warehouse);
+            warehouse.Products.RemoveAll(p => p.Id == Convert.ToInt32(id_ViewSpecificProduct_Label.Text));
+            allProductInfo_ViewProducts_Panel.Visible = false;
+            string inputPageNumder = allProductsGetPage_ViewProducts_TextBox.Text.Trim();
             if (inputPageNumder == "")
             {
-                LoadDataToTable(1);
-                AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                loadDataToTable(1);
+                allProductsGetPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
@@ -531,18 +527,18 @@ namespace Курсовий_проєкт_на_тему_склад
                 {
                     if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
                     {
-                        LoadDataToTable(1);
-                        AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                        loadDataToTable(1);
+                        allProductsGetPage_ViewProducts_TextBox.Text = "1";
                     }
                     else
                     {
-                        LoadDataToTable(pageNumber);
+                        loadDataToTable(pageNumber);
                     }
                 }
                 else
                 {
-                    LoadDataToTable(1);
-                    AllProductsGetPage_ViewProducts_TextBox.Text = "1";
+                    loadDataToTable(1);
+                    allProductsGetPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }

@@ -8,7 +8,7 @@ namespace Курсовий_проєкт_на_тему_склад
         {
             ApplicationConfiguration.Initialize();
             Warehouse warehouse = new Warehouse();
-            Application.Run(new Form1(warehouse));
+            Application.Run(new Warehouse_Window_Form(warehouse));
         }
     }
 }
