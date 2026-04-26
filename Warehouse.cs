@@ -8,12 +8,13 @@ namespace Курсовий_проєкт_на_тему_склад
 		public List<Product> Products { get; set; }
 		public int MaxId { get; set; }
 		public List<Incident> History { get; set; }
-		public Warehouse()
+
+        public Warehouse()
 		{
 			Products = new List<Product>();
 			MaxId = 1;
 			History = new List<Incident>();
-		}
+        }
 		public void AddIncident(Incident incident, Warehouse warehouseMhetod)
 		{
             warehouseMhetod.History.Insert(0, incident);

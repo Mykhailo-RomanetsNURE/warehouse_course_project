@@ -6,31 +6,44 @@ namespace Курсовий_проєкт_на_тему_склад
 {
 	public partial class Warehouse_Window_Form : Form
     {
-        private void loadDataToTable(int PageNumber)
+        /*перегляд списку товарів*/
+        private void loadDataToTable(int pageNumber)
         {
             int pageSize = 10;
-            var itemsForPage = warehouse.Products
-                .Skip((PageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            List<Product> sourceList = warehouse.Products;
+            if (search_Products_CheckBox.Checked)
+            {
+                string searchName = searchWithName_ViewProducts_TextBox.Text.Trim();
+                string searchId = searchWithId_ViewProducts_TextBox.Text.Trim();
+
+                if (!string.IsNullOrEmpty(searchId) && int.TryParse(searchId, out int id))
+                {
+                    sourceList = warehouse.Products.Where(p => p.Id == id).ToList();
+                }
+                else if (!string.IsNullOrEmpty(searchName))
+                {
+                    sourceList = warehouse.Products.Where(p => p.Name.Contains(searchName, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+            }
+            int totalItems = sourceList.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            if (totalPages == 0) totalPages = 1;
+            if (pageNumber > totalPages) pageNumber = totalPages;
+            if (pageNumber < 1) pageNumber = 1;
+
+            var itemsForPage = sourceList
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
             tableOfProducts_ViewProducts_DataGridView.AutoGenerateColumns = false;
             tableOfProducts_ViewProducts_DataGridView.DataSource = null;
             tableOfProducts_ViewProducts_DataGridView.DataSource = itemsForPage;
-            thisPage_ViewProductsNumber_Label.Text = Convert.ToString(PageNumber);
-            lastPage_ViewProducts_Label.Text = $"Всього сторінок: {Math.Ceiling((double)warehouse.Products.Count / pageSize)}";
-        }
-        private void loadHistoryToTable(int pageNumber, int id)
-        {
-            int pageSize = 10;
-            var incidedentsForTable = warehouse.History
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize).Where(p => p.ElementId == id)
-                .ToList();
-            history_ViewSpecificProduct_DataGridView.AutoGenerateColumns = false;
-            history_ViewSpecificProduct_DataGridView.DataSource = null;
-            history_ViewSpecificProduct_DataGridView.DataSource = incidedentsForTable;
-            historyThisPageNumber_ViewSpecificProduct_Label.Text = Convert.ToString(pageNumber);
-            historyLastPage_ViewSpecificProduct_Label.Text = $"Остання сторінка: {Math.Ceiling((double)warehouse.History.Count / pageSize)}";
+
+            thisPage_ViewProductsNumber_Label.Text = pageNumber.ToString();
+            allPageNumber_ViewProducts_Label.Text = totalPages.ToString();
+            searchCommentNumber_Products_Label.Text = totalItems.ToString();
+            getPage_ViewProducts_TextBox.Text = pageNumber.ToString();
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -56,98 +69,84 @@ namespace Курсовий_проєкт_на_тему_склад
                 if (input == "")
                 {
                     loadDataToTable(1);
-                    getPage_ViewProducts_TextBox.Text = "1";
                 }
                 else
                 {
                     if (int.TryParse(input, out int pageNumber))
                     {
-                        if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
-                        {
-                            loadDataToTable(1);
-                            getPage_ViewProducts_TextBox.Text = "1";
-                        }
-                        else
-                        {
-                            loadDataToTable(pageNumber);
-                        }
+                        loadDataToTable(pageNumber);
                     }
                     else
                     {
                         loadDataToTable(1);
-                        getPage_ViewProducts_TextBox.Text = "1";
                     }
                 }
             }
         }
         private void previousPage_ViewProducts_Button_Click(object sender, EventArgs e)
         {
-            string input = thisPage_ViewProducts_Label.Text.Trim();
+            string input = thisPage_ViewProductsNumber_Label.Text.Trim();
             if (input == "")
             {
                 loadDataToTable(1);
-                getPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
                 if (int.TryParse(input, out int pageNumber))
                 {
-                    if ((pageNumber - 1) <= 0 || warehouse.Products.Count < (pageNumber - 2) * 10)
-                    {
-                        loadDataToTable(1);
-                        getPage_ViewProducts_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        loadDataToTable(pageNumber - 1);
-                        getPage_ViewProducts_TextBox.Text = (pageNumber - 1).ToString();
-                    }
+                    loadDataToTable(pageNumber - 1);
                 }
                 else
                 {
                     loadDataToTable(1);
-                    getPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }
-        private void allProductsNextPage_ViewProducts_Button_Click(object sender, EventArgs e)
+        private void nextPage_ViewProducts_Button_Click(object sender, EventArgs e)
         {
-            string input = thisPage_ViewProducts_Label.Text.Trim();
+            string input = thisPage_ViewProductsNumber_Label.Text.Trim();
             if (input == "")
             {
                 loadDataToTable(1);
-                getPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
                 if (int.TryParse(input, out int pageNumber))
                 {
-                    if ((pageNumber + 1) <= 0)
-                    {
-                        loadDataToTable(1);
-                        getPage_ViewProducts_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        if (warehouse.Products.Count < pageNumber * 10)
-                        {
-                            loadDataToTable(warehouse.Products.Count / 10 + 1);
-                            getPage_ViewProducts_TextBox.Text = (warehouse.Products.Count / 10 + 1).ToString();
-                        }
-                        else
-                        {
-                            loadDataToTable(pageNumber + 1);
-                            getPage_ViewProducts_TextBox.Text = (pageNumber + 1).ToString();
-                        }
-                    }
+                    loadDataToTable(pageNumber + 1);
                 }
                 else
                 {
                     loadDataToTable(1);
-                    getPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }
+        private void search_Products_CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (search_Products_CheckBox.Checked == true)
+            {
+                loadDataToTable(1);
+                getPage_ViewProducts_TextBox.Text = "1";
+                allPageNumber_ViewProducts_Label.Text =
+                thisPage_ViewProductsNumber_Label.Text = "1";
+            }
+            else
+            {
+                loadDataToTable(1);
+                getPage_ViewProducts_TextBox.Text = "1";
+                allPageNumber_ViewProducts_Label.Text =
+                thisPage_ViewProductsNumber_Label.Text = "1";
+            }
+        }
+        private void searchWithName_ViewProducts_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            loadDataToTable(1);
+        }
+        private void searchWithId_ViewProducts_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            loadDataToTable(1);
+        }
+        /*перегляд товару*/
         private void allProductTable_ViewProducts_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -180,30 +179,20 @@ namespace Курсовий_проєкт_на_тему_склад
         private void close_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             productInfo_ViewProducts_Panel.Visible = false;
-            string input = getPage_ViewProducts_TextBox.Text.Trim();
+            string input = thisPage_ViewProductsNumber_Label.Text.Trim();
             if (input == "")
             {
                 loadDataToTable(1);
-                getPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
                 if (int.TryParse(input, out int pageNumber))
                 {
-                    if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
-                    {
-                        loadDataToTable(1);
-                        getPage_ViewProducts_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        loadDataToTable(pageNumber);
-                    }
+                    loadDataToTable(pageNumber);
                 }
                 else
                 {
                     loadDataToTable(1);
-                    getPage_ViewProducts_TextBox.Text = "1";
                 }
             }
         }
@@ -349,30 +338,20 @@ namespace Курсовий_проєкт_на_тему_склад
                     }
                 }
                 productInfo_ViewProducts_Panel.Visible = false;
-                string inputPageNumder = getPage_ViewProducts_TextBox.Text.Trim();
+                string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
                 if (inputPageNumder == "")
                 {
                     loadDataToTable(1);
-                    getPage_ViewProducts_TextBox.Text = "1";
                 }
                 else
                 {
                     if (int.TryParse(inputPageNumder, out int pageNumber))
                     {
-                        if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
-                        {
-                            loadDataToTable(1);
-                            getPage_ViewProducts_TextBox.Text = "1";
-                        }
-                        else
-                        {
-                            loadDataToTable(pageNumber);
-                        }
+                        loadDataToTable(pageNumber);
                     }
                     else
                     {
                         loadDataToTable(1);
-                        getPage_ViewProducts_TextBox.Text = "1";
                     }
                 }
                 warehouse.AddIncident(new Incident(DateTime.Now, "Змінено інформацію про товар: " + newInfoProduct.Name, newInfoProduct.Id), warehouse);
@@ -394,32 +373,47 @@ namespace Курсовий_проєкт_на_тему_склад
             warehouse.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + warehouse.Products.FirstOrDefault(p => p.Id == Convert.ToInt32(id_ViewSpecificProduct_Label.Text)), Convert.ToInt32(id_ViewSpecificProduct_Label.Text)), warehouse);
             warehouse.Products.RemoveAll(p => p.Id == Convert.ToInt32(id_ViewSpecificProduct_Label.Text));
             productInfo_ViewProducts_Panel.Visible = false;
-            string inputPageNumder = getPage_ViewProducts_TextBox.Text.Trim();
+            string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
             if (inputPageNumder == "")
             {
                 loadDataToTable(1);
-                getPage_ViewProducts_TextBox.Text = "1";
             }
             else
             {
                 if (int.TryParse(inputPageNumder, out int pageNumber))
                 {
-                    if (pageNumber <= 0 || warehouse.Products.Count < (pageNumber - 1) * 10)
-                    {
-                        loadDataToTable(1);
-                        getPage_ViewProducts_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        loadDataToTable(pageNumber);
-                    }
+                    loadDataToTable(pageNumber);
                 }
                 else
                 {
                     loadDataToTable(1);
-                    getPage_ViewProducts_TextBox.Text = "1";
                 }
             }
+        }
+        /*Перегляд історії товару*/
+        private void loadHistoryToTable(int pageNumber, int id)
+        {
+            int pageSize = 10;
+            List<Incident> incidentsForTable = warehouse.History;
+            if(id != 0)
+            {
+                incidentsForTable = incidentsForTable.Where(p => p.ElementId == id).ToList();
+            }
+            int totalItems = incidentsForTable.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            if (totalPages == 0) totalPages = 1;
+            if (pageNumber > totalPages) pageNumber = totalPages;
+            if (pageNumber < 1) pageNumber = 1;
+            var itemsForTable = incidentsForTable
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+            history_ViewSpecificProduct_DataGridView.AutoGenerateColumns = false;
+            history_ViewSpecificProduct_DataGridView.DataSource = null;
+            history_ViewSpecificProduct_DataGridView.DataSource = itemsForTable;
+
+            historyLastPage_ViewSpecificProduct_Label.Text = totalPages.ToString();
+            historyThisPageNumber_ViewSpecificProduct_Label.Text = pageNumber.ToString();
         }
         private void historyPreviousPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
@@ -428,27 +422,16 @@ namespace Курсовий_проєкт_на_тему_склад
             if (input == "")
             {
                 loadHistoryToTable(1, thisId);
-                historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
             }
             else
             {
                 if (int.TryParse(input, out int pageNumber))
                 {
-                    if (pageNumber <= 1)
-                    {
-                        loadHistoryToTable(1, thisId);
-                        historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        loadHistoryToTable(pageNumber - 1, thisId);
-                        historyGetPage_ViewSpecificProduct_TextBox.Text = (pageNumber - 1).ToString();
-                    }
+                    loadHistoryToTable(pageNumber - 1, thisId);
                 }
                 else
                 {
                     loadHistoryToTable(1, thisId);
-                    historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
                 }
             }
         }
@@ -459,35 +442,16 @@ namespace Курсовий_проєкт_на_тему_склад
             if (input == "")
             {
                 loadHistoryToTable(1, thisId);
-                historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
             }
             else
             {
                 if (int.TryParse(input, out int pageNumber))
                 {
-                    if ((pageNumber + 1) <= 0)
-                    {
-                        loadHistoryToTable(1, thisId);
-                        historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        if (warehouse.History.Count(p => p.ElementId == thisId) < pageNumber * 10)
-                        {
-                            loadHistoryToTable(warehouse.History.Count(p => p.ElementId == thisId) / 10 + 1, thisId);
-                            historyGetPage_ViewSpecificProduct_TextBox.Text = (warehouse.History.Count(p => p.ElementId == thisId) / 10 + 1).ToString();
-                        }
-                        else
-                        {
-                            loadHistoryToTable(pageNumber + 1, thisId);
-                            historyGetPage_ViewSpecificProduct_TextBox.Text = (pageNumber + 1).ToString();
-                        }
-                    }
+                    loadHistoryToTable(pageNumber + 1, thisId);
                 }
                 else
                 {
                     loadHistoryToTable(1, thisId);
-                    historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
                 }
             }
         }
@@ -541,5 +505,6 @@ namespace Курсовий_проєкт_на_тему_склад
             warehouse.AddIncident(new Incident(date: DateTime.Now, "Історію продукта: " + name + ", було видалено", thisId), warehouse);
             loadHistoryToTable(1, thisId);
         }
+
     }
 }

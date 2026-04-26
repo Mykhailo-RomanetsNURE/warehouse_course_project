@@ -1,4 +1,5 @@
 using System.Data;
+using System.Drawing.Printing;
 using System.Reflection.Emit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -16,10 +17,5 @@ namespace Курсовий_проєкт_на_тему_склад
             loadDataToTable(1);
         }
         private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
-
-        private void allProductsPreviousPage_ViewProducts_Button_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
