@@ -30,12 +30,12 @@
         {
             program_TabControl = new TabControl();
             products_TabPage = new TabPage();
+            search_ViewProducts_СomboBox = new ComboBox();
             label1 = new Label();
             searchCommentText_Products_Label = new Label();
             search_Products_CheckBox = new CheckBox();
             searchCommentNumber_Products_Label = new Label();
-            searchWithId_ViewProducts_TextBox = new TextBox();
-            searchWithName_ViewProducts_TextBox = new TextBox();
+            search_ViewProducts_TextBox = new TextBox();
             thisPage_ViewProducts_Label = new Label();
             thisPage_ViewProductsNumber_Label = new Label();
             tableOfProducts_ViewProducts_DataGridView = new DataGridView();
@@ -43,11 +43,12 @@
             dateAndTime = new DataGridViewTextBoxColumn();
             name_AllProduct_TableColumn = new DataGridViewTextBoxColumn();
             productInfo_ViewProducts_Panel = new Panel();
+            historyLastPageText_ViewSpecificProduct_Label = new Label();
             historyThisPage_ViewSpecificProduct_Label = new Label();
-            id_ViewSpecificProduct_LabelText = new Label();
             history_ViewSpecificProduct_DataGridView = new DataGridView();
             date_ViewProduct_TableColumn = new DataGridViewTextBoxColumn();
             Incident_ViewProduct_TableColumn = new DataGridViewTextBoxColumn();
+            id_ViewSpecificProduct_LabelText = new Label();
             time_ViewSpecificProduct_Label = new Label();
             time_ViewSpecificProduct_LabelText = new Label();
             quantity_ViewSpecificProduct_Label = new Label();
@@ -105,8 +106,7 @@
             name_AddProduct_Label = new Label();
             addProduct_AddProduct_Label = new Label();
             tabPage6 = new TabPage();
-            button1 = new Button();
-            historyLastPageText_ViewSpecificProduct_Label = new Label();
+            saveAndClose_Window = new Button();
             program_TabControl.SuspendLayout();
             products_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableOfProducts_ViewProducts_DataGridView).BeginInit();
@@ -132,12 +132,12 @@
             // 
             // products_TabPage
             // 
+            products_TabPage.Controls.Add(search_ViewProducts_СomboBox);
             products_TabPage.Controls.Add(label1);
             products_TabPage.Controls.Add(searchCommentText_Products_Label);
             products_TabPage.Controls.Add(search_Products_CheckBox);
             products_TabPage.Controls.Add(searchCommentNumber_Products_Label);
-            products_TabPage.Controls.Add(searchWithId_ViewProducts_TextBox);
-            products_TabPage.Controls.Add(searchWithName_ViewProducts_TextBox);
+            products_TabPage.Controls.Add(search_ViewProducts_TextBox);
             products_TabPage.Controls.Add(thisPage_ViewProducts_Label);
             products_TabPage.Controls.Add(thisPage_ViewProductsNumber_Label);
             products_TabPage.Controls.Add(tableOfProducts_ViewProducts_DataGridView);
@@ -154,6 +154,17 @@
             products_TabPage.TabIndex = 0;
             products_TabPage.Text = "Перегляд товарів на складі ";
             products_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // search_ViewProducts_СomboBox
+            // 
+            search_ViewProducts_СomboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            search_ViewProducts_СomboBox.FormattingEnabled = true;
+            search_ViewProducts_СomboBox.Items.AddRange(new object[] { "Назва", "ID", "Вартість", "Висота", "Ширина", "Довжина", "Вага", "Примітка" });
+            search_ViewProducts_СomboBox.Location = new Point(275, 25);
+            search_ViewProducts_СomboBox.Name = "search_ViewProducts_СomboBox";
+            search_ViewProducts_СomboBox.Size = new Size(151, 28);
+            search_ViewProducts_СomboBox.TabIndex = 18;
+            search_ViewProducts_СomboBox.SelectedIndexChanged += search_ViewProducts_СomboBox_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -193,23 +204,14 @@
             searchCommentNumber_Products_Label.TabIndex = 14;
             searchCommentNumber_Products_Label.Text = "label1";
             // 
-            // searchWithId_ViewProducts_TextBox
+            // search_ViewProducts_TextBox
             // 
-            searchWithId_ViewProducts_TextBox.Location = new Point(312, 27);
-            searchWithId_ViewProducts_TextBox.Name = "searchWithId_ViewProducts_TextBox";
-            searchWithId_ViewProducts_TextBox.PlaceholderText = "Пошук за id";
-            searchWithId_ViewProducts_TextBox.Size = new Size(114, 27);
-            searchWithId_ViewProducts_TextBox.TabIndex = 11;
-            searchWithId_ViewProducts_TextBox.TextChanged += searchWithId_ViewProducts_TextBox_TextChanged;
-            // 
-            // searchWithName_ViewProducts_TextBox
-            // 
-            searchWithName_ViewProducts_TextBox.Location = new Point(3, 26);
-            searchWithName_ViewProducts_TextBox.Name = "searchWithName_ViewProducts_TextBox";
-            searchWithName_ViewProducts_TextBox.PlaceholderText = "Пошук за ім'ям";
-            searchWithName_ViewProducts_TextBox.Size = new Size(303, 27);
-            searchWithName_ViewProducts_TextBox.TabIndex = 10;
-            searchWithName_ViewProducts_TextBox.TextChanged += searchWithName_ViewProducts_TextBox_TextChanged;
+            search_ViewProducts_TextBox.Location = new Point(3, 26);
+            search_ViewProducts_TextBox.Name = "search_ViewProducts_TextBox";
+            search_ViewProducts_TextBox.PlaceholderText = "Пошук за характеристикою товара: ";
+            search_ViewProducts_TextBox.Size = new Size(266, 27);
+            search_ViewProducts_TextBox.TabIndex = 10;
+            search_ViewProducts_TextBox.TextChanged += searchWithName_ViewProducts_TextBox_TextChanged;
             // 
             // thisPage_ViewProducts_Label
             // 
@@ -329,6 +331,15 @@
             productInfo_ViewProducts_Panel.TabIndex = 8;
             productInfo_ViewProducts_Panel.Visible = false;
             // 
+            // historyLastPageText_ViewSpecificProduct_Label
+            // 
+            historyLastPageText_ViewSpecificProduct_Label.AutoSize = true;
+            historyLastPageText_ViewSpecificProduct_Label.Location = new Point(245, 525);
+            historyLastPageText_ViewSpecificProduct_Label.Name = "historyLastPageText_ViewSpecificProduct_Label";
+            historyLastPageText_ViewSpecificProduct_Label.Size = new Size(128, 20);
+            historyLastPageText_ViewSpecificProduct_Label.TabIndex = 36;
+            historyLastPageText_ViewSpecificProduct_Label.Text = "Всього сторінок: ";
+            // 
             // historyThisPage_ViewSpecificProduct_Label
             // 
             historyThisPage_ViewSpecificProduct_Label.AutoSize = true;
@@ -337,15 +348,6 @@
             historyThisPage_ViewSpecificProduct_Label.Size = new Size(126, 20);
             historyThisPage_ViewSpecificProduct_Label.TabIndex = 35;
             historyThisPage_ViewSpecificProduct_Label.Text = "Пточна сторінка:";
-            // 
-            // id_ViewSpecificProduct_LabelText
-            // 
-            id_ViewSpecificProduct_LabelText.AutoSize = true;
-            id_ViewSpecificProduct_LabelText.Location = new Point(318, 11);
-            id_ViewSpecificProduct_LabelText.Name = "id_ViewSpecificProduct_LabelText";
-            id_ViewSpecificProduct_LabelText.Size = new Size(80, 20);
-            id_ViewSpecificProduct_LabelText.TabIndex = 34;
-            id_ViewSpecificProduct_LabelText.Text = "Id товару: ";
             // 
             // history_ViewSpecificProduct_DataGridView
             // 
@@ -388,6 +390,15 @@
             Incident_ViewProduct_TableColumn.MinimumWidth = 6;
             Incident_ViewProduct_TableColumn.Name = "Incident_ViewProduct_TableColumn";
             Incident_ViewProduct_TableColumn.ReadOnly = true;
+            // 
+            // id_ViewSpecificProduct_LabelText
+            // 
+            id_ViewSpecificProduct_LabelText.AutoSize = true;
+            id_ViewSpecificProduct_LabelText.Location = new Point(318, 11);
+            id_ViewSpecificProduct_LabelText.Name = "id_ViewSpecificProduct_LabelText";
+            id_ViewSpecificProduct_LabelText.Size = new Size(80, 20);
+            id_ViewSpecificProduct_LabelText.TabIndex = 34;
+            id_ViewSpecificProduct_LabelText.Text = "Id товару: ";
             // 
             // time_ViewSpecificProduct_Label
             // 
@@ -905,25 +916,16 @@
             tabPage6.Text = "Історія";
             tabPage6.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // saveAndClose_Window
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.AutoSize = true;
-            button1.Location = new Point(1059, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(196, 35);
-            button1.TabIndex = 0;
-            button1.Text = "Зберегти та вийти ";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // historyLastPageText_ViewSpecificProduct_Label
-            // 
-            historyLastPageText_ViewSpecificProduct_Label.AutoSize = true;
-            historyLastPageText_ViewSpecificProduct_Label.Location = new Point(245, 525);
-            historyLastPageText_ViewSpecificProduct_Label.Name = "historyLastPageText_ViewSpecificProduct_Label";
-            historyLastPageText_ViewSpecificProduct_Label.Size = new Size(128, 20);
-            historyLastPageText_ViewSpecificProduct_Label.TabIndex = 36;
-            historyLastPageText_ViewSpecificProduct_Label.Text = "Всього сторінок: ";
+            saveAndClose_Window.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            saveAndClose_Window.AutoSize = true;
+            saveAndClose_Window.Location = new Point(1059, 12);
+            saveAndClose_Window.Name = "saveAndClose_Window";
+            saveAndClose_Window.Size = new Size(196, 35);
+            saveAndClose_Window.TabIndex = 1000;
+            saveAndClose_Window.Text = "Зберегти та вийти ";
+            saveAndClose_Window.UseVisualStyleBackColor = true;
             // 
             // Warehouse_Window_Form
             // 
@@ -931,7 +933,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(1262, 673);
-            Controls.Add(button1);
+            Controls.Add(saveAndClose_Window);
             Controls.Add(program_TabControl);
             ForeColor = SystemColors.ControlText;
             Name = "Warehouse_Window_Form";
@@ -953,7 +955,7 @@
         private TabControl program_TabControl;
         private TabPage products_TabPage;
         private TabPage tabPage2;
-        private Button button1;
+        private Button saveAndClose_Window;
         private TabPage addProduct_TabPage;
         private Label name_AddProduct_Label;
         private Label addProduct_AddProduct_Label;
@@ -1022,12 +1024,12 @@
         private DataGridViewTextBoxColumn Incident_ViewProduct_TableColumn;
         private Label thisPage_ViewProducts_Label;
         private Label historyThisPage_ViewSpecificProduct_Label;
-        private TextBox searchWithId_ViewProducts_TextBox;
-        private TextBox searchWithName_ViewProducts_TextBox;
+        private TextBox search_ViewProducts_TextBox;
         private Label searchCommentNumber_Products_Label;
         private CheckBox search_Products_CheckBox;
         private Label searchCommentText_Products_Label;
         private Label label1;
         private Label historyLastPageText_ViewSpecificProduct_Label;
+        private ComboBox search_ViewProducts_СomboBox;
     }
 }

@@ -14,6 +14,7 @@ namespace Курсовий_проєкт_на_тему_склад
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.warehouse = warehouse;
+            search_ViewProducts_СomboBox.SelectedIndex = search_ViewProducts_СomboBox.FindStringExact("Назва");
             loadDataToTable(1);
         }
         private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();

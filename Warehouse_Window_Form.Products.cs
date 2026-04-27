@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Reflection.Emit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -13,17 +14,22 @@ namespace Курсовий_проєкт_на_тему_склад
             List<Product> sourceList = warehouse.Products;
             if (search_Products_CheckBox.Checked)
             {
-                string searchName = searchWithName_ViewProducts_TextBox.Text.Trim();
-                string searchId = searchWithId_ViewProducts_TextBox.Text.Trim();
-
-                if (!string.IsNullOrEmpty(searchId) && int.TryParse(searchId, out int id))
+                string searchText = search_ViewProducts_TextBox.Text.Trim();
+                string selectedIItem = search_ViewProducts_СomboBox.Text;
+                double doubleNumber = double.TryParse(searchText, out double d) ? d : -1;
+                int intNumber = int.TryParse(searchText, out int n) ? n : -1;
+                Dictionary<string, Func<Product, bool>> filters = new Dictionary<string, Func<Product, bool>>
                 {
-                    sourceList = warehouse.Products.Where(p => p.Id == id).ToList();
-                }
-                else if (!string.IsNullOrEmpty(searchName))
-                {
-                    sourceList = warehouse.Products.Where(p => p.Name.Contains(searchName, StringComparison.OrdinalIgnoreCase)).ToList();
-                }
+                    { "Назва", x => x.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) },
+                    { "Вартість",  x => x.Price == doubleNumber },
+                    { "ID",    x => x.Id == intNumber },
+                    { "Висота",  x => x.Height == doubleNumber },
+                    { "Ширина",  x => x.Width == doubleNumber },
+                    { "Довжина",  x => x.Length == doubleNumber },
+                    { "Вага",  x => x.Weight == doubleNumber },
+                    { "Примітка", x => x.Note.Contains(searchText, StringComparison.OrdinalIgnoreCase) }
+                };
+                sourceList = warehouse.Products.Where(filters[selectedIItem]).ToList();
             }
             int totalItems = sourceList.Count;
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
@@ -60,6 +66,10 @@ namespace Курсовий_проєкт_на_тему_склад
                     loadDataToTable(1);
                 }
             }
+        }
+        private void search_ViewProducts_СomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataToTable(1);
         }
         private void allProductsGetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
