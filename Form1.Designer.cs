@@ -134,6 +134,18 @@
             name_AddProduct_Label = new Label();
             addProduct_AddProduct_Label = new Label();
             tabPage6 = new TabPage();
+            lastPage_History_Label = new Label();
+            thisPage_History_Label = new Label();
+            nextPage_History_Button = new Button();
+            previousPage_History_Button = new Button();
+            getPage_History_TextBox = new TextBox();
+            lastPage_History_LabelText = new Label();
+            thisPage_History_LabelText = new Label();
+            historyTable_History_DataGridView = new DataGridView();
+            time_History_dataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            name_History_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            id_HistoryTable_dataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            invoiceHistory_Program_TabPage = new TabPage();
             saveAndClose_Window = new Button();
             program_TabControl.SuspendLayout();
             products_TabPage.SuspendLayout();
@@ -144,6 +156,8 @@
             productInInvoice_Invoice_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)productsInInvoice_Invoice_DataGridView).BeginInit();
             addProduct_TabPage.SuspendLayout();
+            tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)historyTable_History_DataGridView).BeginInit();
             SuspendLayout();
             // 
             // program_TabControl
@@ -152,6 +166,7 @@
             program_TabControl.Controls.Add(invoice_TabPage);
             program_TabControl.Controls.Add(addProduct_TabPage);
             program_TabControl.Controls.Add(tabPage6);
+            program_TabControl.Controls.Add(invoiceHistory_Program_TabPage);
             program_TabControl.Dock = DockStyle.Fill;
             program_TabControl.Location = new Point(0, 0);
             program_TabControl.Name = "program_TabControl";
@@ -968,6 +983,7 @@
             addNewInvoice_Invoice_Button.TabIndex = 4;
             addNewInvoice_Invoice_Button.Text = "Зареєструвати накладну та зберегти";
             addNewInvoice_Invoice_Button.UseVisualStyleBackColor = true;
+            addNewInvoice_Invoice_Button.Click += addNewInvoice_Invoice_Button_Click;
             // 
             // addNewInvoice_Button
             // 
@@ -1231,6 +1247,14 @@
             // 
             // tabPage6
             // 
+            tabPage6.Controls.Add(lastPage_History_Label);
+            tabPage6.Controls.Add(thisPage_History_Label);
+            tabPage6.Controls.Add(nextPage_History_Button);
+            tabPage6.Controls.Add(previousPage_History_Button);
+            tabPage6.Controls.Add(getPage_History_TextBox);
+            tabPage6.Controls.Add(lastPage_History_LabelText);
+            tabPage6.Controls.Add(thisPage_History_LabelText);
+            tabPage6.Controls.Add(historyTable_History_DataGridView);
             tabPage6.Location = new Point(4, 53);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
@@ -1238,6 +1262,133 @@
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Історія";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // lastPage_History_Label
+            // 
+            lastPage_History_Label.AutoSize = true;
+            lastPage_History_Label.Location = new Point(1164, 585);
+            lastPage_History_Label.Name = "lastPage_History_Label";
+            lastPage_History_Label.Size = new Size(50, 20);
+            lastPage_History_Label.TabIndex = 13;
+            lastPage_History_Label.Text = "label5";
+            // 
+            // thisPage_History_Label
+            // 
+            thisPage_History_Label.AutoSize = true;
+            thisPage_History_Label.Location = new Point(143, 585);
+            thisPage_History_Label.Name = "thisPage_History_Label";
+            thisPage_History_Label.Size = new Size(50, 20);
+            thisPage_History_Label.TabIndex = 12;
+            thisPage_History_Label.Text = "label4";
+            // 
+            // nextPage_History_Button
+            // 
+            nextPage_History_Button.Location = new Point(723, 41);
+            nextPage_History_Button.Name = "nextPage_History_Button";
+            nextPage_History_Button.Size = new Size(94, 29);
+            nextPage_History_Button.TabIndex = 11;
+            nextPage_History_Button.Text = "Наступна";
+            nextPage_History_Button.UseVisualStyleBackColor = true;
+            nextPage_History_Button.Click += nextPage_History_Button_Click;
+            // 
+            // previousPage_History_Button
+            // 
+            previousPage_History_Button.Location = new Point(447, 42);
+            previousPage_History_Button.Name = "previousPage_History_Button";
+            previousPage_History_Button.Size = new Size(139, 27);
+            previousPage_History_Button.TabIndex = 10;
+            previousPage_History_Button.Text = "Попередня";
+            previousPage_History_Button.UseVisualStyleBackColor = true;
+            previousPage_History_Button.Click += previousPage_History_Button_Click;
+            // 
+            // getPage_History_TextBox
+            // 
+            getPage_History_TextBox.Location = new Point(592, 42);
+            getPage_History_TextBox.Name = "getPage_History_TextBox";
+            getPage_History_TextBox.Size = new Size(125, 27);
+            getPage_History_TextBox.TabIndex = 9;
+            getPage_History_TextBox.KeyDown += getPage_History_TextBox_KeyDown;
+            // 
+            // lastPage_History_LabelText
+            // 
+            lastPage_History_LabelText.AutoSize = true;
+            lastPage_History_LabelText.Location = new Point(1039, 585);
+            lastPage_History_LabelText.Name = "lastPage_History_LabelText";
+            lastPage_History_LabelText.Size = new Size(128, 20);
+            lastPage_History_LabelText.TabIndex = 8;
+            lastPage_History_LabelText.Text = "Всього сторінок: ";
+            // 
+            // thisPage_History_LabelText
+            // 
+            thisPage_History_LabelText.AutoSize = true;
+            thisPage_History_LabelText.Location = new Point(8, 585);
+            thisPage_History_LabelText.Name = "thisPage_History_LabelText";
+            thisPage_History_LabelText.Size = new Size(139, 20);
+            thisPage_History_LabelText.TabIndex = 7;
+            thisPage_History_LabelText.Text = "Поточна сторінка: ";
+            // 
+            // historyTable_History_DataGridView
+            // 
+            historyTable_History_DataGridView.AllowUserToAddRows = false;
+            historyTable_History_DataGridView.AllowUserToDeleteRows = false;
+            historyTable_History_DataGridView.AllowUserToResizeColumns = false;
+            historyTable_History_DataGridView.AllowUserToResizeRows = false;
+            historyTable_History_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            historyTable_History_DataGridView.BackgroundColor = SystemColors.AppWorkspace;
+            historyTable_History_DataGridView.ColumnHeadersHeight = 54;
+            historyTable_History_DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            historyTable_History_DataGridView.Columns.AddRange(new DataGridViewColumn[] { time_History_dataGridViewTextBoxColumn, name_History_DataGridViewTextBoxColumn, id_HistoryTable_dataGridViewTextBoxColumn });
+            historyTable_History_DataGridView.GridColor = SystemColors.ControlText;
+            historyTable_History_DataGridView.Location = new Point(8, 75);
+            historyTable_History_DataGridView.MultiSelect = false;
+            historyTable_History_DataGridView.Name = "historyTable_History_DataGridView";
+            historyTable_History_DataGridView.ReadOnly = true;
+            historyTable_History_DataGridView.RowHeadersVisible = false;
+            historyTable_History_DataGridView.RowHeadersWidth = 40;
+            historyTable_History_DataGridView.RowTemplate.Height = 45;
+            historyTable_History_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            historyTable_History_DataGridView.Size = new Size(1238, 507);
+            historyTable_History_DataGridView.TabIndex = 6;
+            // 
+            // time_History_dataGridViewTextBoxColumn
+            // 
+            time_History_dataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            time_History_dataGridViewTextBoxColumn.DataPropertyName = "Date";
+            time_History_dataGridViewTextBoxColumn.FillWeight = 15F;
+            time_History_dataGridViewTextBoxColumn.HeaderText = "Дата";
+            time_History_dataGridViewTextBoxColumn.MinimumWidth = 6;
+            time_History_dataGridViewTextBoxColumn.Name = "time_History_dataGridViewTextBoxColumn";
+            time_History_dataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // name_History_DataGridViewTextBoxColumn
+            // 
+            name_History_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            name_History_DataGridViewTextBoxColumn.DataPropertyName = "WhatHappened";
+            name_History_DataGridViewTextBoxColumn.FillWeight = 75F;
+            name_History_DataGridViewTextBoxColumn.HeaderText = "Що відбулось";
+            name_History_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            name_History_DataGridViewTextBoxColumn.Name = "name_History_DataGridViewTextBoxColumn";
+            name_History_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // id_HistoryTable_dataGridViewTextBoxColumn
+            // 
+            id_HistoryTable_dataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            id_HistoryTable_dataGridViewTextBoxColumn.DataPropertyName = "ElementId";
+            id_HistoryTable_dataGridViewTextBoxColumn.FillWeight = 10F;
+            id_HistoryTable_dataGridViewTextBoxColumn.HeaderText = "Id товару";
+            id_HistoryTable_dataGridViewTextBoxColumn.MinimumWidth = 6;
+            id_HistoryTable_dataGridViewTextBoxColumn.Name = "id_HistoryTable_dataGridViewTextBoxColumn";
+            id_HistoryTable_dataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceHistory_Program_TabPage
+            // 
+            invoiceHistory_Program_TabPage.Location = new Point(4, 53);
+            invoiceHistory_Program_TabPage.Name = "invoiceHistory_Program_TabPage";
+            invoiceHistory_Program_TabPage.Padding = new Padding(3);
+            invoiceHistory_Program_TabPage.Size = new Size(1254, 616);
+            invoiceHistory_Program_TabPage.TabIndex = 6;
+            invoiceHistory_Program_TabPage.Text = "Історія Накладних";
+            invoiceHistory_Program_TabPage.UseVisualStyleBackColor = true;
             // 
             // saveAndClose_Window
             // 
@@ -1275,6 +1426,9 @@
             ((System.ComponentModel.ISupportInitialize)productsInInvoice_Invoice_DataGridView).EndInit();
             addProduct_TabPage.ResumeLayout(false);
             addProduct_TabPage.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)historyTable_History_DataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1387,5 +1541,17 @@
         private DataGridViewTextBoxColumn nameProductsInInvoice_Invoice_DataGridViewColumn;
         private DataGridViewTextBoxColumn quantityProductsInInvoice_Invoice_DataGridViewColumn;
         private DataGridViewTextBoxColumn priceProductsInInvoice_Invoice_DataGridViewColumn;
+        private TabPage invoiceHistory_Program_TabPage;
+        private Button nextPage_History_Button;
+        private Button previousPage_History_Button;
+        private TextBox getPage_History_TextBox;
+        private Label lastPage_History_LabelText;
+        private Label thisPage_History_LabelText;
+        private DataGridView historyTable_History_DataGridView;
+        private Label lastPage_History_Label;
+        private Label thisPage_History_Label;
+        private DataGridViewTextBoxColumn time_History_dataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn name_History_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn id_HistoryTable_dataGridViewTextBoxColumn;
     }
 }

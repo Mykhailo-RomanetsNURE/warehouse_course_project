@@ -6,7 +6,7 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
-        private void addProduct_Addproduct_Button_Click(object sender, EventArgs e)
+        private void addProduct_Addproduct_Button_Click(object sender, EventArgs e)/*переробити + додати можливість задати кількість з самого початку*/
         {
             bool isAllTrue = true;
 

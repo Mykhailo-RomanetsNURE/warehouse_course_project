@@ -13,6 +13,16 @@ namespace Курсовий_проєкт_на_тему_склад
             productsInInvoice_Invoice_DataGridView.AutoGenerateColumns = false;
             productsInInvoice_Invoice_DataGridView.DataSource = null;
             productsInInvoice_Invoice_DataGridView.DataSource = warehouse.InvoiceList;
+            idOfInvoice_Invoice_Label.Text = warehouse.InvoiceLastId.ToString();
+
+            if (warehouse.InvoiceList == null || warehouse.InvoiceList.Count == 0)
+            {
+                TypeOfInvoice_Invoice_ComboBox.Enabled = true;
+            }
+            else
+            {
+                TypeOfInvoice_Invoice_ComboBox.Enabled = false;
+            }
         }
         public void LoadProductDataInvoniceItem()
         {
@@ -100,6 +110,18 @@ namespace Курсовий_проєкт_на_тему_склад
             noProduct_Invoice_Button.Visible = false;
             okProduct_Invoice_Button.Visible = false;
         }
+        public void AddNewInvoice()
+        {
+            if (warehouse.InvoiceList != null && warehouse.InvoiceList.Count() != 0)
+            {
+                bool IsExpenditureInvoice = TypeOfInvoice_Invoice_ComboBox.SelectedIndex == 0;
+                Invoice invoice = new Invoice(warehouse, IsExpenditureInvoice, warehouse.InvoiceList);
+                warehouse.AddInvoice(invoice, warehouse);
+                warehouse.InvoiceList.Clear();
+                warehouse.InvoiceLastId++;
+                LoadItemsToInvoiceTable();
+            }
+        }
         private void productId_Invoice_TextBox_TextChanged(object sender, EventArgs e)
         {
             LoadProductDataInvoniceItem();
@@ -137,7 +159,7 @@ namespace Курсовий_проєкт_на_тему_склад
 
             if (int.TryParse(inputId, out int id) && int.TryParse(inputQuantity, out int quantity) && double.TryParse(inputPrice, out double price))
             {
-                if (id > 0 && quantity > 0 && price > 0)
+                if (id > 0 && quantity > 0 && price > 0 && (TypeOfInvoice_Invoice_ComboBox.SelectedIndex == 0 || (TypeOfInvoice_Invoice_ComboBox.SelectedIndex == 1 && Convert.ToInt32(thisQuantityProduct_Invoice_LabelNumber.Text) >= quantity)))
                 {
                     var existingItem = warehouse.InvoiceList.FirstOrDefault(i => i.Id == id);
                     if (existingItem == null)
@@ -180,6 +202,13 @@ namespace Курсовий_проєкт_на_тему_склад
                 productPrice_Invoice_TextBox.Text = item.Price.ToString();
             }
         }
-
+        private void addNewInvoice_Button_Click(object sender, EventArgs e)
+        {
+            AddNewInvoice();
+        }
+        private void addNewInvoice_Invoice_Button_Click(object sender, EventArgs e)/*Додати збереження у файл*/
+        {
+            AddNewInvoice();
+        }
     }
 }

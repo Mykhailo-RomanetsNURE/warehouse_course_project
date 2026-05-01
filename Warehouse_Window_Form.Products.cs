@@ -51,22 +51,7 @@ namespace Курсовий_проєкт_на_тему_склад
             searchCommentNumber_Products_Label.Text = totalItems.ToString();
             getPage_ViewProducts_TextBox.Text = pageNumber.ToString();
         }
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (program_TabControl.SelectedIndex == 0)
-            {
-                if (int.TryParse(historyThisPageNumber_ViewSpecificProduct_Label.Text, out int pageNumber))
-                {
-                    getPage_ViewProducts_TextBox.Text = historyThisPageNumber_ViewSpecificProduct_Label.Text;
-                    loadDataToTable(pageNumber);
-                }
-                else
-                {
-                    getPage_ViewProducts_TextBox.Text = "1";
-                    loadDataToTable(1);
-                }
-            }
-        }
+
         private void search_ViewProducts_СomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadDataToTable(1);
