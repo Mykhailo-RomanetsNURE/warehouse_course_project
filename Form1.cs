@@ -16,7 +16,12 @@ namespace Курсовий_проєкт_на_тему_склад
             this.warehouse = warehouse;
             search_ViewProducts_СomboBox.SelectedIndex = search_ViewProducts_СomboBox.FindStringExact("Назва");
             loadDataToTable(1);
+            LoadProductDataInvoniceItem();
         }
         private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
+
+        private void addNewInvoice_Button_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

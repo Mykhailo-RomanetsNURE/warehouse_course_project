@@ -9,7 +9,8 @@ namespace Курсовий_проєкт_на_тему_склад
 		public int MaxId { get; set; }
 		public int InvoiceLastId { get; set; }
         public List<Incident> History { get; set; }
-		public List<Invoice> InvoicesHistory { get; set; }
+        public List<ItemOfInvoice> InvoiceList { get; set; }
+        public List<Invoice> InvoicesHistory { get; set; }
 
         public Warehouse()
 		{
@@ -17,6 +18,8 @@ namespace Курсовий_проєкт_на_тему_склад
 			MaxId = 1;
 			InvoiceLastId = 1;
 			History = new List<Incident>();
+            InvoiceList = new List<ItemOfInvoice>();
+            InvoicesHistory = new List<Invoice>();
         }
 		public void AddIncident(Incident incident, Warehouse warehouseMhetod)
 		{

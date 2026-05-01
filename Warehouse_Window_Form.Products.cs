@@ -133,26 +133,9 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void search_Products_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (search_Products_CheckBox.Checked == true)
-            {
-                loadDataToTable(1);
-                getPage_ViewProducts_TextBox.Text = "1";
-                allPageNumber_ViewProducts_Label.Text =
-                thisPage_ViewProductsNumber_Label.Text = "1";
-            }
-            else
-            {
-                loadDataToTable(1);
-                getPage_ViewProducts_TextBox.Text = "1";
-                allPageNumber_ViewProducts_Label.Text =
-                thisPage_ViewProductsNumber_Label.Text = "1";
-            }
+             loadDataToTable(1);
         }
         private void searchWithName_ViewProducts_TextBox_TextChanged(object sender, EventArgs e)
-        {
-            loadDataToTable(1);
-        }
-        private void searchWithId_ViewProducts_TextBox_TextChanged(object sender, EventArgs e)
         {
             loadDataToTable(1);
         }

@@ -85,7 +85,35 @@
             nextPage_ViewProducts_Button = new Button();
             previousPage_ViewProducts_Button = new Button();
             pageName_ViewProducts_Label = new Label();
-            tabPage2 = new TabPage();
+            invoice_TabPage = new TabPage();
+            cleanInvoice_Invoice_Button = new Button();
+            idOfInvoice_Invoice_Label = new Label();
+            productInInvoice_Invoice_Panel = new Panel();
+            thisProductPrice_Invoice_LabelNumber = new Label();
+            thisProductPrice_Invoice_Label = new Label();
+            thisQuantityProduct_Invoice_LabelNumber = new Label();
+            thisQuantityProduct_Invoice_Label = new Label();
+            noProduct_Invoice_Button = new Button();
+            okProduct_Invoice_Button = new Button();
+            productPrice_Invoice_TextBox = new TextBox();
+            productPrice_Invoice_Label = new Label();
+            quantityProduct_Invoice_TextBox = new TextBox();
+            quantityProduct_Invoice_Label = new Label();
+            productName_Invoice_Label = new Label();
+            productName_Invoice_LabelText = new Label();
+            productId_Invoice_Label = new Label();
+            productId_Invoice_TextBox = new TextBox();
+            panelName_Invoice_Label = new Label();
+            idOfInvoice_Invoice_LabelText = new Label();
+            addNewInvoice_Invoice_Button = new Button();
+            addNewInvoice_Button = new Button();
+            TypeOfInvoice_Invoice_ComboBox = new ComboBox();
+            newInvoice_Invoice_Label = new Label();
+            productsInInvoice_Invoice_DataGridView = new DataGridView();
+            idProductsInInvoice_Invoice_DataGridViewColumn = new DataGridViewTextBoxColumn();
+            nameProductsInInvoice_Invoice_DataGridViewColumn = new DataGridViewTextBoxColumn();
+            quantityProductsInInvoice_Invoice_DataGridViewColumn = new DataGridViewTextBoxColumn();
+            priceProductsInInvoice_Invoice_DataGridViewColumn = new DataGridViewTextBoxColumn();
             addProduct_TabPage = new TabPage();
             notification_AddProduct_Label = new Label();
             addProduct_Addproduct_Button = new Button();
@@ -112,13 +140,16 @@
             ((System.ComponentModel.ISupportInitialize)tableOfProducts_ViewProducts_DataGridView).BeginInit();
             productInfo_ViewProducts_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)history_ViewSpecificProduct_DataGridView).BeginInit();
+            invoice_TabPage.SuspendLayout();
+            productInInvoice_Invoice_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)productsInInvoice_Invoice_DataGridView).BeginInit();
             addProduct_TabPage.SuspendLayout();
             SuspendLayout();
             // 
             // program_TabControl
             // 
             program_TabControl.Controls.Add(products_TabPage);
-            program_TabControl.Controls.Add(tabPage2);
+            program_TabControl.Controls.Add(invoice_TabPage);
             program_TabControl.Controls.Add(addProduct_TabPage);
             program_TabControl.Controls.Add(tabPage6);
             program_TabControl.Dock = DockStyle.Fill;
@@ -719,15 +750,307 @@
             pageName_ViewProducts_Label.TabIndex = 0;
             pageName_ViewProducts_Label.Text = "Усі товари що присутні на складі";
             // 
-            // tabPage2
+            // invoice_TabPage
             // 
-            tabPage2.Location = new Point(4, 53);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1254, 616);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Нова накладна";
-            tabPage2.UseVisualStyleBackColor = true;
+            invoice_TabPage.Controls.Add(cleanInvoice_Invoice_Button);
+            invoice_TabPage.Controls.Add(idOfInvoice_Invoice_Label);
+            invoice_TabPage.Controls.Add(productInInvoice_Invoice_Panel);
+            invoice_TabPage.Controls.Add(idOfInvoice_Invoice_LabelText);
+            invoice_TabPage.Controls.Add(addNewInvoice_Invoice_Button);
+            invoice_TabPage.Controls.Add(addNewInvoice_Button);
+            invoice_TabPage.Controls.Add(TypeOfInvoice_Invoice_ComboBox);
+            invoice_TabPage.Controls.Add(newInvoice_Invoice_Label);
+            invoice_TabPage.Controls.Add(productsInInvoice_Invoice_DataGridView);
+            invoice_TabPage.Location = new Point(4, 53);
+            invoice_TabPage.Name = "invoice_TabPage";
+            invoice_TabPage.Padding = new Padding(3);
+            invoice_TabPage.Size = new Size(1254, 616);
+            invoice_TabPage.TabIndex = 1;
+            invoice_TabPage.Text = "Нова накладна";
+            invoice_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // cleanInvoice_Invoice_Button
+            // 
+            cleanInvoice_Invoice_Button.Location = new Point(609, 2);
+            cleanInvoice_Invoice_Button.Name = "cleanInvoice_Invoice_Button";
+            cleanInvoice_Invoice_Button.Size = new Size(185, 29);
+            cleanInvoice_Invoice_Button.TabIndex = 8;
+            cleanInvoice_Invoice_Button.Text = "Очистити";
+            cleanInvoice_Invoice_Button.UseVisualStyleBackColor = true;
+            cleanInvoice_Invoice_Button.Click += cleanInvoice_Invoice_Button_Click_1;
+            // 
+            // idOfInvoice_Invoice_Label
+            // 
+            idOfInvoice_Invoice_Label.AutoSize = true;
+            idOfInvoice_Invoice_Label.Location = new Point(101, 41);
+            idOfInvoice_Invoice_Label.Name = "idOfInvoice_Invoice_Label";
+            idOfInvoice_Invoice_Label.Size = new Size(50, 20);
+            idOfInvoice_Invoice_Label.TabIndex = 7;
+            idOfInvoice_Invoice_Label.Text = "label2";
+            // 
+            // productInInvoice_Invoice_Panel
+            // 
+            productInInvoice_Invoice_Panel.BackColor = Color.LemonChiffon;
+            productInInvoice_Invoice_Panel.Controls.Add(thisProductPrice_Invoice_LabelNumber);
+            productInInvoice_Invoice_Panel.Controls.Add(thisProductPrice_Invoice_Label);
+            productInInvoice_Invoice_Panel.Controls.Add(thisQuantityProduct_Invoice_LabelNumber);
+            productInInvoice_Invoice_Panel.Controls.Add(thisQuantityProduct_Invoice_Label);
+            productInInvoice_Invoice_Panel.Controls.Add(noProduct_Invoice_Button);
+            productInInvoice_Invoice_Panel.Controls.Add(okProduct_Invoice_Button);
+            productInInvoice_Invoice_Panel.Controls.Add(productPrice_Invoice_TextBox);
+            productInInvoice_Invoice_Panel.Controls.Add(productPrice_Invoice_Label);
+            productInInvoice_Invoice_Panel.Controls.Add(quantityProduct_Invoice_TextBox);
+            productInInvoice_Invoice_Panel.Controls.Add(quantityProduct_Invoice_Label);
+            productInInvoice_Invoice_Panel.Controls.Add(productName_Invoice_Label);
+            productInInvoice_Invoice_Panel.Controls.Add(productName_Invoice_LabelText);
+            productInInvoice_Invoice_Panel.Controls.Add(productId_Invoice_Label);
+            productInInvoice_Invoice_Panel.Controls.Add(productId_Invoice_TextBox);
+            productInInvoice_Invoice_Panel.Controls.Add(panelName_Invoice_Label);
+            productInInvoice_Invoice_Panel.ForeColor = SystemColors.ActiveCaptionText;
+            productInInvoice_Invoice_Panel.Location = new Point(800, 72);
+            productInInvoice_Invoice_Panel.Name = "productInInvoice_Invoice_Panel";
+            productInInvoice_Invoice_Panel.Size = new Size(448, 503);
+            productInInvoice_Invoice_Panel.TabIndex = 6;
+            // 
+            // thisProductPrice_Invoice_LabelNumber
+            // 
+            thisProductPrice_Invoice_LabelNumber.AutoSize = true;
+            thisProductPrice_Invoice_LabelNumber.Location = new Point(232, 212);
+            thisProductPrice_Invoice_LabelNumber.Name = "thisProductPrice_Invoice_LabelNumber";
+            thisProductPrice_Invoice_LabelNumber.Size = new Size(50, 20);
+            thisProductPrice_Invoice_LabelNumber.TabIndex = 14;
+            thisProductPrice_Invoice_LabelNumber.Text = "label5";
+            thisProductPrice_Invoice_LabelNumber.Visible = false;
+            // 
+            // thisProductPrice_Invoice_Label
+            // 
+            thisProductPrice_Invoice_Label.AutoSize = true;
+            thisProductPrice_Invoice_Label.Location = new Point(232, 186);
+            thisProductPrice_Invoice_Label.Name = "thisProductPrice_Invoice_Label";
+            thisProductPrice_Invoice_Label.Size = new Size(106, 20);
+            thisProductPrice_Invoice_Label.TabIndex = 13;
+            thisProductPrice_Invoice_Label.Text = "Поточна ціна:";
+            thisProductPrice_Invoice_Label.Visible = false;
+            // 
+            // thisQuantityProduct_Invoice_LabelNumber
+            // 
+            thisQuantityProduct_Invoice_LabelNumber.AutoSize = true;
+            thisQuantityProduct_Invoice_LabelNumber.BackColor = Color.Transparent;
+            thisQuantityProduct_Invoice_LabelNumber.Location = new Point(232, 159);
+            thisQuantityProduct_Invoice_LabelNumber.Name = "thisQuantityProduct_Invoice_LabelNumber";
+            thisQuantityProduct_Invoice_LabelNumber.Size = new Size(50, 20);
+            thisQuantityProduct_Invoice_LabelNumber.TabIndex = 12;
+            thisQuantityProduct_Invoice_LabelNumber.Text = "label3";
+            thisQuantityProduct_Invoice_LabelNumber.Visible = false;
+            // 
+            // thisQuantityProduct_Invoice_Label
+            // 
+            thisQuantityProduct_Invoice_Label.AutoSize = true;
+            thisQuantityProduct_Invoice_Label.Location = new Point(232, 133);
+            thisQuantityProduct_Invoice_Label.Name = "thisQuantityProduct_Invoice_Label";
+            thisQuantityProduct_Invoice_Label.Size = new Size(139, 20);
+            thisQuantityProduct_Invoice_Label.TabIndex = 11;
+            thisQuantityProduct_Invoice_Label.Text = "Поточна кількість: ";
+            thisQuantityProduct_Invoice_Label.Visible = false;
+            // 
+            // noProduct_Invoice_Button
+            // 
+            noProduct_Invoice_Button.Location = new Point(319, 242);
+            noProduct_Invoice_Button.Name = "noProduct_Invoice_Button";
+            noProduct_Invoice_Button.Size = new Size(126, 29);
+            noProduct_Invoice_Button.TabIndex = 10;
+            noProduct_Invoice_Button.Text = "Очистити";
+            noProduct_Invoice_Button.UseVisualStyleBackColor = true;
+            noProduct_Invoice_Button.Visible = false;
+            noProduct_Invoice_Button.Click += noProduct_Invoice_Button_Click;
+            // 
+            // okProduct_Invoice_Button
+            // 
+            okProduct_Invoice_Button.Location = new Point(3, 242);
+            okProduct_Invoice_Button.Name = "okProduct_Invoice_Button";
+            okProduct_Invoice_Button.Size = new Size(227, 29);
+            okProduct_Invoice_Button.TabIndex = 9;
+            okProduct_Invoice_Button.Text = "Додати товар до накладної";
+            okProduct_Invoice_Button.UseVisualStyleBackColor = true;
+            okProduct_Invoice_Button.Click += okProduct_Invoice_Button_Click;
+            // 
+            // productPrice_Invoice_TextBox
+            // 
+            productPrice_Invoice_TextBox.Location = new Point(3, 209);
+            productPrice_Invoice_TextBox.Name = "productPrice_Invoice_TextBox";
+            productPrice_Invoice_TextBox.Size = new Size(227, 27);
+            productPrice_Invoice_TextBox.TabIndex = 8;
+            // 
+            // productPrice_Invoice_Label
+            // 
+            productPrice_Invoice_Label.AutoSize = true;
+            productPrice_Invoice_Label.Location = new Point(3, 186);
+            productPrice_Invoice_Label.Name = "productPrice_Invoice_Label";
+            productPrice_Invoice_Label.Size = new Size(48, 20);
+            productPrice_Invoice_Label.TabIndex = 7;
+            productPrice_Invoice_Label.Text = "Ціна: ";
+            // 
+            // quantityProduct_Invoice_TextBox
+            // 
+            quantityProduct_Invoice_TextBox.Location = new Point(3, 156);
+            quantityProduct_Invoice_TextBox.Name = "quantityProduct_Invoice_TextBox";
+            quantityProduct_Invoice_TextBox.Size = new Size(227, 27);
+            quantityProduct_Invoice_TextBox.TabIndex = 6;
+            // 
+            // quantityProduct_Invoice_Label
+            // 
+            quantityProduct_Invoice_Label.AutoSize = true;
+            quantityProduct_Invoice_Label.Location = new Point(3, 133);
+            quantityProduct_Invoice_Label.Name = "quantityProduct_Invoice_Label";
+            quantityProduct_Invoice_Label.Size = new Size(77, 20);
+            quantityProduct_Invoice_Label.TabIndex = 5;
+            quantityProduct_Invoice_Label.Text = "Кількість: ";
+            // 
+            // productName_Invoice_Label
+            // 
+            productName_Invoice_Label.AutoSize = true;
+            productName_Invoice_Label.Location = new Point(3, 113);
+            productName_Invoice_Label.Name = "productName_Invoice_Label";
+            productName_Invoice_Label.Size = new Size(50, 20);
+            productName_Invoice_Label.TabIndex = 4;
+            productName_Invoice_Label.Text = "label7";
+            productName_Invoice_Label.Visible = false;
+            // 
+            // productName_Invoice_LabelText
+            // 
+            productName_Invoice_LabelText.AutoSize = true;
+            productName_Invoice_LabelText.Location = new Point(3, 93);
+            productName_Invoice_LabelText.Name = "productName_Invoice_LabelText";
+            productName_Invoice_LabelText.Size = new Size(109, 20);
+            productName_Invoice_LabelText.TabIndex = 3;
+            productName_Invoice_LabelText.Text = "Назва товару: ";
+            // 
+            // productId_Invoice_Label
+            // 
+            productId_Invoice_Label.AutoSize = true;
+            productId_Invoice_Label.Location = new Point(3, 40);
+            productId_Invoice_Label.Name = "productId_Invoice_Label";
+            productId_Invoice_Label.Size = new Size(78, 20);
+            productId_Invoice_Label.TabIndex = 2;
+            productId_Invoice_Label.Text = "ID товару:";
+            // 
+            // productId_Invoice_TextBox
+            // 
+            productId_Invoice_TextBox.Location = new Point(3, 63);
+            productId_Invoice_TextBox.Name = "productId_Invoice_TextBox";
+            productId_Invoice_TextBox.Size = new Size(227, 27);
+            productId_Invoice_TextBox.TabIndex = 1;
+            productId_Invoice_TextBox.TextChanged += productId_Invoice_TextBox_TextChanged;
+            // 
+            // panelName_Invoice_Label
+            // 
+            panelName_Invoice_Label.AutoSize = true;
+            panelName_Invoice_Label.Location = new Point(3, 9);
+            panelName_Invoice_Label.Name = "panelName_Invoice_Label";
+            panelName_Invoice_Label.Size = new Size(270, 20);
+            panelName_Invoice_Label.TabIndex = 0;
+            panelName_Invoice_Label.Text = "Додання нового товару до накладної";
+            // 
+            // idOfInvoice_Invoice_LabelText
+            // 
+            idOfInvoice_Invoice_LabelText.AutoSize = true;
+            idOfInvoice_Invoice_LabelText.Location = new Point(6, 41);
+            idOfInvoice_Invoice_LabelText.Name = "idOfInvoice_Invoice_LabelText";
+            idOfInvoice_Invoice_LabelText.Size = new Size(98, 20);
+            idOfInvoice_Invoice_LabelText.TabIndex = 5;
+            idOfInvoice_Invoice_LabelText.Text = "Накладна ID:";
+            // 
+            // addNewInvoice_Invoice_Button
+            // 
+            addNewInvoice_Invoice_Button.Location = new Point(520, 579);
+            addNewInvoice_Invoice_Button.Name = "addNewInvoice_Invoice_Button";
+            addNewInvoice_Invoice_Button.Size = new Size(274, 29);
+            addNewInvoice_Invoice_Button.TabIndex = 4;
+            addNewInvoice_Invoice_Button.Text = "Зареєструвати накладну та зберегти";
+            addNewInvoice_Invoice_Button.UseVisualStyleBackColor = true;
+            // 
+            // addNewInvoice_Button
+            // 
+            addNewInvoice_Button.Location = new Point(3, 581);
+            addNewInvoice_Button.Name = "addNewInvoice_Button";
+            addNewInvoice_Button.Size = new Size(274, 29);
+            addNewInvoice_Button.TabIndex = 3;
+            addNewInvoice_Button.Text = "Зареєструвати накладну";
+            addNewInvoice_Button.UseVisualStyleBackColor = true;
+            addNewInvoice_Button.Click += addNewInvoice_Button_Click;
+            // 
+            // TypeOfInvoice_Invoice_ComboBox
+            // 
+            TypeOfInvoice_Invoice_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            TypeOfInvoice_Invoice_ComboBox.FormattingEnabled = true;
+            TypeOfInvoice_Invoice_ComboBox.Items.AddRange(new object[] { "Прибуткова накладна", "Видаткова накладна" });
+            TypeOfInvoice_Invoice_ComboBox.Location = new Point(321, 2);
+            TypeOfInvoice_Invoice_ComboBox.Name = "TypeOfInvoice_Invoice_ComboBox";
+            TypeOfInvoice_Invoice_ComboBox.Size = new Size(185, 28);
+            TypeOfInvoice_Invoice_ComboBox.TabIndex = 2;
+            // 
+            // newInvoice_Invoice_Label
+            // 
+            newInvoice_Invoice_Label.AutoSize = true;
+            newInvoice_Invoice_Label.Location = new Point(3, 6);
+            newInvoice_Invoice_Label.Name = "newInvoice_Invoice_Label";
+            newInvoice_Invoice_Label.Size = new Size(200, 20);
+            newInvoice_Invoice_Label.TabIndex = 1;
+            newInvoice_Invoice_Label.Text = "Реєстрація нової накладної";
+            // 
+            // productsInInvoice_Invoice_DataGridView
+            // 
+            productsInInvoice_Invoice_DataGridView.AllowUserToAddRows = false;
+            productsInInvoice_Invoice_DataGridView.AllowUserToDeleteRows = false;
+            productsInInvoice_Invoice_DataGridView.AllowUserToResizeColumns = false;
+            productsInInvoice_Invoice_DataGridView.AllowUserToResizeRows = false;
+            productsInInvoice_Invoice_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            productsInInvoice_Invoice_DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            productsInInvoice_Invoice_DataGridView.Columns.AddRange(new DataGridViewColumn[] { idProductsInInvoice_Invoice_DataGridViewColumn, nameProductsInInvoice_Invoice_DataGridViewColumn, quantityProductsInInvoice_Invoice_DataGridViewColumn, priceProductsInInvoice_Invoice_DataGridViewColumn });
+            productsInInvoice_Invoice_DataGridView.Location = new Point(3, 72);
+            productsInInvoice_Invoice_DataGridView.Name = "productsInInvoice_Invoice_DataGridView";
+            productsInInvoice_Invoice_DataGridView.ReadOnly = true;
+            productsInInvoice_Invoice_DataGridView.RowHeadersVisible = false;
+            productsInInvoice_Invoice_DataGridView.RowHeadersWidth = 51;
+            productsInInvoice_Invoice_DataGridView.Size = new Size(791, 503);
+            productsInInvoice_Invoice_DataGridView.TabIndex = 0;
+            productsInInvoice_Invoice_DataGridView.CellClick += productsInInvoice_Invoice_DataGridView_CellClick;
+            // 
+            // idProductsInInvoice_Invoice_DataGridViewColumn
+            // 
+            idProductsInInvoice_Invoice_DataGridViewColumn.DataPropertyName = "Id";
+            idProductsInInvoice_Invoice_DataGridViewColumn.FillWeight = 15F;
+            idProductsInInvoice_Invoice_DataGridViewColumn.HeaderText = "ID";
+            idProductsInInvoice_Invoice_DataGridViewColumn.MinimumWidth = 6;
+            idProductsInInvoice_Invoice_DataGridViewColumn.Name = "idProductsInInvoice_Invoice_DataGridViewColumn";
+            idProductsInInvoice_Invoice_DataGridViewColumn.ReadOnly = true;
+            // 
+            // nameProductsInInvoice_Invoice_DataGridViewColumn
+            // 
+            nameProductsInInvoice_Invoice_DataGridViewColumn.DataPropertyName = "Name";
+            nameProductsInInvoice_Invoice_DataGridViewColumn.FillWeight = 55F;
+            nameProductsInInvoice_Invoice_DataGridViewColumn.HeaderText = "Назва";
+            nameProductsInInvoice_Invoice_DataGridViewColumn.MinimumWidth = 6;
+            nameProductsInInvoice_Invoice_DataGridViewColumn.Name = "nameProductsInInvoice_Invoice_DataGridViewColumn";
+            nameProductsInInvoice_Invoice_DataGridViewColumn.ReadOnly = true;
+            // 
+            // quantityProductsInInvoice_Invoice_DataGridViewColumn
+            // 
+            quantityProductsInInvoice_Invoice_DataGridViewColumn.DataPropertyName = "Quantity";
+            quantityProductsInInvoice_Invoice_DataGridViewColumn.FillWeight = 15F;
+            quantityProductsInInvoice_Invoice_DataGridViewColumn.HeaderText = "Додано";
+            quantityProductsInInvoice_Invoice_DataGridViewColumn.MinimumWidth = 6;
+            quantityProductsInInvoice_Invoice_DataGridViewColumn.Name = "quantityProductsInInvoice_Invoice_DataGridViewColumn";
+            quantityProductsInInvoice_Invoice_DataGridViewColumn.ReadOnly = true;
+            // 
+            // priceProductsInInvoice_Invoice_DataGridViewColumn
+            // 
+            priceProductsInInvoice_Invoice_DataGridViewColumn.DataPropertyName = "Price";
+            priceProductsInInvoice_Invoice_DataGridViewColumn.FillWeight = 15F;
+            priceProductsInInvoice_Invoice_DataGridViewColumn.HeaderText = "ціна";
+            priceProductsInInvoice_Invoice_DataGridViewColumn.MinimumWidth = 6;
+            priceProductsInInvoice_Invoice_DataGridViewColumn.Name = "priceProductsInInvoice_Invoice_DataGridViewColumn";
+            priceProductsInInvoice_Invoice_DataGridViewColumn.ReadOnly = true;
             // 
             // addProduct_TabPage
             // 
@@ -945,6 +1268,11 @@
             productInfo_ViewProducts_Panel.ResumeLayout(false);
             productInfo_ViewProducts_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)history_ViewSpecificProduct_DataGridView).EndInit();
+            invoice_TabPage.ResumeLayout(false);
+            invoice_TabPage.PerformLayout();
+            productInInvoice_Invoice_Panel.ResumeLayout(false);
+            productInInvoice_Invoice_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)productsInInvoice_Invoice_DataGridView).EndInit();
             addProduct_TabPage.ResumeLayout(false);
             addProduct_TabPage.PerformLayout();
             ResumeLayout(false);
@@ -954,7 +1282,7 @@
         #endregion
         private TabControl program_TabControl;
         private TabPage products_TabPage;
-        private TabPage tabPage2;
+        private TabPage invoice_TabPage;
         private Button saveAndClose_Window;
         private TabPage addProduct_TabPage;
         private Label name_AddProduct_Label;
@@ -1031,5 +1359,33 @@
         private Label label1;
         private Label historyLastPageText_ViewSpecificProduct_Label;
         private ComboBox search_ViewProducts_СomboBox;
+        private DataGridView productsInInvoice_Invoice_DataGridView;
+        private ComboBox TypeOfInvoice_Invoice_ComboBox;
+        private Label newInvoice_Invoice_Label;
+        private Button addNewInvoice_Invoice_Button;
+        private Button addNewInvoice_Button;
+        private Panel productInInvoice_Invoice_Panel;
+        private Label idOfInvoice_Invoice_LabelText;
+        private Label quantityProduct_Invoice_Label;
+        private Label productName_Invoice_Label;
+        private Label productName_Invoice_LabelText;
+        private Label productId_Invoice_Label;
+        private TextBox productId_Invoice_TextBox;
+        private Label panelName_Invoice_Label;
+        private Button okProduct_Invoice_Button;
+        private TextBox productPrice_Invoice_TextBox;
+        private Label productPrice_Invoice_Label;
+        private TextBox quantityProduct_Invoice_TextBox;
+        private Label idOfInvoice_Invoice_Label;
+        private Button noProduct_Invoice_Button;
+        private Button cleanInvoice_Invoice_Button;
+        private Label thisProductPrice_Invoice_LabelNumber;
+        private Label thisProductPrice_Invoice_Label;
+        private Label thisQuantityProduct_Invoice_LabelNumber;
+        private Label thisQuantityProduct_Invoice_Label;
+        private DataGridViewTextBoxColumn idProductsInInvoice_Invoice_DataGridViewColumn;
+        private DataGridViewTextBoxColumn nameProductsInInvoice_Invoice_DataGridViewColumn;
+        private DataGridViewTextBoxColumn quantityProductsInInvoice_Invoice_DataGridViewColumn;
+        private DataGridViewTextBoxColumn priceProductsInInvoice_Invoice_DataGridViewColumn;
     }
 }
