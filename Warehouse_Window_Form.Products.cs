@@ -51,7 +51,6 @@ namespace Курсовий_проєкт_на_тему_склад
             searchCommentNumber_Products_Label.Text = totalItems.ToString();
             getPage_ViewProducts_TextBox.Text = pageNumber.ToString();
         }
-
         private void search_ViewProducts_СomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadDataToTable(1);

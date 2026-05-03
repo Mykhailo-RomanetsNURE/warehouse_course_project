@@ -134,6 +134,7 @@
             name_AddProduct_Label = new Label();
             addProduct_AddProduct_Label = new Label();
             tabPage6 = new TabPage();
+            pageName_History_LabelText = new Label();
             lastPage_History_Label = new Label();
             thisPage_History_Label = new Label();
             nextPage_History_Button = new Button();
@@ -146,6 +147,34 @@
             name_History_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             id_HistoryTable_dataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             invoiceHistory_Program_TabPage = new TabPage();
+            thisPage_InvoiceHistory_Label = new Label();
+            thisPage_InvoiceHistory_LabelText = new Label();
+            lastPage_InvoiceHistory_Label = new Label();
+            lastPage_InvoiceHistory_LabelText = new Label();
+            nextPage_InvoiceHistory_Button = new Button();
+            gatePage_InvoiceHistory_TextBox = new TextBox();
+            previousPage_InvoiceHistory_Button = new Button();
+            pageName_InvoiceHistory_LabelText = new Label();
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView = new DataGridView();
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            loadInvoice_InvoiceHistory_LabelText = new Label();
+            invoiceSearchWithId_InvoiceHistory_TextBox = new TextBox();
+            invoice_InvoiceHistory_Panel = new Panel();
+            closeInvoice_InvoiceHistory_Button = new Button();
+            timeMakeInvoice_InvoiceHistory_Label = new Label();
+            saveInvoiceInFile_InvoiceHistory_Button = new Button();
+            timeMakeInvoice_InvoiceHistory_LabelText = new Label();
+            typeInvoice_InvoiceHistory_Label = new Label();
+            typeInvoice_InvoiceHistory_LabelText = new Label();
+            idInvoice_InvoiceHistory_Label = new Label();
+            idInvoice_InvoiceHistory_LabelText = new Label();
+            itemsOfInvoice_InvoiceHistory_DataGridView = new DataGridView();
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            productName_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             saveAndClose_Window = new Button();
             program_TabControl.SuspendLayout();
             products_TabPage.SuspendLayout();
@@ -158,6 +187,10 @@
             addProduct_TabPage.SuspendLayout();
             tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)historyTable_History_DataGridView).BeginInit();
+            invoiceHistory_Program_TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tableOfInvoiceHistory_InvoiceHistory_DataGridView).BeginInit();
+            invoice_InvoiceHistory_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)itemsOfInvoice_InvoiceHistory_DataGridView).BeginInit();
             SuspendLayout();
             // 
             // program_TabControl
@@ -174,7 +207,7 @@
             program_TabControl.SelectedIndex = 0;
             program_TabControl.Size = new Size(1262, 673);
             program_TabControl.TabIndex = 1;
-            program_TabControl.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            program_TabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
             // products_TabPage
             // 
@@ -1247,6 +1280,7 @@
             // 
             // tabPage6
             // 
+            tabPage6.Controls.Add(pageName_History_LabelText);
             tabPage6.Controls.Add(lastPage_History_Label);
             tabPage6.Controls.Add(thisPage_History_Label);
             tabPage6.Controls.Add(nextPage_History_Button);
@@ -1262,6 +1296,15 @@
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Історія";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // pageName_History_LabelText
+            // 
+            pageName_History_LabelText.AutoSize = true;
+            pageName_History_LabelText.Location = new Point(3, 3);
+            pageName_History_LabelText.Name = "pageName_History_LabelText";
+            pageName_History_LabelText.Size = new Size(179, 20);
+            pageName_History_LabelText.TabIndex = 14;
+            pageName_History_LabelText.Text = "Історія товарів на складі";
             // 
             // lastPage_History_Label
             // 
@@ -1289,7 +1332,7 @@
             nextPage_History_Button.TabIndex = 11;
             nextPage_History_Button.Text = "Наступна";
             nextPage_History_Button.UseVisualStyleBackColor = true;
-            nextPage_History_Button.Click += nextPage_History_Button_Click;
+            nextPage_History_Button.Click += NextPage_History_Button_Click;
             // 
             // previousPage_History_Button
             // 
@@ -1299,7 +1342,7 @@
             previousPage_History_Button.TabIndex = 10;
             previousPage_History_Button.Text = "Попередня";
             previousPage_History_Button.UseVisualStyleBackColor = true;
-            previousPage_History_Button.Click += previousPage_History_Button_Click;
+            previousPage_History_Button.Click += PreviousPage_History_Button_Click;
             // 
             // getPage_History_TextBox
             // 
@@ -1307,7 +1350,7 @@
             getPage_History_TextBox.Name = "getPage_History_TextBox";
             getPage_History_TextBox.Size = new Size(125, 27);
             getPage_History_TextBox.TabIndex = 9;
-            getPage_History_TextBox.KeyDown += getPage_History_TextBox_KeyDown;
+            getPage_History_TextBox.KeyDown += GetPage_History_TextBox_KeyDown;
             // 
             // lastPage_History_LabelText
             // 
@@ -1382,6 +1425,18 @@
             // 
             // invoiceHistory_Program_TabPage
             // 
+            invoiceHistory_Program_TabPage.Controls.Add(thisPage_InvoiceHistory_Label);
+            invoiceHistory_Program_TabPage.Controls.Add(thisPage_InvoiceHistory_LabelText);
+            invoiceHistory_Program_TabPage.Controls.Add(lastPage_InvoiceHistory_Label);
+            invoiceHistory_Program_TabPage.Controls.Add(lastPage_InvoiceHistory_LabelText);
+            invoiceHistory_Program_TabPage.Controls.Add(nextPage_InvoiceHistory_Button);
+            invoiceHistory_Program_TabPage.Controls.Add(gatePage_InvoiceHistory_TextBox);
+            invoiceHistory_Program_TabPage.Controls.Add(previousPage_InvoiceHistory_Button);
+            invoiceHistory_Program_TabPage.Controls.Add(pageName_InvoiceHistory_LabelText);
+            invoiceHistory_Program_TabPage.Controls.Add(tableOfInvoiceHistory_InvoiceHistory_DataGridView);
+            invoiceHistory_Program_TabPage.Controls.Add(loadInvoice_InvoiceHistory_LabelText);
+            invoiceHistory_Program_TabPage.Controls.Add(invoiceSearchWithId_InvoiceHistory_TextBox);
+            invoiceHistory_Program_TabPage.Controls.Add(invoice_InvoiceHistory_Panel);
             invoiceHistory_Program_TabPage.Location = new Point(4, 53);
             invoiceHistory_Program_TabPage.Name = "invoiceHistory_Program_TabPage";
             invoiceHistory_Program_TabPage.Padding = new Padding(3);
@@ -1389,6 +1444,294 @@
             invoiceHistory_Program_TabPage.TabIndex = 6;
             invoiceHistory_Program_TabPage.Text = "Історія Накладних";
             invoiceHistory_Program_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // thisPage_InvoiceHistory_Label
+            // 
+            thisPage_InvoiceHistory_Label.AutoSize = true;
+            thisPage_InvoiceHistory_Label.Location = new Point(153, 83);
+            thisPage_InvoiceHistory_Label.Name = "thisPage_InvoiceHistory_Label";
+            thisPage_InvoiceHistory_Label.Size = new Size(58, 20);
+            thisPage_InvoiceHistory_Label.TabIndex = 14;
+            thisPage_InvoiceHistory_Label.Text = "label12";
+            // 
+            // thisPage_InvoiceHistory_LabelText
+            // 
+            thisPage_InvoiceHistory_LabelText.AutoSize = true;
+            thisPage_InvoiceHistory_LabelText.Location = new Point(8, 83);
+            thisPage_InvoiceHistory_LabelText.Name = "thisPage_InvoiceHistory_LabelText";
+            thisPage_InvoiceHistory_LabelText.Size = new Size(139, 20);
+            thisPage_InvoiceHistory_LabelText.TabIndex = 13;
+            thisPage_InvoiceHistory_LabelText.Text = "Поточна сторінка: ";
+            // 
+            // lastPage_InvoiceHistory_Label
+            // 
+            lastPage_InvoiceHistory_Label.AutoSize = true;
+            lastPage_InvoiceHistory_Label.Location = new Point(151, 103);
+            lastPage_InvoiceHistory_Label.Name = "lastPage_InvoiceHistory_Label";
+            lastPage_InvoiceHistory_Label.Size = new Size(58, 20);
+            lastPage_InvoiceHistory_Label.TabIndex = 12;
+            lastPage_InvoiceHistory_Label.Text = "label10";
+            // 
+            // lastPage_InvoiceHistory_LabelText
+            // 
+            lastPage_InvoiceHistory_LabelText.AutoSize = true;
+            lastPage_InvoiceHistory_LabelText.Location = new Point(8, 103);
+            lastPage_InvoiceHistory_LabelText.Name = "lastPage_InvoiceHistory_LabelText";
+            lastPage_InvoiceHistory_LabelText.Size = new Size(137, 20);
+            lastPage_InvoiceHistory_LabelText.TabIndex = 11;
+            lastPage_InvoiceHistory_LabelText.Text = "Остання сторінка: ";
+            // 
+            // nextPage_InvoiceHistory_Button
+            // 
+            nextPage_InvoiceHistory_Button.Location = new Point(266, 40);
+            nextPage_InvoiceHistory_Button.Name = "nextPage_InvoiceHistory_Button";
+            nextPage_InvoiceHistory_Button.Size = new Size(119, 29);
+            nextPage_InvoiceHistory_Button.TabIndex = 10;
+            nextPage_InvoiceHistory_Button.Text = "Наступна";
+            nextPage_InvoiceHistory_Button.UseVisualStyleBackColor = true;
+            nextPage_InvoiceHistory_Button.Click += nextPage_InvoiceHistory_Button_Click;
+            // 
+            // gatePage_InvoiceHistory_TextBox
+            // 
+            gatePage_InvoiceHistory_TextBox.Location = new Point(131, 42);
+            gatePage_InvoiceHistory_TextBox.Name = "gatePage_InvoiceHistory_TextBox";
+            gatePage_InvoiceHistory_TextBox.Size = new Size(129, 27);
+            gatePage_InvoiceHistory_TextBox.TabIndex = 9;
+            gatePage_InvoiceHistory_TextBox.TextChanged += gatePage_InvoiceHistory_TextBox_TextChanged;
+            // 
+            // previousPage_InvoiceHistory_Button
+            // 
+            previousPage_InvoiceHistory_Button.Location = new Point(8, 40);
+            previousPage_InvoiceHistory_Button.Name = "previousPage_InvoiceHistory_Button";
+            previousPage_InvoiceHistory_Button.Size = new Size(117, 29);
+            previousPage_InvoiceHistory_Button.TabIndex = 8;
+            previousPage_InvoiceHistory_Button.Text = "Попередня";
+            previousPage_InvoiceHistory_Button.UseVisualStyleBackColor = true;
+            previousPage_InvoiceHistory_Button.Click += previousPage_InvoiceHistory_Button_Click;
+            // 
+            // pageName_InvoiceHistory_LabelText
+            // 
+            pageName_InvoiceHistory_LabelText.AutoSize = true;
+            pageName_InvoiceHistory_LabelText.Location = new Point(3, 3);
+            pageName_InvoiceHistory_LabelText.Name = "pageName_InvoiceHistory_LabelText";
+            pageName_InvoiceHistory_LabelText.Size = new Size(133, 20);
+            pageName_InvoiceHistory_LabelText.TabIndex = 7;
+            pageName_InvoiceHistory_LabelText.Text = "Історія накладних";
+            // 
+            // tableOfInvoiceHistory_InvoiceHistory_DataGridView
+            // 
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.AllowUserToAddRows = false;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.AllowUserToDeleteRows = false;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.AllowUserToResizeColumns = false;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.AllowUserToResizeRows = false;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.BackgroundColor = SystemColors.AppWorkspace;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.ColumnHeadersHeight = 54;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.Columns.AddRange(new DataGridViewColumn[] { invoiceId_InvoiceHistory_DataGridViewTextBoxColumn, dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn, typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn });
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.GridColor = SystemColors.ControlText;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.Location = new Point(8, 126);
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.MultiSelect = false;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.Name = "tableOfInvoiceHistory_InvoiceHistory_DataGridView";
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.ReadOnly = true;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.RowHeadersVisible = false;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.RowHeadersWidth = 40;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.RowTemplate.Height = 45;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.Size = new Size(377, 479);
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.TabIndex = 6;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.CellClick += tableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick;
+            // 
+            // invoiceId_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "InvoiceId";
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 1F;
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Id ";
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.Name = "invoiceId_InvoiceHistory_DataGridViewTextBoxColumn";
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Date";
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 2F;
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Дата";
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn";
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "IsExpenditureInvoice";
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 3F;
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Тип";
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn";
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // loadInvoice_InvoiceHistory_LabelText
+            // 
+            loadInvoice_InvoiceHistory_LabelText.AutoSize = true;
+            loadInvoice_InvoiceHistory_LabelText.Location = new Point(881, 9);
+            loadInvoice_InvoiceHistory_LabelText.Name = "loadInvoice_InvoiceHistory_LabelText";
+            loadInvoice_InvoiceHistory_LabelText.Size = new Size(187, 20);
+            loadInvoice_InvoiceHistory_LabelText.TabIndex = 2;
+            loadInvoice_InvoiceHistory_LabelText.Text = "Завантажити накладну Id:";
+            // 
+            // invoiceSearchWithId_InvoiceHistory_TextBox
+            // 
+            invoiceSearchWithId_InvoiceHistory_TextBox.Location = new Point(1074, 6);
+            invoiceSearchWithId_InvoiceHistory_TextBox.Name = "invoiceSearchWithId_InvoiceHistory_TextBox";
+            invoiceSearchWithId_InvoiceHistory_TextBox.Size = new Size(174, 27);
+            invoiceSearchWithId_InvoiceHistory_TextBox.TabIndex = 1;
+            invoiceSearchWithId_InvoiceHistory_TextBox.TextChanged += invoiceSearchWithId_InvoiceHistory_TextBox_TextChanged;
+            // 
+            // invoice_InvoiceHistory_Panel
+            // 
+            invoice_InvoiceHistory_Panel.BackColor = Color.LemonChiffon;
+            invoice_InvoiceHistory_Panel.Controls.Add(closeInvoice_InvoiceHistory_Button);
+            invoice_InvoiceHistory_Panel.Controls.Add(timeMakeInvoice_InvoiceHistory_Label);
+            invoice_InvoiceHistory_Panel.Controls.Add(saveInvoiceInFile_InvoiceHistory_Button);
+            invoice_InvoiceHistory_Panel.Controls.Add(timeMakeInvoice_InvoiceHistory_LabelText);
+            invoice_InvoiceHistory_Panel.Controls.Add(typeInvoice_InvoiceHistory_Label);
+            invoice_InvoiceHistory_Panel.Controls.Add(typeInvoice_InvoiceHistory_LabelText);
+            invoice_InvoiceHistory_Panel.Controls.Add(idInvoice_InvoiceHistory_Label);
+            invoice_InvoiceHistory_Panel.Controls.Add(idInvoice_InvoiceHistory_LabelText);
+            invoice_InvoiceHistory_Panel.Controls.Add(itemsOfInvoice_InvoiceHistory_DataGridView);
+            invoice_InvoiceHistory_Panel.Location = new Point(410, 40);
+            invoice_InvoiceHistory_Panel.Name = "invoice_InvoiceHistory_Panel";
+            invoice_InvoiceHistory_Panel.Size = new Size(838, 568);
+            invoice_InvoiceHistory_Panel.TabIndex = 0;
+            invoice_InvoiceHistory_Panel.Visible = false;
+            // 
+            // closeInvoice_InvoiceHistory_Button
+            // 
+            closeInvoice_InvoiceHistory_Button.Location = new Point(645, 2);
+            closeInvoice_InvoiceHistory_Button.Name = "closeInvoice_InvoiceHistory_Button";
+            closeInvoice_InvoiceHistory_Button.Size = new Size(190, 29);
+            closeInvoice_InvoiceHistory_Button.TabIndex = 9;
+            closeInvoice_InvoiceHistory_Button.Text = "Завершити перегляд";
+            closeInvoice_InvoiceHistory_Button.UseVisualStyleBackColor = true;
+            // 
+            // timeMakeInvoice_InvoiceHistory_Label
+            // 
+            timeMakeInvoice_InvoiceHistory_Label.AutoSize = true;
+            timeMakeInvoice_InvoiceHistory_Label.Location = new Point(208, 49);
+            timeMakeInvoice_InvoiceHistory_Label.Name = "timeMakeInvoice_InvoiceHistory_Label";
+            timeMakeInvoice_InvoiceHistory_Label.Size = new Size(58, 20);
+            timeMakeInvoice_InvoiceHistory_Label.TabIndex = 8;
+            timeMakeInvoice_InvoiceHistory_Label.Text = "label13";
+            // 
+            // saveInvoiceInFile_InvoiceHistory_Button
+            // 
+            saveInvoiceInFile_InvoiceHistory_Button.Location = new Point(645, 54);
+            saveInvoiceInFile_InvoiceHistory_Button.Name = "saveInvoiceInFile_InvoiceHistory_Button";
+            saveInvoiceInFile_InvoiceHistory_Button.Size = new Size(190, 29);
+            saveInvoiceInFile_InvoiceHistory_Button.TabIndex = 7;
+            saveInvoiceInFile_InvoiceHistory_Button.Text = "Зберегти як файл";
+            saveInvoiceInFile_InvoiceHistory_Button.UseVisualStyleBackColor = true;
+            // 
+            // timeMakeInvoice_InvoiceHistory_LabelText
+            // 
+            timeMakeInvoice_InvoiceHistory_LabelText.AutoSize = true;
+            timeMakeInvoice_InvoiceHistory_LabelText.Location = new Point(3, 49);
+            timeMakeInvoice_InvoiceHistory_LabelText.Name = "timeMakeInvoice_InvoiceHistory_LabelText";
+            timeMakeInvoice_InvoiceHistory_LabelText.Size = new Size(199, 20);
+            timeMakeInvoice_InvoiceHistory_LabelText.TabIndex = 6;
+            timeMakeInvoice_InvoiceHistory_LabelText.Text = "Дата створення накладної: ";
+            // 
+            // typeInvoice_InvoiceHistory_Label
+            // 
+            typeInvoice_InvoiceHistory_Label.AutoSize = true;
+            typeInvoice_InvoiceHistory_Label.Location = new Point(125, 29);
+            typeInvoice_InvoiceHistory_Label.Name = "typeInvoice_InvoiceHistory_Label";
+            typeInvoice_InvoiceHistory_Label.Size = new Size(50, 20);
+            typeInvoice_InvoiceHistory_Label.TabIndex = 5;
+            typeInvoice_InvoiceHistory_Label.Text = "label6";
+            // 
+            // typeInvoice_InvoiceHistory_LabelText
+            // 
+            typeInvoice_InvoiceHistory_LabelText.AutoSize = true;
+            typeInvoice_InvoiceHistory_LabelText.Location = new Point(3, 29);
+            typeInvoice_InvoiceHistory_LabelText.Name = "typeInvoice_InvoiceHistory_LabelText";
+            typeInvoice_InvoiceHistory_LabelText.Size = new Size(116, 20);
+            typeInvoice_InvoiceHistory_LabelText.TabIndex = 4;
+            typeInvoice_InvoiceHistory_LabelText.Text = "Тип накладної: ";
+            // 
+            // idInvoice_InvoiceHistory_Label
+            // 
+            idInvoice_InvoiceHistory_Label.AutoSize = true;
+            idInvoice_InvoiceHistory_Label.Location = new Point(112, 9);
+            idInvoice_InvoiceHistory_Label.Name = "idInvoice_InvoiceHistory_Label";
+            idInvoice_InvoiceHistory_Label.Size = new Size(50, 20);
+            idInvoice_InvoiceHistory_Label.TabIndex = 3;
+            idInvoice_InvoiceHistory_Label.Text = "label4";
+            // 
+            // idInvoice_InvoiceHistory_LabelText
+            // 
+            idInvoice_InvoiceHistory_LabelText.AutoSize = true;
+            idInvoice_InvoiceHistory_LabelText.BackColor = Color.LemonChiffon;
+            idInvoice_InvoiceHistory_LabelText.Location = new Point(3, 9);
+            idInvoice_InvoiceHistory_LabelText.Name = "idInvoice_InvoiceHistory_LabelText";
+            idInvoice_InvoiceHistory_LabelText.Size = new Size(103, 20);
+            idInvoice_InvoiceHistory_LabelText.TabIndex = 2;
+            idInvoice_InvoiceHistory_LabelText.Text = "Id накладної: ";
+            // 
+            // itemsOfInvoice_InvoiceHistory_DataGridView
+            // 
+            itemsOfInvoice_InvoiceHistory_DataGridView.AllowUserToAddRows = false;
+            itemsOfInvoice_InvoiceHistory_DataGridView.AllowUserToDeleteRows = false;
+            itemsOfInvoice_InvoiceHistory_DataGridView.AllowUserToResizeColumns = false;
+            itemsOfInvoice_InvoiceHistory_DataGridView.AllowUserToResizeRows = false;
+            itemsOfInvoice_InvoiceHistory_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            itemsOfInvoice_InvoiceHistory_DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            itemsOfInvoice_InvoiceHistory_DataGridView.Columns.AddRange(new DataGridViewColumn[] { itemId_InvoiceHistory_DataGridViewTextBoxColumn, productName_InvoiceHistory_DataGridViewTextBoxColumn, quantityChange_InvoiceHistory_DataGridViewTextBoxColumn, productPrice_InvoiceHistory_DataGridViewTextBoxColumn });
+            itemsOfInvoice_InvoiceHistory_DataGridView.Location = new Point(3, 86);
+            itemsOfInvoice_InvoiceHistory_DataGridView.Name = "itemsOfInvoice_InvoiceHistory_DataGridView";
+            itemsOfInvoice_InvoiceHistory_DataGridView.ReadOnly = true;
+            itemsOfInvoice_InvoiceHistory_DataGridView.RowHeadersVisible = false;
+            itemsOfInvoice_InvoiceHistory_DataGridView.RowHeadersWidth = 51;
+            itemsOfInvoice_InvoiceHistory_DataGridView.Size = new Size(832, 479);
+            itemsOfInvoice_InvoiceHistory_DataGridView.TabIndex = 1;
+            // 
+            // itemId_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Id";
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 15F;
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "ID";
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn.Name = "itemId_InvoiceHistory_DataGridViewTextBoxColumn";
+            itemId_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productName_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            productName_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Name";
+            productName_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 55F;
+            productName_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Назва";
+            productName_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            productName_InvoiceHistory_DataGridViewTextBoxColumn.Name = "productName_InvoiceHistory_DataGridViewTextBoxColumn";
+            productName_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityChange_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 15F;
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Кількість";
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn.Name = "quantityChange_InvoiceHistory_DataGridViewTextBoxColumn";
+            quantityChange_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productPrice_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Price";
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 15F;
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "ціна";
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "productPrice_InvoiceHistory_DataGridViewTextBoxColumn";
+            productPrice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // saveAndClose_Window
             // 
@@ -1410,8 +1753,10 @@
             Controls.Add(saveAndClose_Window);
             Controls.Add(program_TabControl);
             ForeColor = SystemColors.ControlText;
+            KeyPreview = true;
             Name = "Warehouse_Window_Form";
             Text = "Склад";
+            KeyDown += Warehouse_Window_Form_KeyDown;
             program_TabControl.ResumeLayout(false);
             products_TabPage.ResumeLayout(false);
             products_TabPage.PerformLayout();
@@ -1429,6 +1774,12 @@
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)historyTable_History_DataGridView).EndInit();
+            invoiceHistory_Program_TabPage.ResumeLayout(false);
+            invoiceHistory_Program_TabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tableOfInvoiceHistory_InvoiceHistory_DataGridView).EndInit();
+            invoice_InvoiceHistory_Panel.ResumeLayout(false);
+            invoice_InvoiceHistory_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)itemsOfInvoice_InvoiceHistory_DataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1553,5 +1904,34 @@
         private DataGridViewTextBoxColumn time_History_dataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn name_History_DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn id_HistoryTable_dataGridViewTextBoxColumn;
+        private TextBox invoiceSearchWithId_InvoiceHistory_TextBox;
+        private Panel invoice_InvoiceHistory_Panel;
+        private Label loadInvoice_InvoiceHistory_LabelText;
+        private Label idInvoice_InvoiceHistory_Label;
+        private Label idInvoice_InvoiceHistory_LabelText;
+        private DataGridView itemsOfInvoice_InvoiceHistory_DataGridView;
+        private DataGridView tableOfInvoiceHistory_InvoiceHistory_DataGridView;
+        private Button saveInvoiceInFile_InvoiceHistory_Button;
+        private Label timeMakeInvoice_InvoiceHistory_LabelText;
+        private Label typeInvoice_InvoiceHistory_Label;
+        private Label typeInvoice_InvoiceHistory_LabelText;
+        private Label pageName_History_LabelText;
+        private Label thisPage_InvoiceHistory_Label;
+        private Label thisPage_InvoiceHistory_LabelText;
+        private Label lastPage_InvoiceHistory_Label;
+        private Label lastPage_InvoiceHistory_LabelText;
+        private Button nextPage_InvoiceHistory_Button;
+        private TextBox gatePage_InvoiceHistory_TextBox;
+        private Button previousPage_InvoiceHistory_Button;
+        private Label pageName_InvoiceHistory_LabelText;
+        private Label timeMakeInvoice_InvoiceHistory_Label;
+        private DataGridViewTextBoxColumn invoiceId_InvoiceHistory_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn itemId_InvoiceHistory_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productName_InvoiceHistory_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn quantityChange_InvoiceHistory_DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productPrice_InvoiceHistory_DataGridViewTextBoxColumn;
+        private Button closeInvoice_InvoiceHistory_Button;
     }
 }

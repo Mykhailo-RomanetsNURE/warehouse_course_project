@@ -4,12 +4,10 @@ namespace Курсовий_проєкт_на_тему_склад
 {
 	public class Invoice
 	{
-		int InvoiceId { get; set; }
-		DateTime Date { get; set; }
-		bool IsExpenditureInvoice { get; set; }/*прибуткова чи видаткова накладна*/
-		List<ItemOfInvoice> Items { get; set; }
-
-
+		public int InvoiceId { get; set; }
+		public DateTime Date { get; set; }
+		public bool IsExpenditureInvoice { get; set; }/*прибуткова чи видаткова накладна*/
+		public List<ItemOfInvoice> Items { get; set; }
 		public Invoice(Warehouse warehouse, bool isExpenditureInvoice, List<ItemOfInvoice> items)
 		{
 			this.InvoiceId = warehouse.InvoiceLastId;

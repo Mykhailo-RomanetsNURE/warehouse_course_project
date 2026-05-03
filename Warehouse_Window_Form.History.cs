@@ -27,7 +27,7 @@ namespace Курсовий_проєкт_на_тему_склад
             getPage_History_TextBox.Text = pageNumber.ToString();
             lastPage_History_Label.Text = totalPages.ToString();
         }
-        private void previousPage_History_Button_Click(object sender, EventArgs e)
+        private void PreviousPage_History_Button_Click(object sender, EventArgs e)
         {
             string input = thisPage_History_Label.Text.Trim();
             if (input == "")
@@ -46,7 +46,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
         }
-        private void nextPage_History_Button_Click(object sender, EventArgs e)
+        private void NextPage_History_Button_Click(object sender, EventArgs e)
         {
             string input = thisPage_History_Label.Text.Trim();
             if (input == "")
@@ -65,7 +65,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
         }
-        private void getPage_History_TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void GetPage_History_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

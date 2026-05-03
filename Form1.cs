@@ -25,7 +25,7 @@ namespace Курсовий_проєкт_на_тему_склад
             LoadDataToHistoryTable(1);
         }
         private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (program_TabControl.SelectedIndex == 0)
             {
@@ -53,7 +53,34 @@ namespace Курсовий_проєкт_на_тему_склад
                     LoadDataToHistoryTable(1);
                 }
             }
+            if (program_TabControl.SelectedIndex == 4)
+            {
+                if (int.TryParse(thisPage_InvoiceHistory_Label.Text, out int pageNumber))
+                {
+                    LoaditemsToInvoiceHistoryTable(pageNumber);
+                }
+                else
+                {
+                    LoaditemsToInvoiceHistoryTable(1);
+                }
+            }
+            }
+        private void Warehouse_Window_Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                var result = MessageBox.Show("Ви впевнені, що хочете вийти з програми?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
-        
     }
 }

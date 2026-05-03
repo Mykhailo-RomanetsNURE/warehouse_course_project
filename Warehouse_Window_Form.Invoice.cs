@@ -194,7 +194,7 @@ namespace Курсовий_проєкт_на_тему_склад
             if (e.RowIndex >= 0)
             {
                 var row = productsInInvoice_Invoice_DataGridView.Rows[e.RowIndex];
-                int thisId = Convert.ToInt32(row.Cells["idProductsInInvoice_Invoice_DataGridViewColumn"].Value);
+                int thisId = Convert.ToInt32(row.Cells["invoiceId_InvoiceHistory_DataGridViewTextBoxColumn"].Value);
                 ItemOfInvoice item = warehouse.InvoiceList.FirstOrDefault(i => i.Id == thisId);
                 productId_Invoice_TextBox.Text = thisId.ToString();
                 LoadProductDataInvoniceItem();
