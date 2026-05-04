@@ -180,6 +180,7 @@
             daeleteAllData_AdditionalFeatures_Button = new Button();
             saveProductsIntxtFile_AdditionalFeatures_Button = new Button();
             saveAndClose_Window = new Button();
+            label2 = new Label();
             program_TabControl.SuspendLayout();
             products_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableOfProducts_ViewProducts_DataGridView).BeginInit();
@@ -807,6 +808,7 @@
             // 
             // invoice_TabPage
             // 
+            invoice_TabPage.Controls.Add(label2);
             invoice_TabPage.Controls.Add(newInvoice_Invoice_DataGridView);
             invoice_TabPage.Controls.Add(cleanInvoice_Invoice_Button);
             invoice_TabPage.Controls.Add(idOfInvoice_Invoice_Label);
@@ -833,17 +835,15 @@
             newInvoice_Invoice_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             newInvoice_Invoice_DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             newInvoice_Invoice_DataGridView.Columns.AddRange(new DataGridViewColumn[] { itemId_NewInvoice_Column, itemName_NewInvoice_Column, itemPrice_NewInvoice_Column, itemQuantity_NewInvoice_Column });
-            newInvoice_Invoice_DataGridView.Location = new Point(3, 75);
+            newInvoice_Invoice_DataGridView.Location = new Point(3, 66);
             newInvoice_Invoice_DataGridView.MultiSelect = false;
             newInvoice_Invoice_DataGridView.Name = "newInvoice_Invoice_DataGridView";
             newInvoice_Invoice_DataGridView.ReadOnly = true;
             newInvoice_Invoice_DataGridView.RowHeadersVisible = false;
             newInvoice_Invoice_DataGridView.RowHeadersWidth = 51;
             newInvoice_Invoice_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            newInvoice_Invoice_DataGridView.Size = new Size(791, 498);
+            newInvoice_Invoice_DataGridView.Size = new Size(791, 489);
             newInvoice_Invoice_DataGridView.TabIndex = 9;
-            newInvoice_Invoice_DataGridView.CellClick += newInvoice_Invoice_DataGridView_CellClick;
-            newInvoice_Invoice_DataGridView.DataError += newInvoice_Invoice_DataGridView_DataError;
             // 
             // itemId_NewInvoice_Column
             // 
@@ -1800,6 +1800,15 @@
             saveAndClose_Window.Text = "Зберегти та вийти ";
             saveAndClose_Window.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(90, 558);
+            label2.Name = "label2";
+            label2.Size = new Size(600, 20);
+            label2.TabIndex = 10;
+            label2.Text = "Таблиця неклікабельна, для зміни кількості або ціни товару введіть його ID у пошук.";
+            // 
             // Warehouse_Window_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1995,5 +2004,6 @@
         private DataGridViewTextBoxColumn itemName_NewInvoice_Column;
         private DataGridViewTextBoxColumn itemPrice_NewInvoice_Column;
         private DataGridViewTextBoxColumn itemQuantity_NewInvoice_Column;
+        private Label label2;
     }
 }

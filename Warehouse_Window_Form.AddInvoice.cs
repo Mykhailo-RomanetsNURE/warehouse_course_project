@@ -15,7 +15,7 @@ namespace Курсовий_проєкт_на_тему_склад
             newInvoice_Invoice_DataGridView.DataSource = null;
             newInvoice_Invoice_DataGridView.DataSource = warehouse.InvoiceList;
             idOfInvoice_Invoice_Label.Text = warehouse.InvoiceLastId.ToString();
-
+            newInvoice_Invoice_DataGridView.Enabled = false;
             if (warehouse.InvoiceList == null || warehouse.InvoiceList.Count == 0)
             {
                 typeOfInvoice_Invoice_ComboBox.Enabled = true;

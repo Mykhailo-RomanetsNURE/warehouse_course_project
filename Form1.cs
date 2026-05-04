@@ -119,15 +119,5 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
         }
-
-        private void newInvoice_Invoice_DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.ThrowException = false;
-        }
-
-        private void newInvoice_Invoice_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
