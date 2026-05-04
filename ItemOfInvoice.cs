@@ -14,5 +14,10 @@ namespace Курсовий_проєкт_на_тему_склад
             this.Quantity = quantity;
 			this.Price = price;
 		}
-	}
+
+		override public string ToString()
+        {
+            return $@"Id Товару: {Id}, Назва: {Name}\nКількість: {Quantity}, Ціна: {Price}";
+        }
+    }
 }

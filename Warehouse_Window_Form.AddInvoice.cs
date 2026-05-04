@@ -9,22 +9,23 @@ namespace Курсовий_проєкт_на_тему_склад
     {
         public void LoadItemsToInvoiceTable()
         {
+            warehouse.InvoiceList.RemoveAll(x => x == null);
             idOfInvoice_Invoice_Label.Text = warehouse.InvoiceLastId.ToString();
-            productsInInvoice_Invoice_DataGridView.AutoGenerateColumns = false;
-            productsInInvoice_Invoice_DataGridView.DataSource = null;
-            productsInInvoice_Invoice_DataGridView.DataSource = warehouse.InvoiceList;
+            newInvoice_Invoice_DataGridView.AutoGenerateColumns = false;
+            newInvoice_Invoice_DataGridView.DataSource = null;
+            newInvoice_Invoice_DataGridView.DataSource = warehouse.InvoiceList;
             idOfInvoice_Invoice_Label.Text = warehouse.InvoiceLastId.ToString();
 
             if (warehouse.InvoiceList == null || warehouse.InvoiceList.Count == 0)
             {
-                TypeOfInvoice_Invoice_ComboBox.Enabled = true;
+                typeOfInvoice_Invoice_ComboBox.Enabled = true;
             }
             else
             {
-                TypeOfInvoice_Invoice_ComboBox.Enabled = false;
+                typeOfInvoice_Invoice_ComboBox.Enabled = false;
             }
         }
-        public void LoadProductDataInvoniceItem()
+        public void LoadProductDataInvoniceItem()/*є код що бажано винести в окремий метод*/
         {
             string input = productId_Invoice_TextBox.Text.Trim();
             if (int.TryParse(input, out int productId))
@@ -112,15 +113,12 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         public void AddNewInvoice()
         {
-            if (warehouse.InvoiceList != null && warehouse.InvoiceList.Count() != 0)
-            {
-                bool IsExpenditureInvoice = TypeOfInvoice_Invoice_ComboBox.SelectedIndex == 0;
-                Invoice invoice = new Invoice(warehouse, IsExpenditureInvoice, warehouse.InvoiceList);
-                warehouse.AddInvoice(invoice, warehouse);
-                warehouse.InvoiceList.Clear();
-                warehouse.InvoiceLastId++;
-                LoadItemsToInvoiceTable();
-            }
+            bool IsExpenditureInvoice = typeOfInvoice_Invoice_ComboBox.SelectedIndex == 0;
+            Invoice invoice = new Invoice(warehouse, IsExpenditureInvoice, warehouse.InvoiceList);
+            warehouse.AddInvoice(invoice, warehouse);
+            warehouse.InvoiceList.Clear();
+            warehouse.InvoiceLastId++;
+            LoadItemsToInvoiceTable();
         }
         private void productId_Invoice_TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -145,7 +143,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
         }
-        private void cleanInvoice_Invoice_Button_Click_1(object sender, EventArgs e)
+        private void cleanInvoice_Invoice_Button_Click(object sender, EventArgs e)
         {
             warehouse.InvoiceList = new List<ItemOfInvoice>();
             LoadItemsToInvoiceTable();
@@ -159,7 +157,7 @@ namespace Курсовий_проєкт_на_тему_склад
 
             if (int.TryParse(inputId, out int id) && int.TryParse(inputQuantity, out int quantity) && double.TryParse(inputPrice, out double price))
             {
-                if (id > 0 && quantity > 0 && price > 0 && (TypeOfInvoice_Invoice_ComboBox.SelectedIndex == 0 || (TypeOfInvoice_Invoice_ComboBox.SelectedIndex == 1 && Convert.ToInt32(thisQuantityProduct_Invoice_LabelNumber.Text) >= quantity)))
+                if (id > 0 && quantity > 0 && price > 0 && (typeOfInvoice_Invoice_ComboBox.SelectedIndex == 0 || (typeOfInvoice_Invoice_ComboBox.SelectedIndex == 1 && Convert.ToInt32(thisQuantityProduct_Invoice_LabelNumber.Text) >= quantity)))
                 {
                     var existingItem = warehouse.InvoiceList.FirstOrDefault(i => i.Id == id);
                     if (existingItem == null)
@@ -189,26 +187,29 @@ namespace Курсовий_проєкт_на_тему_склад
 
             MessageBox.Show("Нажаль введені данні мають помилку.");
         }
-        private void productsInInvoice_Invoice_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var row = productsInInvoice_Invoice_DataGridView.Rows[e.RowIndex];
-                int thisId = Convert.ToInt32(row.Cells["invoiceId_InvoiceHistory_DataGridViewTextBoxColumn"].Value);
-                ItemOfInvoice item = warehouse.InvoiceList.FirstOrDefault(i => i.Id == thisId);
-                productId_Invoice_TextBox.Text = thisId.ToString();
-                LoadProductDataInvoniceItem();
-                quantityProduct_Invoice_TextBox.Text = item.Quantity.ToString();
-                productPrice_Invoice_TextBox.Text = item.Price.ToString();
-            }
-        }
         private void addNewInvoice_Button_Click(object sender, EventArgs e)
         {
-            AddNewInvoice();
+            if (warehouse.InvoiceList != null && warehouse.InvoiceList.Count() != 0)
+            {
+                AddNewInvoice();
+            }
+            else
+            {
+                MessageBox.Show("Неможливо створити накладну без товарів.");
+            }
         }
-        private void addNewInvoice_Invoice_Button_Click(object sender, EventArgs e)/*Додати збереження у файл*/
+        private void addNewInvoice_Invoice_Button_Click(object sender, EventArgs e)
         {
-            AddNewInvoice();
+            if (warehouse.InvoiceList != null && warehouse.InvoiceList.Count() != 0)
+            {
+                AddNewInvoice();
+                ExportInvoiceToFile(warehouse.InvoicesHistory[0]);
+            }
+            else
+            {
+                MessageBox.Show("Неможливо створити накладну без товарів.");
+            }
         }
+
     }
 }

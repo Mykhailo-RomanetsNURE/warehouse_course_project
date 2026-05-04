@@ -11,13 +11,13 @@ namespace Курсовий_проєкт_на_тему_склад
         {
             int pageSize = 10;
 
-            int totalItems = warehouse.InvoiceList.Count;
+            int totalItems = warehouse.InvoicesHistory.Count;
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             if (totalPages == 0) totalPages = 1;
             if (pageNumber > totalPages) pageNumber = totalPages;
             if (pageNumber < 1) pageNumber = 1;
 
-            var itemsForPage = warehouse.InvoiceList
+            var itemsForPage = warehouse.InvoicesHistory
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
@@ -105,5 +105,14 @@ namespace Курсовий_проєкт_на_тему_склад
                 LoadInvoiceInInvoiceHistoryPage(thisId);
             }
         }
+        private void closeInvoice_InvoiceHistory_Button_Click(object sender, EventArgs e)
+        {
+            invoice_InvoiceHistory_Panel.Visible = false;
+        }
+        private void saveInvoiceInFile_InvoiceHistory_Button_Click(object sender, EventArgs e)
+        {
+            Invoice invoice = warehouse.InvoicesHistory.FirstOrDefault(inv => inv.InvoiceId.ToString() == idInvoice_InvoiceHistory_Label.Text);
+            ExportInvoiceToFile(invoice);
+        }    
     }
 }

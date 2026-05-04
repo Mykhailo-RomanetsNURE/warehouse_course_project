@@ -11,7 +11,6 @@ namespace Курсовий_проєкт_на_тему_склад
         public List<Incident> History { get; set; }
         public List<ItemOfInvoice> InvoiceList { get; set; }
         public List<Invoice> InvoicesHistory { get; set; }
-
         public Warehouse()
 		{
 			Products = new List<Product>();
@@ -40,6 +39,16 @@ namespace Курсовий_проєкт_на_тему_склад
                 int countToRemove = warehouseMhetod.InvoicesHistory.Count - 1000;
                 warehouseMhetod.InvoicesHistory.RemoveRange(1000, countToRemove);
             }
-        }   
+        }
+        public void ClearWarehouse()
+        {
+            this.Products.Clear();
+            this.MaxId = 1;
+            this.InvoiceLastId = 1;
+            this.History.Clear();
+            this.InvoiceList.Clear();
+            this.InvoicesHistory.Clear();
+        }
+
     }
 }

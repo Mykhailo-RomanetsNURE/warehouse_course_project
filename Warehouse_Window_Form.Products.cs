@@ -15,7 +15,7 @@ namespace Курсовий_проєкт_на_тему_склад
             if (search_Products_CheckBox.Checked)
             {
                 string searchText = search_ViewProducts_TextBox.Text.Trim();
-                string selectedIItem = search_ViewProducts_СomboBox.Text;
+                string selectedItem = search_ViewProducts_СomboBox.Text;
                 double doubleNumber = double.TryParse(searchText, out double d) ? d : -1;
                 int intNumber = int.TryParse(searchText, out int n) ? n : -1;
                 Dictionary<string, Func<Product, bool>> filters = new Dictionary<string, Func<Product, bool>>
@@ -29,7 +29,7 @@ namespace Курсовий_проєкт_на_тему_склад
                     { "Вага",  x => x.Weight == doubleNumber },
                     { "Примітка", x => x.Note.Contains(searchText, StringComparison.OrdinalIgnoreCase) }
                 };
-                sourceList = warehouse.Products.Where(filters[selectedIItem]).ToList();
+                sourceList = warehouse.Products.Where(filters[selectedItem]).ToList();
             }
             int totalItems = sourceList.Count;
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);

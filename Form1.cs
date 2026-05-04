@@ -15,12 +15,22 @@ namespace Курсовий_проєкт_на_тему_склад
             this.MaximizeBox = false;
             this.warehouse = warehouse;
 
+            if (search_ViewProducts_СomboBox.Items.Count < 0)
+            {
+                search_ViewProducts_СomboBox.SelectedIndex = 0;
+            }
+
+            if (typeOfInvoice_Invoice_ComboBox.Items.Count < 0)
+            {
+                typeOfInvoice_Invoice_ComboBox.SelectedIndex = 0;
+            }
+
             search_ViewProducts_СomboBox.SelectedIndex = 0;
             loadDataToTable(1);
 
             LoadItemsToInvoiceTable();
             LoadProductDataInvoniceItem();
-            TypeOfInvoice_Invoice_ComboBox.SelectedIndex = 0;
+            typeOfInvoice_Invoice_ComboBox.SelectedIndex = 0;
 
             LoadDataToHistoryTable(1);
         }
@@ -64,7 +74,7 @@ namespace Курсовий_проєкт_на_тему_склад
                     LoaditemsToInvoiceHistoryTable(1);
                 }
             }
-            }
+        }
         private void Warehouse_Window_Form_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -81,6 +91,43 @@ namespace Курсовий_проєкт_на_тему_склад
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
+        }
+        private void ExportInvoiceToFile(Invoice invoice)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            saveDialog.FileName = $"Invoice_{invoice.InvoiceId}.txt";
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using StreamWriter writer = new StreamWriter(saveDialog.FileName);
+                    writer.WriteLine($"------------------ Id накладної: {invoice.InvoiceId} ------------------");
+                    writer.WriteLine($"Дата створення: {invoice.Date}");
+                    writer.WriteLine($"Тип накладної: {(invoice.IsExpenditureInvoice ? "Прибуткова" : "Видаткова")}");
+                    writer.WriteLine(new string('-', 50));
+                    foreach (var item in invoice.Items)
+                    {
+                        writer.WriteLine(item.ToString());
+                    }
+                    MessageBox.Show("Накладна успішно експортована!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Нажаль виникла помилка при запису файлу");
+                }
+            }
+        }
+
+        private void newInvoice_Invoice_DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
+        }
+
+        private void newInvoice_Invoice_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
