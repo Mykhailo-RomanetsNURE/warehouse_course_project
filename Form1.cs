@@ -15,16 +15,6 @@ namespace Курсовий_проєкт_на_тему_склад
             this.MaximizeBox = false;
             this.warehouse = warehouse;
 
-            if (search_ViewProducts_СomboBox.Items.Count < 0)
-            {
-                search_ViewProducts_СomboBox.SelectedIndex = 0;
-            }
-
-            if (typeOfInvoice_Invoice_ComboBox.Items.Count < 0)
-            {
-                typeOfInvoice_Invoice_ComboBox.SelectedIndex = 0;
-            }
-
             search_ViewProducts_СomboBox.SelectedIndex = 0;
             loadDataToTable(1);
 

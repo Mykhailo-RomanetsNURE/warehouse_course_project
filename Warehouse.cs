@@ -49,6 +49,11 @@ namespace Курсовий_проєкт_на_тему_склад
             this.InvoiceList.Clear();
             this.InvoicesHistory.Clear();
         }
+        public void AddProduct(Product productLink)
+        {
+            Product product = new Product(productLink, this);
+            this.Products.Add(product);
+        }
 
     }
 }

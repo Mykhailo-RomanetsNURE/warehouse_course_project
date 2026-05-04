@@ -6,117 +6,24 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
-        private void addProduct_Addproduct_Button_Click(object sender, EventArgs e)/*переробити + додати можливість задати кількість з самого початку*/
+        private void addProduct_Addproduct_Button_Click(object sender, EventArgs e)
         {
-            bool isAllTrue = true;
+            string inputName = name_AddProduct_TextBox.Text.Trim();
+            string inputNote = note_AddProduct_TextBox.Text.Trim();
+            string inputPrice = price_AddProduct_TextBox.Text.Trim();
+            string inputQuantity = quantity_AddProduct_TextBox.Text.Trim();
+            string inputHeight = height_AddProduct_TextBox.Text.Trim();
+            string inputWidth = width_AddProduct_TextBox.Text.Trim();
+            string inputLength = length_AddProduct_TextBox.Text.Trim();
+            string inputWeight = weight_AddProduct_TextBox.Text.Trim();
+            bool[] isAllTrue = Product.AddNewProduct(inputName, inputPrice, inputQuantity, inputHeight, inputWidth, inputLength, inputWeight, inputNote, warehouse);
 
-            string name = name_AddProduct_TextBox.Text.Trim();
-            double price = 0;
-            double height = 0;
-            double width = 0;
-            double length = 0;
-            double weight = 0;
-            string note = note_AddProduct_TextBox.Text.Trim();
-
-            if (name == "")
+            if (isAllTrue.All(x => x == true))
             {
-                isAllTrue = false;
-                goto erorr_end;
-            }
-            foreach (Product controlNameObject in warehouse.Products)
-            {
-                if (controlNameObject.Name == name)
-                {
-                    isAllTrue = false;
-                    goto erorr_end;
-                }
-            }
-
-            string input = price_AddProduct_TextBox.Text.Trim();
-            if (input == "")
-            {
-                isAllTrue = false;
-                goto erorr_end;
-            }
-            if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double result))
-            {
-                if (result <= 0)
-                {
-                    isAllTrue = false;
-                    goto erorr_end;
-                }
-                price = result;
-            }
-            else
-            {
-                isAllTrue = false;
-                goto erorr_end;
-            }
-
-            input = height_AddProduct_TextBox.Text.Trim();
-            if (input != "")
-            {
-                if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
-                {
-                    if (result < 0)
-                    {
-                        isAllTrue = false;
-                        goto erorr_end;
-                    }
-                    height = result;
-                }
-            }
-
-            input = width_AddProduct_TextBox.Text.Trim();
-            if (input != "")
-            {
-                if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
-                {
-                    if (result < 0)
-                    {
-                        isAllTrue = false;
-                        goto erorr_end;
-                    }
-                    width = result;
-                }
-            }
-
-            input = length_AddProduct_TextBox.Text.Trim();
-            if (input != "")
-            {
-                if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
-                {
-                    if (result < 0)
-                    {
-                        isAllTrue = false;
-                        goto erorr_end;
-                    }
-                    length = result;
-                }
-            }
-
-            input = weight_AddProduct_TextBox.Text.Trim();
-            if (input != "")
-            {
-                if (double.TryParse(input, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
-                {
-                    if (result < 0)
-                    {
-                        isAllTrue = false;
-                        goto erorr_end;
-                    }
-                    weight = result;
-                }
-            }
-
-        erorr_end:
-            if (isAllTrue == true)
-            {
-                Product product = new Product(name, price, height, width, length, weight, note, warehouse);
-                warehouse.Products.Add(product);
-                notification_AddProduct("Товар успішно додано, йому приділено ID: " + product.Id, 5000);
+                notification_AddProduct("Товар успішно додано, йому приділено ID: " + (warehouse.MaxId - 1), 5000);
                 name_AddProduct_TextBox.Clear();
                 price_AddProduct_TextBox.Clear();
+                quantity_AddProduct_TextBox.Clear();
                 height_AddProduct_TextBox.Clear();
                 width_AddProduct_TextBox.Clear();
                 length_AddProduct_TextBox.Clear();
@@ -125,7 +32,36 @@ namespace Курсовий_проєкт_на_тему_склад
             }
             else
             {
-                notification_AddProduct("Помилка при додаванні товару, перевірте правильність введених даних", 3000);
+                string errorMessage = "";
+                if (isAllTrue[0] == false)
+                {
+                    errorMessage += "Назва не може бути порожньою або повторюватись.\n";
+                }
+                if (isAllTrue[1] == false)
+                {
+                    errorMessage += "Ціна повинна бути додатним числом і більшою за 0.\n";
+                }
+                if (isAllTrue[2] == false)
+                {
+                    errorMessage += "Кількість повинна бути невід'ємним числом.\n";
+                }
+                if (isAllTrue[3] == false)
+                {
+                    errorMessage += "Висота повинна бути невід'ємним числом.\n";
+                }
+                if (isAllTrue[4] == false)
+                {
+                    errorMessage += "Ширина повинна бути невід'ємним числом.\n";
+                }
+                if (isAllTrue[5] == false)
+                {
+                    errorMessage += "Довжина повинна бути невід'ємним числом.\n";
+                }
+                if (isAllTrue[6] == false)
+                {
+                    errorMessage += "Вага повинна бути невід'ємним числом.\n";
+                }
+                MessageBox.Show(errorMessage, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void notification_AddProduct(string message, int time)

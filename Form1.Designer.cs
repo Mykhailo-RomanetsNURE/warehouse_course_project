@@ -86,6 +86,7 @@
             previousPage_ViewProducts_Button = new Button();
             pageName_ViewProducts_Label = new Label();
             invoice_TabPage = new TabPage();
+            errorText_NewInvoice_Label = new Label();
             newInvoice_Invoice_DataGridView = new DataGridView();
             itemId_NewInvoice_Column = new DataGridViewTextBoxColumn();
             itemName_NewInvoice_Column = new DataGridViewTextBoxColumn();
@@ -115,6 +116,8 @@
             typeOfInvoice_Invoice_ComboBox = new ComboBox();
             newInvoice_Invoice_Label = new Label();
             addProduct_TabPage = new TabPage();
+            quantity_AddProduct_Label = new Label();
+            quantity_AddProduct_TextBox = new TextBox();
             notification_AddProduct_Label = new Label();
             addProduct_Addproduct_Button = new Button();
             note_AddProduct_TextBox = new TextBox();
@@ -180,7 +183,6 @@
             daeleteAllData_AdditionalFeatures_Button = new Button();
             saveProductsIntxtFile_AdditionalFeatures_Button = new Button();
             saveAndClose_Window = new Button();
-            label2 = new Label();
             program_TabControl.SuspendLayout();
             products_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableOfProducts_ViewProducts_DataGridView).BeginInit();
@@ -808,7 +810,7 @@
             // 
             // invoice_TabPage
             // 
-            invoice_TabPage.Controls.Add(label2);
+            invoice_TabPage.Controls.Add(errorText_NewInvoice_Label);
             invoice_TabPage.Controls.Add(newInvoice_Invoice_DataGridView);
             invoice_TabPage.Controls.Add(cleanInvoice_Invoice_Button);
             invoice_TabPage.Controls.Add(idOfInvoice_Invoice_Label);
@@ -825,6 +827,15 @@
             invoice_TabPage.TabIndex = 1;
             invoice_TabPage.Text = "Нова накладна";
             invoice_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // errorText_NewInvoice_Label
+            // 
+            errorText_NewInvoice_Label.AutoSize = true;
+            errorText_NewInvoice_Label.Location = new Point(90, 558);
+            errorText_NewInvoice_Label.Name = "errorText_NewInvoice_Label";
+            errorText_NewInvoice_Label.Size = new Size(600, 20);
+            errorText_NewInvoice_Label.TabIndex = 10;
+            errorText_NewInvoice_Label.Text = "Таблиця неклікабельна, для зміни кількості або ціни товару введіть його ID у пошук.";
             // 
             // newInvoice_Invoice_DataGridView
             // 
@@ -1113,6 +1124,8 @@
             // 
             // addProduct_TabPage
             // 
+            addProduct_TabPage.Controls.Add(quantity_AddProduct_Label);
+            addProduct_TabPage.Controls.Add(quantity_AddProduct_TextBox);
             addProduct_TabPage.Controls.Add(notification_AddProduct_Label);
             addProduct_TabPage.Controls.Add(addProduct_Addproduct_Button);
             addProduct_TabPage.Controls.Add(note_AddProduct_TextBox);
@@ -1139,6 +1152,22 @@
             addProduct_TabPage.Text = "Додати товар";
             addProduct_TabPage.UseVisualStyleBackColor = true;
             // 
+            // quantity_AddProduct_Label
+            // 
+            quantity_AddProduct_Label.AutoSize = true;
+            quantity_AddProduct_Label.Location = new Point(8, 148);
+            quantity_AddProduct_Label.Name = "quantity_AddProduct_Label";
+            quantity_AddProduct_Label.Size = new Size(654, 20);
+            quantity_AddProduct_Label.TabIndex = 19;
+            quantity_AddProduct_Label.Text = "Кількість (УВАГА! Кількість в подальшому можливо змінити лише при раєстрації Накладної)";
+            // 
+            // quantity_AddProduct_TextBox
+            // 
+            quantity_AddProduct_TextBox.Location = new Point(8, 171);
+            quantity_AddProduct_TextBox.Name = "quantity_AddProduct_TextBox";
+            quantity_AddProduct_TextBox.Size = new Size(120, 27);
+            quantity_AddProduct_TextBox.TabIndex = 5;
+            // 
             // notification_AddProduct_Label
             // 
             notification_AddProduct_Label.AutoSize = true;
@@ -1152,23 +1181,23 @@
             addProduct_Addproduct_Button.Location = new Point(8, 557);
             addProduct_Addproduct_Button.Name = "addProduct_Addproduct_Button";
             addProduct_Addproduct_Button.Size = new Size(256, 51);
-            addProduct_Addproduct_Button.TabIndex = 16;
+            addProduct_Addproduct_Button.TabIndex = 11;
             addProduct_Addproduct_Button.Text = "Додати товар";
             addProduct_Addproduct_Button.UseVisualStyleBackColor = true;
             addProduct_Addproduct_Button.Click += addProduct_Addproduct_Button_Click;
             // 
             // note_AddProduct_TextBox
             // 
-            note_AddProduct_TextBox.Location = new Point(8, 323);
+            note_AddProduct_TextBox.Location = new Point(8, 376);
             note_AddProduct_TextBox.Multiline = true;
             note_AddProduct_TextBox.Name = "note_AddProduct_TextBox";
-            note_AddProduct_TextBox.Size = new Size(712, 228);
-            note_AddProduct_TextBox.TabIndex = 15;
+            note_AddProduct_TextBox.Size = new Size(1096, 175);
+            note_AddProduct_TextBox.TabIndex = 10;
             // 
             // note_AddProduct_Label
             // 
             note_AddProduct_Label.AutoSize = true;
-            note_AddProduct_Label.Location = new Point(6, 300);
+            note_AddProduct_Label.Location = new Point(8, 353);
             note_AddProduct_Label.Name = "note_AddProduct_Label";
             note_AddProduct_Label.Size = new Size(74, 20);
             note_AddProduct_Label.TabIndex = 14;
@@ -1177,7 +1206,7 @@
             // weight_AddProduct_Label
             // 
             weight_AddProduct_Label.AutoSize = true;
-            weight_AddProduct_Label.Location = new Point(134, 273);
+            weight_AddProduct_Label.Location = new Point(134, 326);
             weight_AddProduct_Label.Name = "weight_AddProduct_Label";
             weight_AddProduct_Label.Size = new Size(125, 20);
             weight_AddProduct_Label.TabIndex = 13;
@@ -1185,15 +1214,15 @@
             // 
             // weight_AddProduct_TextBox
             // 
-            weight_AddProduct_TextBox.Location = new Point(8, 270);
+            weight_AddProduct_TextBox.Location = new Point(8, 323);
             weight_AddProduct_TextBox.Name = "weight_AddProduct_TextBox";
             weight_AddProduct_TextBox.Size = new Size(120, 27);
-            weight_AddProduct_TextBox.TabIndex = 12;
+            weight_AddProduct_TextBox.TabIndex = 9;
             // 
             // length_AddProduct_Label
             // 
             length_AddProduct_Label.AutoSize = true;
-            length_AddProduct_Label.Location = new Point(134, 240);
+            length_AddProduct_Label.Location = new Point(134, 293);
             length_AddProduct_Label.Name = "length_AddProduct_Label";
             length_AddProduct_Label.Size = new Size(130, 20);
             length_AddProduct_Label.TabIndex = 11;
@@ -1202,7 +1231,7 @@
             // width_AddProduct_Label
             // 
             width_AddProduct_Label.AutoSize = true;
-            width_AddProduct_Label.Location = new Point(134, 207);
+            width_AddProduct_Label.Location = new Point(134, 260);
             width_AddProduct_Label.Name = "width_AddProduct_Label";
             width_AddProduct_Label.Size = new Size(124, 20);
             width_AddProduct_Label.TabIndex = 10;
@@ -1211,7 +1240,7 @@
             // height_AddProduct_Label
             // 
             height_AddProduct_Label.AutoSize = true;
-            height_AddProduct_Label.Location = new Point(134, 174);
+            height_AddProduct_Label.Location = new Point(134, 227);
             height_AddProduct_Label.Name = "height_AddProduct_Label";
             height_AddProduct_Label.Size = new Size(114, 20);
             height_AddProduct_Label.TabIndex = 9;
@@ -1220,7 +1249,7 @@
             // characcteristics_AddProduct_Label
             // 
             characcteristics_AddProduct_Label.AutoSize = true;
-            characcteristics_AddProduct_Label.Location = new Point(8, 148);
+            characcteristics_AddProduct_Label.Location = new Point(8, 201);
             characcteristics_AddProduct_Label.Name = "characcteristics_AddProduct_Label";
             characcteristics_AddProduct_Label.Size = new Size(120, 20);
             characcteristics_AddProduct_Label.TabIndex = 8;
@@ -1228,24 +1257,24 @@
             // 
             // length_AddProduct_TextBox
             // 
-            length_AddProduct_TextBox.Location = new Point(8, 237);
+            length_AddProduct_TextBox.Location = new Point(8, 290);
             length_AddProduct_TextBox.Name = "length_AddProduct_TextBox";
             length_AddProduct_TextBox.Size = new Size(120, 27);
-            length_AddProduct_TextBox.TabIndex = 7;
+            length_AddProduct_TextBox.TabIndex = 8;
             // 
             // width_AddProduct_TextBox
             // 
-            width_AddProduct_TextBox.Location = new Point(8, 204);
+            width_AddProduct_TextBox.Location = new Point(8, 257);
             width_AddProduct_TextBox.Name = "width_AddProduct_TextBox";
             width_AddProduct_TextBox.Size = new Size(120, 27);
-            width_AddProduct_TextBox.TabIndex = 6;
+            width_AddProduct_TextBox.TabIndex = 7;
             // 
             // height_AddProduct_TextBox
             // 
-            height_AddProduct_TextBox.Location = new Point(8, 171);
+            height_AddProduct_TextBox.Location = new Point(8, 224);
             height_AddProduct_TextBox.Name = "height_AddProduct_TextBox";
             height_AddProduct_TextBox.Size = new Size(120, 27);
-            height_AddProduct_TextBox.TabIndex = 5;
+            height_AddProduct_TextBox.TabIndex = 6;
             // 
             // price_AddProduct_TextBox
             // 
@@ -1800,15 +1829,6 @@
             saveAndClose_Window.Text = "Зберегти та вийти ";
             saveAndClose_Window.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(90, 558);
-            label2.Name = "label2";
-            label2.Size = new Size(600, 20);
-            label2.TabIndex = 10;
-            label2.Text = "Таблиця неклікабельна, для зміни кількості або ціни товару введіть його ID у пошук.";
-            // 
             // Warehouse_Window_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -2004,6 +2024,8 @@
         private DataGridViewTextBoxColumn itemName_NewInvoice_Column;
         private DataGridViewTextBoxColumn itemPrice_NewInvoice_Column;
         private DataGridViewTextBoxColumn itemQuantity_NewInvoice_Column;
-        private Label label2;
+        private Label errorText_NewInvoice_Label;
+        private Label quantity_AddProduct_Label;
+        private TextBox quantity_AddProduct_TextBox;
     }
 }
