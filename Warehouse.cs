@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Printing;
 using System.Xml.Linq;
 
 namespace Курсовий_проєкт_на_тему_склад
@@ -89,7 +90,6 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         public (List<Product> itemsForPage, int pageNumber, int totalPages, int totalItems) DataProductTable(int pageNumber, string searchText, string selectedItem, bool isSearchOn)
         {
-            int pageSize = 10;
             List<Product> sourceList = this.Products;
             if (isSearchOn)
             {
@@ -111,16 +111,34 @@ namespace Курсовий_проєкт_на_тему_склад
                 sourceList = this.Products.Where(filters[selectedItem]).ToList();
             }
             int totalItems = sourceList.Count;
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            int totalPages = (int)Math.Ceiling((double)totalItems / Constants.PAGE_SIZE);
             if (totalPages == 0) totalPages = 1;
             if (pageNumber > totalPages) pageNumber = totalPages;
             if (pageNumber < 1) pageNumber = 1;
 
             var itemsForPage = sourceList
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
+                    .Skip((pageNumber - 1) * Constants.PAGE_SIZE)
+                    .Take(Constants.PAGE_SIZE)
                     .ToList();
             return (itemsForPage, pageNumber, totalPages, totalItems);
+        }
+        public (List<Incident> itemsForTable, int pageNumber, int totalPages, int totalItems) ProductHistoryDataTable(int pageNumber, int id)
+        {
+            List<Incident> incidentsForTable = this.History;
+            if (id != 0)
+            {
+                incidentsForTable = incidentsForTable.Where(p => p.ElementId == id).ToList();
+            }
+            int totalItems = incidentsForTable.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / Constants.PAGE_SIZE);
+            if (totalPages == 0) totalPages = 1;
+            if (pageNumber > totalPages) pageNumber = totalPages;
+            if (pageNumber < 1) pageNumber = 1;
+            var itemsForTable = incidentsForTable
+                    .Skip((pageNumber - 1) * Constants.PAGE_SIZE)
+                    .Take(Constants.PAGE_SIZE)
+                    .ToList();
+            return (itemsForTable, pageNumber, totalPages, totalItems);
         }
 
     }

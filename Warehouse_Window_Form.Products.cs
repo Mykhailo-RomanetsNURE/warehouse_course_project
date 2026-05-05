@@ -91,7 +91,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 note_ViewSpecificProduct_TextBox.Text = thisProduct.Note;
                 quantity_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.Quantity);
                 time_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.DateAndTime);
-                loadHistoryToTable(1, thisId);
+                loadHistoryToTable("1", Convert.ToString(thisId));
                 historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
             }
         }
@@ -171,86 +171,54 @@ namespace Курсовий_проєкт_на_тему_склад
             loadDataToTable(inputPageNumder);
         }
         /*Перегляд історії товару*/
-        private void loadHistoryToTable(int pageNumber, int id)/*розділити логіку та форму*/
+        private void loadHistoryToTable(string pageNumber, string id, int num = 0)/*розділити логіку та форму*/
         {
-            int pageSize = 10;
-            List<Incident> incidentsForTable = warehouse.History;
-            if(id != 0)
+            if (!int.TryParse(id, out int idInt))
             {
-                incidentsForTable = incidentsForTable.Where(p => p.ElementId == id).ToList();
+                idInt = 0;
             }
-            int totalItems = incidentsForTable.Count;
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            if (totalPages == 0) totalPages = 1;
-            if (pageNumber > totalPages) pageNumber = totalPages;
-            if (pageNumber < 1) pageNumber = 1;
-            var itemsForTable = incidentsForTable
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+            if (!int.TryParse(pageNumber, out int pageNumberInt))
+            {
+                pageNumberInt = 1;
+            }
+            else
+            {
+                pageNumberInt += num;
+            }
+            var result = warehouse.ProductHistoryDataTable(pageNumberInt, idInt);
             history_ViewSpecificProduct_DataGridView.AutoGenerateColumns = false;
             history_ViewSpecificProduct_DataGridView.DataSource = null;
-            history_ViewSpecificProduct_DataGridView.DataSource = itemsForTable;
+            history_ViewSpecificProduct_DataGridView.DataSource = result.itemsForTable;
 
-            historyLastPage_ViewSpecificProduct_Label.Text = totalPages.ToString();
-            historyThisPageNumber_ViewSpecificProduct_Label.Text = pageNumber.ToString();
+            historyLastPage_ViewSpecificProduct_Label.Text = result.totalPages.ToString();
+            historyThisPageNumber_ViewSpecificProduct_Label.Text = result.pageNumber.ToString();
         }
-        private void historyPreviousPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку*/
+        private void historyPreviousPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            int thisId = Convert.ToInt32(id_ViewSpecificProduct_Label.Text);
+            string thisId = id_ViewSpecificProduct_Label.Text.Trim();
             string input = historyThisPageNumber_ViewSpecificProduct_Label.Text.Trim();
-            if (int.TryParse(input, out int pageNumber))
-            {
-                loadHistoryToTable(pageNumber - 1, thisId);
-            }
-            else
-            {
-                loadHistoryToTable(1, thisId);
-            }
+            loadHistoryToTable(input, thisId, -1);
         }
-        private void historyNextPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку*/
+        private void historyNextPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            int thisId = Convert.ToInt32(id_ViewSpecificProduct_Label.Text);
+            string thisId = id_ViewSpecificProduct_Label.Text.Trim();
             string input = historyThisPageNumber_ViewSpecificProduct_Label.Text.Trim();
-            if (int.TryParse(input, out int pageNumber))
-            {
-                loadHistoryToTable(pageNumber + 1, thisId);
-            }
-            else
-            {
-                loadHistoryToTable(1, thisId);
-            }
+            loadHistoryToTable(input, thisId, 1);
         }
-        private void historyGetPage_ViewSpecificProduct_TextBox_KeyDown(object sender, KeyEventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку, можливо метод повторює тогіку оновлення таблиці*/
+        private void historyGetPage_ViewSpecificProduct_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 string input = historyGetPage_ViewSpecificProduct_TextBox.Text.Trim();
-                int thisId = Convert.ToInt32(id_ViewSpecificProduct_Label.Text);
-                if (int.TryParse(input, out int pageNumber))
-                {
-                    if (pageNumber <= 0 || warehouse.History.Count(p => p.ElementId == thisId) < (pageNumber - 1) * 10)
-                    {
-                        loadHistoryToTable(1, thisId);
-                        historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
-                    }
-                    else
-                    {
-                        loadHistoryToTable(pageNumber, thisId);
-                    }
-                }
-                else
-                {
-                    loadHistoryToTable(1, thisId);
-                    historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
-                }
+                string thisId = id_ViewSpecificProduct_Label.Text.Trim();
+                loadHistoryToTable(input, thisId);
             }
         }
         private void deleteHistory_ViewSpecificProduct_Button_Click(object sender, EventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку*/
         {
-            int thisId = Convert.ToInt32(id_ViewSpecificProduct_Label.Text);
-            warehouse.CleanHistoryProduct(thisId);
-            loadHistoryToTable(1, thisId);
+            string thisId = id_ViewSpecificProduct_Label.Text.Trim();
+            warehouse.CleanHistoryProduct(Convert.ToInt32(thisId));
+            loadHistoryToTable("1", thisId);
         }
 
     }
