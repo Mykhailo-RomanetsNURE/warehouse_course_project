@@ -59,9 +59,8 @@ public class Product
         this.Weight = weight;
         this.Note = note;
     }
-
-	public static bool[] AddNewProduct (string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
-	{
+    public static (Product product, bool[] isAllTrue) CreateProduct(string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
+    {
         bool[] isAllTrue = new bool[8];
         Array.Fill(isAllTrue, true);
         Product emptyProduct = new Product(0, "", 0, 0, DateTime.Now, 0, 0, 0, 0, "");
@@ -178,7 +177,13 @@ public class Product
             }
         }
         emptyProduct.Note = note;
-
+        return (emptyProduct, isAllTrue);
+    }
+	public static bool[] AddNewProduct (string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
+	{
+        var result = Product.CreateProduct(name, price, quantity, height, width, length, weight, note, warehouse);
+        bool[] isAllTrue = result.isAllTrue;
+        Product emptyProduct = result.product;
         if (isAllTrue.All(x => x == true))
         {
             warehouse.AddProduct(emptyProduct);
