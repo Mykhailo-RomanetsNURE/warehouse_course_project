@@ -158,17 +158,21 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void delete_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(id_ViewSpecificProduct_Label.Text, out int id))
+            DialogResult result = MessageBox.Show("Видалений товар не можливо буде повернути, залишаться лише записи в історії. Ви впевнені Що хочете його видалити?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                warehouse.RemoveProduct(id);
+                if (int.TryParse(id_ViewSpecificProduct_Label.Text, out int id))
+                {
+                    warehouse.RemoveProduct(id);
+                }
+                else
+                {
+                    MessageBox.Show("Щось пішло не так, незнвйден Id", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                productInfo_ViewProducts_Panel.Visible = false;
+                string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
+                loadDataToTable(inputPageNumder);
             }
-            else 
-            {
-                MessageBox.Show("Щось пішло не так, незнвйден Id", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            productInfo_ViewProducts_Panel.Visible = false;
-            string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
-            loadDataToTable(inputPageNumder);
         }
         /*Перегляд історії товару*/
         private void loadHistoryToTable(string pageNumber, string id, int num = 0)/*розділити логіку та форму*/
@@ -185,7 +189,7 @@ namespace Курсовий_проєкт_на_тему_склад
             {
                 pageNumberInt += num;
             }
-            var result = warehouse.ProductHistoryDataTable(pageNumberInt, idInt);
+            var result = warehouse.HistoryDataTable(pageNumberInt, idInt);
             history_ViewSpecificProduct_DataGridView.AutoGenerateColumns = false;
             history_ViewSpecificProduct_DataGridView.DataSource = null;
             history_ViewSpecificProduct_DataGridView.DataSource = result.itemsForTable;
@@ -216,9 +220,13 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void deleteHistory_ViewSpecificProduct_Button_Click(object sender, EventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку*/
         {
-            string thisId = id_ViewSpecificProduct_Label.Text.Trim();
-            warehouse.CleanHistoryProduct(Convert.ToInt32(thisId));
-            loadHistoryToTable("1", thisId);
+            DialogResult result = MessageBox.Show("Якщо ви видалите історію товару, всі записи будуть безповоротно втрачені. Ви впевнені?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                string thisId = id_ViewSpecificProduct_Label.Text.Trim();
+                warehouse.CleanHistoryProduct(Convert.ToInt32(thisId));
+                loadHistoryToTable("1", thisId);
+            }
         }
 
     }

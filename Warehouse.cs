@@ -67,14 +67,22 @@ namespace Курсовий_проєкт_на_тему_склад
         {
             int index = this.Products.FindIndex(p => p.Id == id);
             int indexNewInvoice = this.InvoiceList.FindIndex(p => p.Id == id);
-            if (index != -1 && indexNewInvoice != -1)
+            if (indexNewInvoice == -1)
             {
-                this.Products.RemoveAt(index);
-                this.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + this.Products.FirstOrDefault(p => p.Id == id), id));
+                if (index != -1)
+                {
+                    this.Products.RemoveAt(index);
+                    this.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + this.Products.FirstOrDefault(p => p.Id == id), id));
+                }
+                else
+                {
+                    MessageBox.Show("При видаленні товару виникла невідома помилка.");
+                }
+
             }
             else
             {
-                MessageBox.Show("Товар не можна видалити якщо він він приймає участь у створенні нової накладної.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Товар не можна видалити якщо він приймає участь у створенні нової накладної.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public Product TakeProduct(int id)
@@ -122,7 +130,7 @@ namespace Курсовий_проєкт_на_тему_склад
                     .ToList();
             return (itemsForPage, pageNumber, totalPages, totalItems);
         }
-        public (List<Incident> itemsForTable, int pageNumber, int totalPages, int totalItems) ProductHistoryDataTable(int pageNumber, int id)
+        public (List<Incident> itemsForTable, int pageNumber, int totalPages, int totalItems) HistoryDataTable(int pageNumber, int id = 0)
         {
             List<Incident> incidentsForTable = this.History;
             if (id != 0)
@@ -140,6 +148,31 @@ namespace Курсовий_проєкт_на_тему_склад
                     .ToList();
             return (itemsForTable, pageNumber, totalPages, totalItems);
         }
-
+        public bool ExportProductsToFile(SaveFileDialog saveDialog)
+        {
+            try
+            {
+                using StreamWriter writer = new StreamWriter(saveDialog.FileName);
+                writer.WriteLine($"Продукти наявні на складі станом на {DateTime.Now}");
+                writer.WriteLine(new string('=', 60));
+                foreach (var product in this.Products)
+                {
+                    writer.WriteLine($"Id товару на складі: {product.Id}");
+                    writer.WriteLine($"Назва: {product.Name}");
+                    writer.WriteLine($"Кількість: {product.Quantity}");
+                    writer.WriteLine($"Останння ціна: {product.Price}");
+                    writer.WriteLine($"Остання зміна кількості: {product.DateAndTime}");
+                    writer.WriteLine($"висота: {product.Height}, довжина: {product.Length}, ширина: {product.Width}");
+                    writer.WriteLine($"Вага: {product.Weight}");
+                    writer.WriteLine($"Примітка: {product.Note}");
+                    writer.WriteLine(new string('-', 60));
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

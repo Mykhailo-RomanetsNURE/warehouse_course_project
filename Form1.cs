@@ -22,7 +22,7 @@ namespace Курсовий_проєкт_на_тему_склад
             LoadProductDataInvoniceItem();
             typeOfInvoice_Invoice_ComboBox.SelectedIndex = 0;
 
-            LoadDataToHistoryTable(1);
+            LoadDataToHistoryTable("1");
         }
         private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -33,16 +33,8 @@ namespace Курсовий_проєкт_на_тему_склад
             }
             if (program_TabControl.SelectedIndex == 3)
             {
-                if (int.TryParse(thisPage_History_Label.Text, out int pageNumber))
-                {
-                    getPage_History_TextBox.Text = thisPage_History_Label.Text;
-                    LoadDataToHistoryTable(pageNumber);
-                }
-                else
-                {
-                    getPage_History_TextBox.Text = "1";
-                    LoadDataToHistoryTable(1);
-                }
+                string input = thisPage_History_Label.Text.Trim();
+                LoadDataToHistoryTable(input);
             }
             if (program_TabControl.SelectedIndex == 4)
             {
