@@ -28,12 +28,19 @@ public class Product
 		this.Length = length;
 		this.Weight = weight;
 		this.Note = note;
-		warehouseForConstructor.AddIncident(new Incident(DateTime.Now, "Додано новий товар: " + name, this.Id), warehouseForConstructor);
+		warehouseForConstructor.AddIncident(new Incident(DateTime.Now, "Додано новий товар: " + name, this.Id));
     }
-    public Product(Product product, Warehouse warehouseForConstructor)
+    public Product(Product product, Warehouse warehouseForConstructor, bool isAdd = true)
     {
-        this.Id = warehouseForConstructor.MaxId;
-        warehouseForConstructor.MaxId++;
+        if (isAdd)
+        {
+            this.Id = warehouseForConstructor.MaxId;
+            warehouseForConstructor.MaxId++;
+        }
+        else
+        {
+            this.Id = product.Id;
+        }
         this.Name = product.Name;
         this.Quantity = product.Quantity;
         this.Price = product.Price;
@@ -44,26 +51,30 @@ public class Product
         this.Length = product.Length;
         this.Weight = product.Weight;
         this.Note = product.Note;
-        warehouseForConstructor.AddIncident(new Incident(DateTime.Now, "Додано новий товар: " + product.Name, this.Id), warehouseForConstructor);
+        if (isAdd)
+        {
+            warehouseForConstructor.AddIncident(new Incident(DateTime.Now, "Додано новий товар: " + product.Name, this.Id));
+        }
     }
-    public Product(int id, string name, int quantity, double price, DateTime dateAndTime, double height, double width, double length, double weight, string note)
+    public Product()
     {
-        this.Id = id;
-        this.Name = name;
-        this.Quantity = quantity;
-        this.Price = price;
-        this.DateAndTime = dateAndTime;
-        this.Height = height;
-        this.Width = width;
-        this.Length = length;
-        this.Weight = weight;
-        this.Note = note;
+        this.Id = 0;
+        this.Name = "";
+        this.Quantity = 0;
+        this.Price = 0;
+        this.DateAndTime = DateTime.Now;
+        this.Height = 0;
+        this.Width = 0;
+        this.Length = 0;
+        this.Weight = 0;
+        this.Note = "";
     }
-    public static (Product product, bool[] isAllTrue) CreateProduct(string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
+    public static (Product product, bool[] isAllTrue) CreateProduct(bool isItAdd, int id, string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
     {
         bool[] isAllTrue = new bool[8];
         Array.Fill(isAllTrue, true);
-        Product emptyProduct = new Product(0, "", 0, 0, DateTime.Now, 0, 0, 0, 0, "");
+        Product emptyProduct = new Product();
+        emptyProduct.Id = id;
 
         if (name == "")
         {
@@ -73,14 +84,10 @@ public class Product
         {
             foreach (Product controlNameObject in warehouse.Products)
             {
-                if (controlNameObject.Name == name)
+                if ((controlNameObject.Name == name && isItAdd) || (controlNameObject.Name == name && controlNameObject.Id != emptyProduct.Id && !isItAdd))
                 {
                     isAllTrue[0] = false;
                     break;
-                }
-                else
-                {
-                    isAllTrue[0] = true;
                 }
             }
             if (isAllTrue[0] == true)
@@ -88,7 +95,9 @@ public class Product
                 emptyProduct.Name = name;
             }
         }
-        if (double.TryParse(price, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputPrice))
+
+        string normalizedPrice = price.Replace(',', '.');
+        if (double.TryParse(normalizedPrice, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputPrice))
         {
             if (inputPrice <= 0)
             {
@@ -104,6 +113,7 @@ public class Product
         {
             isAllTrue[1] = false;
         }
+
         if (int.TryParse(quantity, out int inputQuantity))
         {
             if (inputQuantity < 0)
@@ -116,9 +126,18 @@ public class Product
                 emptyProduct.Quantity = inputQuantity;
             }
         }
+        else
+        {
+            if (double.TryParse(quantity, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputQuantityDouble))
+            {
+                isAllTrue[2] = false;
+            }
+        }
+
         if (height != "")
         {
-            if (double.TryParse(height, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputHeight))
+            string normalizedHeight = height.Replace(',', '.');
+            if (double.TryParse(normalizedHeight, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputHeight))
             {
                 if (inputHeight < 0)
                 {
@@ -131,9 +150,11 @@ public class Product
                 }
             }
         }
+
         if (length != "")
         {
-            if (double.TryParse(length, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputLength))
+            string normalizedLength = length.Replace(',', '.');
+            if (double.TryParse(normalizedLength, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputLength))
             {
                 if (inputLength < 0)
                 {
@@ -146,9 +167,11 @@ public class Product
                 }
             }
         }
+
         if (width != "")
         {
-            if (double.TryParse(width, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputWidth))
+            string normalizedWidth = width.Replace(',', '.');
+            if (double.TryParse(normalizedWidth, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputWidth))
             {
                 if (inputWidth < 0)
                 {
@@ -161,9 +184,11 @@ public class Product
                 }
             }
         }
+
         if (weight != "")
         {
-            if (double.TryParse(weight, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputWeight))
+            string normalizedWeight = weight.Replace(',', '.');
+            if (double.TryParse(normalizedWeight, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputWeight))
             {
                 if (inputWeight < 0)
                 {
@@ -176,12 +201,14 @@ public class Product
                 }
             }
         }
+
         emptyProduct.Note = note;
+
         return (emptyProduct, isAllTrue);
     }
 	public static bool[] AddNewProduct (string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
 	{
-        var result = Product.CreateProduct(name, price, quantity, height, width, length, weight, note, warehouse);
+        var result = Product.CreateProduct(true, 0, name, price, quantity, height, width, length, weight, note, warehouse);
         bool[] isAllTrue = result.isAllTrue;
         Product emptyProduct = result.product;
         if (isAllTrue.All(x => x == true))
@@ -189,6 +216,26 @@ public class Product
             warehouse.AddProduct(emptyProduct);
         }
         return isAllTrue;
+    }
+    public static bool[] ChangeProductInfo (int id,string name, string price, string quantity, string height, string width, string length, string weight, string note,Product product, Warehouse warehouse)
+    {
+        var result = Product.CreateProduct(false, id, name, price, quantity, height, width, length, weight, note, warehouse);
+        bool[] isAllTrue = result.isAllTrue;
+        Product emptyProduct = result.product;
+        if (isAllTrue.All(x => x == true))
+        {
+            if (Product.AreProductsEqual(emptyProduct, product) == false)
+            {
+                warehouse.ChangeInfoOfProduct(emptyProduct);
+                warehouse.AddIncident(new Incident(DateTime.Now, "Змінено інформацію про товар: " + product.Name, id));
+            }
+        }
+        return isAllTrue;
+
+    }
+    public static bool AreProductsEqual(Product p1, Product p2)
+    {
+        return (p1.Id, p1.Name, p1.Price, p1.Quantity, p1.Height, p1.Width, p1.Length, p1.Weight, p1.Note) == (p2.Id, p2.Name, p2.Price, p2.Quantity, p2.Height, p2.Width, p2.Length, p2.Weight, p2.Note);
     }
 
 }

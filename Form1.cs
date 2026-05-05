@@ -16,7 +16,7 @@ namespace Курсовий_проєкт_на_тему_склад
             this.warehouse = warehouse;
 
             search_ViewProducts_СomboBox.SelectedIndex = 0;
-            loadDataToTable(1);
+            loadDataToTable("1");
 
             LoadItemsToInvoiceTable();
             LoadProductDataInvoniceItem();
@@ -29,16 +29,7 @@ namespace Курсовий_проєкт_на_тему_склад
         {
             if (program_TabControl.SelectedIndex == 0)
             {
-                if (int.TryParse(historyThisPageNumber_ViewSpecificProduct_Label.Text, out int pageNumber))
-                {
-                    getPage_ViewProducts_TextBox.Text = historyThisPageNumber_ViewSpecificProduct_Label.Text;
-                    loadDataToTable(pageNumber);
-                }
-                else
-                {
-                    getPage_ViewProducts_TextBox.Text = "1";
-                    loadDataToTable(1);
-                }
+                loadDataToTable(historyThisPageNumber_ViewSpecificProduct_Label.Text);
             }
             if (program_TabControl.SelectedIndex == 3)
             {

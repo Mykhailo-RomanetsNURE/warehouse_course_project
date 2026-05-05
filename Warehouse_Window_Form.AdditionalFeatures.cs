@@ -38,7 +38,7 @@
         private void daeleteAllData_AdditionalFeatures_Button_Click(object sender, EventArgs e)
         {
             warehouse.ClearWarehouse();
-            loadDataToTable(1);
+            loadDataToTable("1");
             productInfo_ViewProducts_Panel.Visible = false;
             LoadItemsToInvoiceTable();
             productId_Invoice_TextBox.Text = "";

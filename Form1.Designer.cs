@@ -247,7 +247,7 @@
             // 
             search_ViewProducts_СomboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             search_ViewProducts_СomboBox.FormattingEnabled = true;
-            search_ViewProducts_СomboBox.Items.AddRange(new object[] { "Назва", "ID", "Вартість", "Висота", "Ширина", "Довжина", "Вага", "Примітка" });
+            search_ViewProducts_СomboBox.Items.AddRange(new object[] { "Назва", "ID", "Вартість", "Кількість", "Висота", "Ширина", "Довжина", "Вага", "Примітка" });
             search_ViewProducts_СomboBox.Location = new Point(275, 25);
             search_ViewProducts_СomboBox.Name = "search_ViewProducts_СomboBox";
             search_ViewProducts_СomboBox.Size = new Size(151, 28);
@@ -1157,9 +1157,9 @@
             quantity_AddProduct_Label.AutoSize = true;
             quantity_AddProduct_Label.Location = new Point(8, 148);
             quantity_AddProduct_Label.Name = "quantity_AddProduct_Label";
-            quantity_AddProduct_Label.Size = new Size(654, 20);
+            quantity_AddProduct_Label.Size = new Size(652, 20);
             quantity_AddProduct_Label.TabIndex = 19;
-            quantity_AddProduct_Label.Text = "Кількість (УВАГА! Кількість в подальшому можливо змінити лише при раєстрації Накладної)";
+            quantity_AddProduct_Label.Text = "Кількість (УВАГА! Кількість в подальшому можливо змінити лише при раєстрації накладної)";
             // 
             // quantity_AddProduct_TextBox
             // 
