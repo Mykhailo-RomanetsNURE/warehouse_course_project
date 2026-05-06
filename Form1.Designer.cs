@@ -180,7 +180,7 @@
             productPrice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             additionalFeatures_Program_TabPage = new TabPage();
             pageName_AdditionalFeatures_LabelText = new Label();
-            daeleteAllData_AdditionalFeatures_Button = new Button();
+            deleteAllData_AdditionalFeatures_Button = new Button();
             saveProductsIntxtFile_AdditionalFeatures_Button = new Button();
             saveAndClose_Window = new Button();
             program_TabControl.SuspendLayout();
@@ -251,7 +251,7 @@
             search_ViewProducts_СomboBox.Location = new Point(275, 25);
             search_ViewProducts_СomboBox.Name = "search_ViewProducts_СomboBox";
             search_ViewProducts_СomboBox.Size = new Size(151, 28);
-            search_ViewProducts_СomboBox.TabIndex = 18;
+            search_ViewProducts_СomboBox.TabIndex = 20;
             search_ViewProducts_СomboBox.SelectedIndexChanged += search_ViewProducts_СomboBox_SelectedIndexChanged;
             // 
             // label1
@@ -260,7 +260,7 @@
             label1.Location = new Point(3, 54);
             label1.Name = "label1";
             label1.Size = new Size(128, 20);
-            label1.TabIndex = 17;
+            label1.TabIndex = 0;
             label1.Text = "Всього сторінок: ";
             // 
             // searchCommentText_Products_Label
@@ -269,7 +269,7 @@
             searchCommentText_Products_Label.Location = new Point(355, 3);
             searchCommentText_Products_Label.Name = "searchCommentText_Products_Label";
             searchCommentText_Products_Label.Size = new Size(70, 20);
-            searchCommentText_Products_Label.TabIndex = 16;
+            searchCommentText_Products_Label.TabIndex = 0;
             searchCommentText_Products_Label.Text = "Товарів: ";
             // 
             // search_Products_CheckBox
@@ -278,7 +278,7 @@
             search_Products_CheckBox.Location = new Point(432, 29);
             search_Products_CheckBox.Name = "search_Products_CheckBox";
             search_Products_CheckBox.Size = new Size(165, 24);
-            search_Products_CheckBox.TabIndex = 15;
+            search_Products_CheckBox.TabIndex = 30;
             search_Products_CheckBox.Text = "Підтвердити пошук";
             search_Products_CheckBox.UseVisualStyleBackColor = true;
             search_Products_CheckBox.CheckedChanged += search_Products_CheckBox_CheckedChanged;
@@ -289,7 +289,7 @@
             searchCommentNumber_Products_Label.Location = new Point(422, 3);
             searchCommentNumber_Products_Label.Name = "searchCommentNumber_Products_Label";
             searchCommentNumber_Products_Label.Size = new Size(50, 20);
-            searchCommentNumber_Products_Label.TabIndex = 14;
+            searchCommentNumber_Products_Label.TabIndex = 0;
             searchCommentNumber_Products_Label.Text = "label1";
             // 
             // search_ViewProducts_TextBox
@@ -307,7 +307,7 @@
             thisPage_ViewProducts_Label.Location = new Point(242, 82);
             thisPage_ViewProducts_Label.Name = "thisPage_ViewProducts_Label";
             thisPage_ViewProducts_Label.Size = new Size(135, 20);
-            thisPage_ViewProducts_Label.TabIndex = 9;
+            thisPage_ViewProducts_Label.TabIndex = 0;
             thisPage_ViewProducts_Label.Text = "Поточна сторінка:";
             // 
             // thisPage_ViewProductsNumber_Label
@@ -316,7 +316,7 @@
             thisPage_ViewProductsNumber_Label.Location = new Point(376, 82);
             thisPage_ViewProductsNumber_Label.Name = "thisPage_ViewProductsNumber_Label";
             thisPage_ViewProductsNumber_Label.Size = new Size(50, 20);
-            thisPage_ViewProductsNumber_Label.TabIndex = 7;
+            thisPage_ViewProductsNumber_Label.TabIndex = 0;
             thisPage_ViewProductsNumber_Label.Text = "label3";
             // 
             // tableOfProducts_ViewProducts_DataGridView
@@ -340,7 +340,7 @@
             tableOfProducts_ViewProducts_DataGridView.RowTemplate.Height = 45;
             tableOfProducts_ViewProducts_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tableOfProducts_ViewProducts_DataGridView.Size = new Size(594, 507);
-            tableOfProducts_ViewProducts_DataGridView.TabIndex = 5;
+            tableOfProducts_ViewProducts_DataGridView.TabIndex = 70;
             tableOfProducts_ViewProducts_DataGridView.CellClick += allProductTable_ViewProducts_DataGridView_CellClick;
             // 
             // id_AllProduct_TableColumn
@@ -425,7 +425,7 @@
             historyLastPageText_ViewSpecificProduct_Label.Location = new Point(245, 525);
             historyLastPageText_ViewSpecificProduct_Label.Name = "historyLastPageText_ViewSpecificProduct_Label";
             historyLastPageText_ViewSpecificProduct_Label.Size = new Size(128, 20);
-            historyLastPageText_ViewSpecificProduct_Label.TabIndex = 36;
+            historyLastPageText_ViewSpecificProduct_Label.TabIndex = 0;
             historyLastPageText_ViewSpecificProduct_Label.Text = "Всього сторінок: ";
             // 
             // historyThisPage_ViewSpecificProduct_Label
@@ -434,7 +434,7 @@
             historyThisPage_ViewSpecificProduct_Label.Location = new Point(245, 551);
             historyThisPage_ViewSpecificProduct_Label.Name = "historyThisPage_ViewSpecificProduct_Label";
             historyThisPage_ViewSpecificProduct_Label.Size = new Size(126, 20);
-            historyThisPage_ViewSpecificProduct_Label.TabIndex = 35;
+            historyThisPage_ViewSpecificProduct_Label.TabIndex = 0;
             historyThisPage_ViewSpecificProduct_Label.Text = "Пточна сторінка:";
             // 
             // history_ViewSpecificProduct_DataGridView
@@ -458,7 +458,8 @@
             history_ViewSpecificProduct_DataGridView.RowTemplate.Height = 45;
             history_ViewSpecificProduct_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             history_ViewSpecificProduct_DataGridView.Size = new Size(561, 508);
-            history_ViewSpecificProduct_DataGridView.TabIndex = 17;
+            history_ViewSpecificProduct_DataGridView.TabIndex = 0;
+            history_ViewSpecificProduct_DataGridView.TabStop = false;
             // 
             // date_ViewProduct_TableColumn
             // 
@@ -486,7 +487,7 @@
             id_ViewSpecificProduct_LabelText.Location = new Point(318, 11);
             id_ViewSpecificProduct_LabelText.Name = "id_ViewSpecificProduct_LabelText";
             id_ViewSpecificProduct_LabelText.Size = new Size(80, 20);
-            id_ViewSpecificProduct_LabelText.TabIndex = 34;
+            id_ViewSpecificProduct_LabelText.TabIndex = 0;
             id_ViewSpecificProduct_LabelText.Text = "Id товару: ";
             // 
             // time_ViewSpecificProduct_Label
@@ -495,7 +496,7 @@
             time_ViewSpecificProduct_Label.Location = new Point(421, 64);
             time_ViewSpecificProduct_Label.Name = "time_ViewSpecificProduct_Label";
             time_ViewSpecificProduct_Label.Size = new Size(50, 20);
-            time_ViewSpecificProduct_Label.TabIndex = 32;
+            time_ViewSpecificProduct_Label.TabIndex = 0;
             time_ViewSpecificProduct_Label.Text = "label3";
             // 
             // time_ViewSpecificProduct_LabelText
@@ -504,7 +505,7 @@
             time_ViewSpecificProduct_LabelText.Location = new Point(207, 64);
             time_ViewSpecificProduct_LabelText.Name = "time_ViewSpecificProduct_LabelText";
             time_ViewSpecificProduct_LabelText.Size = new Size(218, 20);
-            time_ViewSpecificProduct_LabelText.TabIndex = 31;
+            time_ViewSpecificProduct_LabelText.TabIndex = 0;
             time_ViewSpecificProduct_LabelText.Text = "Час останньої зміни кількості:";
             // 
             // quantity_ViewSpecificProduct_Label
@@ -513,7 +514,7 @@
             quantity_ViewSpecificProduct_Label.Location = new Point(363, 90);
             quantity_ViewSpecificProduct_Label.Name = "quantity_ViewSpecificProduct_Label";
             quantity_ViewSpecificProduct_Label.Size = new Size(50, 20);
-            quantity_ViewSpecificProduct_Label.TabIndex = 30;
+            quantity_ViewSpecificProduct_Label.TabIndex = 0;
             quantity_ViewSpecificProduct_Label.Text = "label2";
             // 
             // quantity_ViewSpecificProduct_LabelText
@@ -522,7 +523,7 @@
             quantity_ViewSpecificProduct_LabelText.Location = new Point(207, 90);
             quantity_ViewSpecificProduct_LabelText.Name = "quantity_ViewSpecificProduct_LabelText";
             quantity_ViewSpecificProduct_LabelText.Size = new Size(159, 20);
-            quantity_ViewSpecificProduct_LabelText.TabIndex = 29;
+            quantity_ViewSpecificProduct_LabelText.TabIndex = 0;
             quantity_ViewSpecificProduct_LabelText.Text = "Одиниць в наявності:";
             // 
             // deleteHistory_ViewSpecificProduct_Button
@@ -530,7 +531,7 @@
             deleteHistory_ViewSpecificProduct_Button.Location = new Point(194, 1116);
             deleteHistory_ViewSpecificProduct_Button.Name = "deleteHistory_ViewSpecificProduct_Button";
             deleteHistory_ViewSpecificProduct_Button.Size = new Size(192, 29);
-            deleteHistory_ViewSpecificProduct_Button.TabIndex = 17;
+            deleteHistory_ViewSpecificProduct_Button.TabIndex = 220;
             deleteHistory_ViewSpecificProduct_Button.Text = "Видалити історію товару";
             deleteHistory_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             deleteHistory_ViewSpecificProduct_Button.Click += deleteHistory_ViewSpecificProduct_Button_Click;
@@ -541,7 +542,7 @@
             historyLastPage_ViewSpecificProduct_Label.Location = new Point(379, 525);
             historyLastPage_ViewSpecificProduct_Label.Name = "historyLastPage_ViewSpecificProduct_Label";
             historyLastPage_ViewSpecificProduct_Label.Size = new Size(58, 20);
-            historyLastPage_ViewSpecificProduct_Label.TabIndex = 27;
+            historyLastPage_ViewSpecificProduct_Label.TabIndex = 0;
             historyLastPage_ViewSpecificProduct_Label.Text = "label16";
             // 
             // historyNextPage_ViewSpecificProduct_Button
@@ -549,7 +550,7 @@
             historyNextPage_ViewSpecificProduct_Button.Location = new Point(473, 548);
             historyNextPage_ViewSpecificProduct_Button.Name = "historyNextPage_ViewSpecificProduct_Button";
             historyNextPage_ViewSpecificProduct_Button.Size = new Size(94, 29);
-            historyNextPage_ViewSpecificProduct_Button.TabIndex = 20;
+            historyNextPage_ViewSpecificProduct_Button.TabIndex = 210;
             historyNextPage_ViewSpecificProduct_Button.Text = "Наступна";
             historyNextPage_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             historyNextPage_ViewSpecificProduct_Button.Click += historyNextPage_ViewSpecificProduct_Button_Click;
@@ -559,7 +560,7 @@
             historyGetPage_ViewSpecificProduct_TextBox.Location = new Point(114, 548);
             historyGetPage_ViewSpecificProduct_TextBox.Name = "historyGetPage_ViewSpecificProduct_TextBox";
             historyGetPage_ViewSpecificProduct_TextBox.Size = new Size(125, 27);
-            historyGetPage_ViewSpecificProduct_TextBox.TabIndex = 19;
+            historyGetPage_ViewSpecificProduct_TextBox.TabIndex = 200;
             historyGetPage_ViewSpecificProduct_TextBox.KeyDown += historyGetPage_ViewSpecificProduct_TextBox_KeyDown;
             // 
             // historyThisPageNumber_ViewSpecificProduct_Label
@@ -568,7 +569,7 @@
             historyThisPageNumber_ViewSpecificProduct_Label.Location = new Point(379, 552);
             historyThisPageNumber_ViewSpecificProduct_Label.Name = "historyThisPageNumber_ViewSpecificProduct_Label";
             historyThisPageNumber_ViewSpecificProduct_Label.Size = new Size(58, 20);
-            historyThisPageNumber_ViewSpecificProduct_Label.TabIndex = 24;
+            historyThisPageNumber_ViewSpecificProduct_Label.TabIndex = 0;
             historyThisPageNumber_ViewSpecificProduct_Label.Text = "label15";
             // 
             // historyPreviousPage_ViewSpecificProduct_Button
@@ -576,7 +577,7 @@
             historyPreviousPage_ViewSpecificProduct_Button.Location = new Point(3, 548);
             historyPreviousPage_ViewSpecificProduct_Button.Name = "historyPreviousPage_ViewSpecificProduct_Button";
             historyPreviousPage_ViewSpecificProduct_Button.Size = new Size(105, 27);
-            historyPreviousPage_ViewSpecificProduct_Button.TabIndex = 18;
+            historyPreviousPage_ViewSpecificProduct_Button.TabIndex = 190;
             historyPreviousPage_ViewSpecificProduct_Button.Text = "Попередня";
             historyPreviousPage_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             historyPreviousPage_ViewSpecificProduct_Button.Click += historyPreviousPage_ViewSpecificProduct_Button_Click;
@@ -587,7 +588,7 @@
             history_ViewSpecificProduct_Label.Location = new Point(3, 525);
             history_ViewSpecificProduct_Label.Name = "history_ViewSpecificProduct_Label";
             history_ViewSpecificProduct_Label.Size = new Size(56, 20);
-            history_ViewSpecificProduct_Label.TabIndex = 21;
+            history_ViewSpecificProduct_Label.TabIndex = 0;
             history_ViewSpecificProduct_Label.Text = "Історія";
             // 
             // delete_ViewSpecificProduct_Button
@@ -595,7 +596,7 @@
             delete_ViewSpecificProduct_Button.Location = new Point(285, 493);
             delete_ViewSpecificProduct_Button.Name = "delete_ViewSpecificProduct_Button";
             delete_ViewSpecificProduct_Button.Size = new Size(279, 29);
-            delete_ViewSpecificProduct_Button.TabIndex = 16;
+            delete_ViewSpecificProduct_Button.TabIndex = 180;
             delete_ViewSpecificProduct_Button.Text = "Видалити";
             delete_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             delete_ViewSpecificProduct_Button.Click += delete_ViewSpecificProduct_Button_Click;
@@ -605,7 +606,7 @@
             copyId_ViewSpecificProduct_Button.Location = new Point(285, 458);
             copyId_ViewSpecificProduct_Button.Name = "copyId_ViewSpecificProduct_Button";
             copyId_ViewSpecificProduct_Button.Size = new Size(279, 29);
-            copyId_ViewSpecificProduct_Button.TabIndex = 14;
+            copyId_ViewSpecificProduct_Button.TabIndex = 160;
             copyId_ViewSpecificProduct_Button.Text = "Скопіювати id";
             copyId_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             copyId_ViewSpecificProduct_Button.Click += copyId_ViewSpecificProduct_Button_Click;
@@ -615,7 +616,7 @@
             saveAndClose_ViewSpecificProduct_Button.Location = new Point(3, 493);
             saveAndClose_ViewSpecificProduct_Button.Name = "saveAndClose_ViewSpecificProduct_Button";
             saveAndClose_ViewSpecificProduct_Button.Size = new Size(276, 29);
-            saveAndClose_ViewSpecificProduct_Button.TabIndex = 15;
+            saveAndClose_ViewSpecificProduct_Button.TabIndex = 170;
             saveAndClose_ViewSpecificProduct_Button.Text = "Зберегти та закрити";
             saveAndClose_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             saveAndClose_ViewSpecificProduct_Button.Click += saveAndClose_ViewSpecificProduct_Button_Click;
@@ -625,7 +626,7 @@
             close_ViewSpecificProduct_Button.Location = new Point(3, 458);
             close_ViewSpecificProduct_Button.Name = "close_ViewSpecificProduct_Button";
             close_ViewSpecificProduct_Button.Size = new Size(276, 29);
-            close_ViewSpecificProduct_Button.TabIndex = 13;
+            close_ViewSpecificProduct_Button.TabIndex = 150;
             close_ViewSpecificProduct_Button.Text = "Закрити";
             close_ViewSpecificProduct_Button.UseVisualStyleBackColor = true;
             close_ViewSpecificProduct_Button.Click += close_ViewSpecificProduct_Button_Click;
@@ -636,35 +637,35 @@
             note_ViewSpecificProduct_TextBox.Multiline = true;
             note_ViewSpecificProduct_TextBox.Name = "note_ViewSpecificProduct_TextBox";
             note_ViewSpecificProduct_TextBox.Size = new Size(561, 239);
-            note_ViewSpecificProduct_TextBox.TabIndex = 12;
+            note_ViewSpecificProduct_TextBox.TabIndex = 140;
             // 
             // weight_ViewSpecificProduct_TextBox
             // 
             weight_ViewSpecificProduct_TextBox.Location = new Point(396, 160);
             weight_ViewSpecificProduct_TextBox.Name = "weight_ViewSpecificProduct_TextBox";
             weight_ViewSpecificProduct_TextBox.Size = new Size(125, 27);
-            weight_ViewSpecificProduct_TextBox.TabIndex = 11;
+            weight_ViewSpecificProduct_TextBox.TabIndex = 130;
             // 
             // length_ViewSpecificProduct_TextBox
             // 
             length_ViewSpecificProduct_TextBox.Location = new Point(265, 160);
             length_ViewSpecificProduct_TextBox.Name = "length_ViewSpecificProduct_TextBox";
             length_ViewSpecificProduct_TextBox.Size = new Size(125, 27);
-            length_ViewSpecificProduct_TextBox.TabIndex = 10;
+            length_ViewSpecificProduct_TextBox.TabIndex = 120;
             // 
             // width_ViewSpecificProduct_TextBox
             // 
             width_ViewSpecificProduct_TextBox.Location = new Point(134, 160);
             width_ViewSpecificProduct_TextBox.Name = "width_ViewSpecificProduct_TextBox";
             width_ViewSpecificProduct_TextBox.Size = new Size(125, 27);
-            width_ViewSpecificProduct_TextBox.TabIndex = 9;
+            width_ViewSpecificProduct_TextBox.TabIndex = 110;
             // 
             // height_ViewSpecificProduct_TextBox
             // 
             height_ViewSpecificProduct_TextBox.Location = new Point(3, 160);
             height_ViewSpecificProduct_TextBox.Name = "height_ViewSpecificProduct_TextBox";
             height_ViewSpecificProduct_TextBox.Size = new Size(125, 27);
-            height_ViewSpecificProduct_TextBox.TabIndex = 8;
+            height_ViewSpecificProduct_TextBox.TabIndex = 100;
             // 
             // note_ViewSpecificProduct_Label
             // 
@@ -672,7 +673,7 @@
             note_ViewSpecificProduct_Label.Location = new Point(3, 190);
             note_ViewSpecificProduct_Label.Name = "note_ViewSpecificProduct_Label";
             note_ViewSpecificProduct_Label.Size = new Size(74, 20);
-            note_ViewSpecificProduct_Label.TabIndex = 10;
+            note_ViewSpecificProduct_Label.TabIndex = 0;
             note_ViewSpecificProduct_Label.Text = "Примітка";
             // 
             // weight_ViewSpecificProduct_Label
@@ -681,7 +682,7 @@
             weight_ViewSpecificProduct_Label.Location = new Point(396, 137);
             weight_ViewSpecificProduct_Label.Name = "weight_ViewSpecificProduct_Label";
             weight_ViewSpecificProduct_Label.Size = new Size(40, 20);
-            weight_ViewSpecificProduct_Label.TabIndex = 9;
+            weight_ViewSpecificProduct_Label.TabIndex = 0;
             weight_ViewSpecificProduct_Label.Text = "Вага";
             // 
             // length_ViewSpecificProduct_Label
@@ -690,7 +691,7 @@
             length_ViewSpecificProduct_Label.Location = new Point(265, 137);
             length_ViewSpecificProduct_Label.Name = "length_ViewSpecificProduct_Label";
             length_ViewSpecificProduct_Label.Size = new Size(73, 20);
-            length_ViewSpecificProduct_Label.TabIndex = 8;
+            length_ViewSpecificProduct_Label.TabIndex = 0;
             length_ViewSpecificProduct_Label.Text = "Довжина";
             // 
             // width_ViewSpecificProduct_Label
@@ -699,7 +700,7 @@
             width_ViewSpecificProduct_Label.Location = new Point(134, 137);
             width_ViewSpecificProduct_Label.Name = "width_ViewSpecificProduct_Label";
             width_ViewSpecificProduct_Label.Size = new Size(67, 20);
-            width_ViewSpecificProduct_Label.TabIndex = 7;
+            width_ViewSpecificProduct_Label.TabIndex = 0;
             width_ViewSpecificProduct_Label.Text = "Ширина";
             // 
             // height_ViewSpecificProduct_Label
@@ -708,7 +709,7 @@
             height_ViewSpecificProduct_Label.Location = new Point(3, 137);
             height_ViewSpecificProduct_Label.Name = "height_ViewSpecificProduct_Label";
             height_ViewSpecificProduct_Label.Size = new Size(57, 20);
-            height_ViewSpecificProduct_Label.TabIndex = 6;
+            height_ViewSpecificProduct_Label.TabIndex = 0;
             height_ViewSpecificProduct_Label.Text = "Висота";
             // 
             // charactericstics_ViewSpecificProduct_Label
@@ -717,7 +718,7 @@
             charactericstics_ViewSpecificProduct_Label.Location = new Point(3, 117);
             charactericstics_ViewSpecificProduct_Label.Name = "charactericstics_ViewSpecificProduct_Label";
             charactericstics_ViewSpecificProduct_Label.Size = new Size(120, 20);
-            charactericstics_ViewSpecificProduct_Label.TabIndex = 5;
+            charactericstics_ViewSpecificProduct_Label.TabIndex = 0;
             charactericstics_ViewSpecificProduct_Label.Text = "Характеристики";
             // 
             // price_ViewSpecificProduct_TextBox
@@ -725,7 +726,7 @@
             price_ViewSpecificProduct_TextBox.Location = new Point(3, 87);
             price_ViewSpecificProduct_TextBox.Name = "price_ViewSpecificProduct_TextBox";
             price_ViewSpecificProduct_TextBox.Size = new Size(198, 27);
-            price_ViewSpecificProduct_TextBox.TabIndex = 7;
+            price_ViewSpecificProduct_TextBox.TabIndex = 90;
             // 
             // id_ViewSpecificProduct_Label
             // 
@@ -733,7 +734,7 @@
             id_ViewSpecificProduct_Label.Location = new Point(396, 11);
             id_ViewSpecificProduct_Label.Name = "id_ViewSpecificProduct_Label";
             id_ViewSpecificProduct_Label.Size = new Size(50, 20);
-            id_ViewSpecificProduct_Label.TabIndex = 3;
+            id_ViewSpecificProduct_Label.TabIndex = 0;
             id_ViewSpecificProduct_Label.Text = "label6";
             // 
             // name_ViewSpecificProduct_TextBox
@@ -741,7 +742,7 @@
             name_ViewSpecificProduct_TextBox.Location = new Point(3, 34);
             name_ViewSpecificProduct_TextBox.Name = "name_ViewSpecificProduct_TextBox";
             name_ViewSpecificProduct_TextBox.Size = new Size(561, 27);
-            name_ViewSpecificProduct_TextBox.TabIndex = 6;
+            name_ViewSpecificProduct_TextBox.TabIndex = 80;
             // 
             // price_ViewSpecificProduct_Label
             // 
@@ -749,7 +750,7 @@
             price_ViewSpecificProduct_Label.Location = new Point(3, 64);
             price_ViewSpecificProduct_Label.Name = "price_ViewSpecificProduct_Label";
             price_ViewSpecificProduct_Label.Size = new Size(66, 20);
-            price_ViewSpecificProduct_Label.TabIndex = 1;
+            price_ViewSpecificProduct_Label.TabIndex = 0;
             price_ViewSpecificProduct_Label.Text = "Вартість";
             // 
             // name_ViewSpecificProduct_Label
@@ -767,7 +768,7 @@
             allPageNumber_ViewProducts_Label.Location = new Point(137, 54);
             allPageNumber_ViewProducts_Label.Name = "allPageNumber_ViewProducts_Label";
             allPageNumber_ViewProducts_Label.Size = new Size(50, 20);
-            allPageNumber_ViewProducts_Label.TabIndex = 6;
+            allPageNumber_ViewProducts_Label.TabIndex = 0;
             allPageNumber_ViewProducts_Label.Text = "label2";
             // 
             // getPage_ViewProducts_TextBox
@@ -776,7 +777,7 @@
             getPage_ViewProducts_TextBox.Location = new Point(122, 77);
             getPage_ViewProducts_TextBox.Name = "getPage_ViewProducts_TextBox";
             getPage_ViewProducts_TextBox.Size = new Size(125, 27);
-            getPage_ViewProducts_TextBox.TabIndex = 3;
+            getPage_ViewProducts_TextBox.TabIndex = 50;
             getPage_ViewProducts_TextBox.KeyDown += allProductsGetPage_ViewProducts_TextBox_KeyDown;
             // 
             // nextPage_ViewProducts_Button
@@ -784,7 +785,7 @@
             nextPage_ViewProducts_Button.Location = new Point(489, 77);
             nextPage_ViewProducts_Button.Name = "nextPage_ViewProducts_Button";
             nextPage_ViewProducts_Button.Size = new Size(108, 29);
-            nextPage_ViewProducts_Button.TabIndex = 4;
+            nextPage_ViewProducts_Button.TabIndex = 60;
             nextPage_ViewProducts_Button.Text = "Наступна";
             nextPage_ViewProducts_Button.UseVisualStyleBackColor = true;
             nextPage_ViewProducts_Button.Click += nextPage_ViewProducts_Button_Click;
@@ -794,7 +795,7 @@
             previousPage_ViewProducts_Button.Location = new Point(3, 77);
             previousPage_ViewProducts_Button.Name = "previousPage_ViewProducts_Button";
             previousPage_ViewProducts_Button.Size = new Size(113, 29);
-            previousPage_ViewProducts_Button.TabIndex = 2;
+            previousPage_ViewProducts_Button.TabIndex = 40;
             previousPage_ViewProducts_Button.Text = "Попередня";
             previousPage_ViewProducts_Button.UseVisualStyleBackColor = true;
             previousPage_ViewProducts_Button.Click += previousPage_ViewProducts_Button_Click;
@@ -834,7 +835,7 @@
             errorText_NewInvoice_Label.Location = new Point(90, 558);
             errorText_NewInvoice_Label.Name = "errorText_NewInvoice_Label";
             errorText_NewInvoice_Label.Size = new Size(600, 20);
-            errorText_NewInvoice_Label.TabIndex = 10;
+            errorText_NewInvoice_Label.TabIndex = 0;
             errorText_NewInvoice_Label.Text = "Таблиця неклікабельна, для зміни кількості або ціни товару введіть його ID у пошук.";
             // 
             // newInvoice_Invoice_DataGridView
@@ -854,7 +855,8 @@
             newInvoice_Invoice_DataGridView.RowHeadersWidth = 51;
             newInvoice_Invoice_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             newInvoice_Invoice_DataGridView.Size = new Size(791, 489);
-            newInvoice_Invoice_DataGridView.TabIndex = 9;
+            newInvoice_Invoice_DataGridView.TabIndex = 0;
+            newInvoice_Invoice_DataGridView.TabStop = false;
             // 
             // itemId_NewInvoice_Column
             // 
@@ -897,7 +899,7 @@
             cleanInvoice_Invoice_Button.Location = new Point(609, 2);
             cleanInvoice_Invoice_Button.Name = "cleanInvoice_Invoice_Button";
             cleanInvoice_Invoice_Button.Size = new Size(185, 29);
-            cleanInvoice_Invoice_Button.TabIndex = 8;
+            cleanInvoice_Invoice_Button.TabIndex = 20;
             cleanInvoice_Invoice_Button.Text = "Очистити";
             cleanInvoice_Invoice_Button.UseVisualStyleBackColor = true;
             cleanInvoice_Invoice_Button.Click += cleanInvoice_Invoice_Button_Click;
@@ -908,7 +910,7 @@
             idOfInvoice_Invoice_Label.Location = new Point(101, 41);
             idOfInvoice_Invoice_Label.Name = "idOfInvoice_Invoice_Label";
             idOfInvoice_Invoice_Label.Size = new Size(50, 20);
-            idOfInvoice_Invoice_Label.TabIndex = 7;
+            idOfInvoice_Invoice_Label.TabIndex = 0;
             idOfInvoice_Invoice_Label.Text = "label2";
             // 
             // productInInvoice_Invoice_Panel
@@ -941,7 +943,7 @@
             thisProductPrice_Invoice_LabelNumber.Location = new Point(232, 212);
             thisProductPrice_Invoice_LabelNumber.Name = "thisProductPrice_Invoice_LabelNumber";
             thisProductPrice_Invoice_LabelNumber.Size = new Size(50, 20);
-            thisProductPrice_Invoice_LabelNumber.TabIndex = 14;
+            thisProductPrice_Invoice_LabelNumber.TabIndex = 0;
             thisProductPrice_Invoice_LabelNumber.Text = "label5";
             thisProductPrice_Invoice_LabelNumber.Visible = false;
             // 
@@ -951,7 +953,7 @@
             thisProductPrice_Invoice_Label.Location = new Point(232, 186);
             thisProductPrice_Invoice_Label.Name = "thisProductPrice_Invoice_Label";
             thisProductPrice_Invoice_Label.Size = new Size(106, 20);
-            thisProductPrice_Invoice_Label.TabIndex = 13;
+            thisProductPrice_Invoice_Label.TabIndex = 0;
             thisProductPrice_Invoice_Label.Text = "Поточна ціна:";
             thisProductPrice_Invoice_Label.Visible = false;
             // 
@@ -962,7 +964,7 @@
             thisQuantityProduct_Invoice_LabelNumber.Location = new Point(232, 159);
             thisQuantityProduct_Invoice_LabelNumber.Name = "thisQuantityProduct_Invoice_LabelNumber";
             thisQuantityProduct_Invoice_LabelNumber.Size = new Size(50, 20);
-            thisQuantityProduct_Invoice_LabelNumber.TabIndex = 12;
+            thisQuantityProduct_Invoice_LabelNumber.TabIndex = 0;
             thisQuantityProduct_Invoice_LabelNumber.Text = "label3";
             thisQuantityProduct_Invoice_LabelNumber.Visible = false;
             // 
@@ -972,7 +974,7 @@
             thisQuantityProduct_Invoice_Label.Location = new Point(232, 133);
             thisQuantityProduct_Invoice_Label.Name = "thisQuantityProduct_Invoice_Label";
             thisQuantityProduct_Invoice_Label.Size = new Size(139, 20);
-            thisQuantityProduct_Invoice_Label.TabIndex = 11;
+            thisQuantityProduct_Invoice_Label.TabIndex = 0;
             thisQuantityProduct_Invoice_Label.Text = "Поточна кількість: ";
             thisQuantityProduct_Invoice_Label.Visible = false;
             // 
@@ -981,7 +983,7 @@
             noProduct_Invoice_Button.Location = new Point(319, 242);
             noProduct_Invoice_Button.Name = "noProduct_Invoice_Button";
             noProduct_Invoice_Button.Size = new Size(126, 29);
-            noProduct_Invoice_Button.TabIndex = 10;
+            noProduct_Invoice_Button.TabIndex = 70;
             noProduct_Invoice_Button.Text = "Очистити";
             noProduct_Invoice_Button.UseVisualStyleBackColor = true;
             noProduct_Invoice_Button.Visible = false;
@@ -992,7 +994,7 @@
             okProduct_Invoice_Button.Location = new Point(3, 242);
             okProduct_Invoice_Button.Name = "okProduct_Invoice_Button";
             okProduct_Invoice_Button.Size = new Size(227, 29);
-            okProduct_Invoice_Button.TabIndex = 9;
+            okProduct_Invoice_Button.TabIndex = 60;
             okProduct_Invoice_Button.Text = "Додати товар до накладної";
             okProduct_Invoice_Button.UseVisualStyleBackColor = true;
             okProduct_Invoice_Button.Click += okProduct_Invoice_Button_Click;
@@ -1002,7 +1004,7 @@
             productPrice_Invoice_TextBox.Location = new Point(3, 209);
             productPrice_Invoice_TextBox.Name = "productPrice_Invoice_TextBox";
             productPrice_Invoice_TextBox.Size = new Size(227, 27);
-            productPrice_Invoice_TextBox.TabIndex = 8;
+            productPrice_Invoice_TextBox.TabIndex = 50;
             // 
             // productPrice_Invoice_Label
             // 
@@ -1010,7 +1012,7 @@
             productPrice_Invoice_Label.Location = new Point(3, 186);
             productPrice_Invoice_Label.Name = "productPrice_Invoice_Label";
             productPrice_Invoice_Label.Size = new Size(48, 20);
-            productPrice_Invoice_Label.TabIndex = 7;
+            productPrice_Invoice_Label.TabIndex = 0;
             productPrice_Invoice_Label.Text = "Ціна: ";
             // 
             // quantityProduct_Invoice_TextBox
@@ -1018,7 +1020,7 @@
             quantityProduct_Invoice_TextBox.Location = new Point(3, 156);
             quantityProduct_Invoice_TextBox.Name = "quantityProduct_Invoice_TextBox";
             quantityProduct_Invoice_TextBox.Size = new Size(227, 27);
-            quantityProduct_Invoice_TextBox.TabIndex = 6;
+            quantityProduct_Invoice_TextBox.TabIndex = 40;
             // 
             // quantityProduct_Invoice_Label
             // 
@@ -1026,7 +1028,7 @@
             quantityProduct_Invoice_Label.Location = new Point(3, 133);
             quantityProduct_Invoice_Label.Name = "quantityProduct_Invoice_Label";
             quantityProduct_Invoice_Label.Size = new Size(77, 20);
-            quantityProduct_Invoice_Label.TabIndex = 5;
+            quantityProduct_Invoice_Label.TabIndex = 0;
             quantityProduct_Invoice_Label.Text = "Кількість: ";
             // 
             // productName_Invoice_Label
@@ -1035,7 +1037,7 @@
             productName_Invoice_Label.Location = new Point(3, 113);
             productName_Invoice_Label.Name = "productName_Invoice_Label";
             productName_Invoice_Label.Size = new Size(50, 20);
-            productName_Invoice_Label.TabIndex = 4;
+            productName_Invoice_Label.TabIndex = 0;
             productName_Invoice_Label.Text = "label7";
             productName_Invoice_Label.Visible = false;
             // 
@@ -1045,7 +1047,7 @@
             productName_Invoice_LabelText.Location = new Point(3, 93);
             productName_Invoice_LabelText.Name = "productName_Invoice_LabelText";
             productName_Invoice_LabelText.Size = new Size(109, 20);
-            productName_Invoice_LabelText.TabIndex = 3;
+            productName_Invoice_LabelText.TabIndex = 0;
             productName_Invoice_LabelText.Text = "Назва товару: ";
             // 
             // productId_Invoice_Label
@@ -1054,7 +1056,7 @@
             productId_Invoice_Label.Location = new Point(3, 40);
             productId_Invoice_Label.Name = "productId_Invoice_Label";
             productId_Invoice_Label.Size = new Size(78, 20);
-            productId_Invoice_Label.TabIndex = 2;
+            productId_Invoice_Label.TabIndex = 0;
             productId_Invoice_Label.Text = "ID товару:";
             // 
             // productId_Invoice_TextBox
@@ -1062,7 +1064,7 @@
             productId_Invoice_TextBox.Location = new Point(3, 63);
             productId_Invoice_TextBox.Name = "productId_Invoice_TextBox";
             productId_Invoice_TextBox.Size = new Size(227, 27);
-            productId_Invoice_TextBox.TabIndex = 1;
+            productId_Invoice_TextBox.TabIndex = 30;
             productId_Invoice_TextBox.TextChanged += productId_Invoice_TextBox_TextChanged;
             // 
             // panelName_Invoice_Label
@@ -1080,7 +1082,7 @@
             idOfInvoice_Invoice_LabelText.Location = new Point(6, 41);
             idOfInvoice_Invoice_LabelText.Name = "idOfInvoice_Invoice_LabelText";
             idOfInvoice_Invoice_LabelText.Size = new Size(98, 20);
-            idOfInvoice_Invoice_LabelText.TabIndex = 5;
+            idOfInvoice_Invoice_LabelText.TabIndex = 0;
             idOfInvoice_Invoice_LabelText.Text = "Накладна ID:";
             // 
             // addNewInvoice_Invoice_Button
@@ -1088,7 +1090,7 @@
             addNewInvoice_Invoice_Button.Location = new Point(520, 579);
             addNewInvoice_Invoice_Button.Name = "addNewInvoice_Invoice_Button";
             addNewInvoice_Invoice_Button.Size = new Size(274, 29);
-            addNewInvoice_Invoice_Button.TabIndex = 4;
+            addNewInvoice_Invoice_Button.TabIndex = 90;
             addNewInvoice_Invoice_Button.Text = "Зареєструвати накладну та зберегти";
             addNewInvoice_Invoice_Button.UseVisualStyleBackColor = true;
             addNewInvoice_Invoice_Button.Click += addNewInvoice_Invoice_Button_Click;
@@ -1098,7 +1100,7 @@
             addNewInvoice_Button.Location = new Point(3, 581);
             addNewInvoice_Button.Name = "addNewInvoice_Button";
             addNewInvoice_Button.Size = new Size(274, 29);
-            addNewInvoice_Button.TabIndex = 3;
+            addNewInvoice_Button.TabIndex = 80;
             addNewInvoice_Button.Text = "Зареєструвати накладну";
             addNewInvoice_Button.UseVisualStyleBackColor = true;
             addNewInvoice_Button.Click += addNewInvoice_Button_Click;
@@ -1111,7 +1113,7 @@
             typeOfInvoice_Invoice_ComboBox.Location = new Point(321, 2);
             typeOfInvoice_Invoice_ComboBox.Name = "typeOfInvoice_Invoice_ComboBox";
             typeOfInvoice_Invoice_ComboBox.Size = new Size(185, 28);
-            typeOfInvoice_Invoice_ComboBox.TabIndex = 2;
+            typeOfInvoice_Invoice_ComboBox.TabIndex = 10;
             // 
             // newInvoice_Invoice_Label
             // 
@@ -1119,7 +1121,7 @@
             newInvoice_Invoice_Label.Location = new Point(3, 6);
             newInvoice_Invoice_Label.Name = "newInvoice_Invoice_Label";
             newInvoice_Invoice_Label.Size = new Size(200, 20);
-            newInvoice_Invoice_Label.TabIndex = 1;
+            newInvoice_Invoice_Label.TabIndex = 0;
             newInvoice_Invoice_Label.Text = "Реєстрація нової накладної";
             // 
             // addProduct_TabPage
@@ -1158,7 +1160,7 @@
             quantity_AddProduct_Label.Location = new Point(8, 148);
             quantity_AddProduct_Label.Name = "quantity_AddProduct_Label";
             quantity_AddProduct_Label.Size = new Size(652, 20);
-            quantity_AddProduct_Label.TabIndex = 19;
+            quantity_AddProduct_Label.TabIndex = 0;
             quantity_AddProduct_Label.Text = "Кількість (УВАГА! Кількість в подальшому можливо змінити лише при раєстрації накладної)";
             // 
             // quantity_AddProduct_TextBox
@@ -1166,7 +1168,7 @@
             quantity_AddProduct_TextBox.Location = new Point(8, 171);
             quantity_AddProduct_TextBox.Name = "quantity_AddProduct_TextBox";
             quantity_AddProduct_TextBox.Size = new Size(120, 27);
-            quantity_AddProduct_TextBox.TabIndex = 5;
+            quantity_AddProduct_TextBox.TabIndex = 30;
             // 
             // notification_AddProduct_Label
             // 
@@ -1181,7 +1183,7 @@
             addProduct_Addproduct_Button.Location = new Point(8, 557);
             addProduct_Addproduct_Button.Name = "addProduct_Addproduct_Button";
             addProduct_Addproduct_Button.Size = new Size(256, 51);
-            addProduct_Addproduct_Button.TabIndex = 11;
+            addProduct_Addproduct_Button.TabIndex = 90;
             addProduct_Addproduct_Button.Text = "Додати товар";
             addProduct_Addproduct_Button.UseVisualStyleBackColor = true;
             addProduct_Addproduct_Button.Click += addProduct_Addproduct_Button_Click;
@@ -1192,7 +1194,7 @@
             note_AddProduct_TextBox.Multiline = true;
             note_AddProduct_TextBox.Name = "note_AddProduct_TextBox";
             note_AddProduct_TextBox.Size = new Size(1096, 175);
-            note_AddProduct_TextBox.TabIndex = 10;
+            note_AddProduct_TextBox.TabIndex = 80;
             // 
             // note_AddProduct_Label
             // 
@@ -1200,7 +1202,7 @@
             note_AddProduct_Label.Location = new Point(8, 353);
             note_AddProduct_Label.Name = "note_AddProduct_Label";
             note_AddProduct_Label.Size = new Size(74, 20);
-            note_AddProduct_Label.TabIndex = 14;
+            note_AddProduct_Label.TabIndex = 0;
             note_AddProduct_Label.Text = "Примітка";
             // 
             // weight_AddProduct_Label
@@ -1209,7 +1211,7 @@
             weight_AddProduct_Label.Location = new Point(134, 326);
             weight_AddProduct_Label.Name = "weight_AddProduct_Label";
             weight_AddProduct_Label.Size = new Size(125, 20);
-            weight_AddProduct_Label.TabIndex = 13;
+            weight_AddProduct_Label.TabIndex = 0;
             weight_AddProduct_Label.Text = "Вага (кілограми)";
             // 
             // weight_AddProduct_TextBox
@@ -1217,7 +1219,7 @@
             weight_AddProduct_TextBox.Location = new Point(8, 323);
             weight_AddProduct_TextBox.Name = "weight_AddProduct_TextBox";
             weight_AddProduct_TextBox.Size = new Size(120, 27);
-            weight_AddProduct_TextBox.TabIndex = 9;
+            weight_AddProduct_TextBox.TabIndex = 70;
             // 
             // length_AddProduct_Label
             // 
@@ -1225,7 +1227,7 @@
             length_AddProduct_Label.Location = new Point(134, 293);
             length_AddProduct_Label.Name = "length_AddProduct_Label";
             length_AddProduct_Label.Size = new Size(130, 20);
-            length_AddProduct_Label.TabIndex = 11;
+            length_AddProduct_Label.TabIndex = 0;
             length_AddProduct_Label.Text = "Довжина (метри)";
             // 
             // width_AddProduct_Label
@@ -1234,7 +1236,7 @@
             width_AddProduct_Label.Location = new Point(134, 260);
             width_AddProduct_Label.Name = "width_AddProduct_Label";
             width_AddProduct_Label.Size = new Size(124, 20);
-            width_AddProduct_Label.TabIndex = 10;
+            width_AddProduct_Label.TabIndex = 0;
             width_AddProduct_Label.Text = "Ширина (метри)";
             // 
             // height_AddProduct_Label
@@ -1243,7 +1245,7 @@
             height_AddProduct_Label.Location = new Point(134, 227);
             height_AddProduct_Label.Name = "height_AddProduct_Label";
             height_AddProduct_Label.Size = new Size(114, 20);
-            height_AddProduct_Label.TabIndex = 9;
+            height_AddProduct_Label.TabIndex = 0;
             height_AddProduct_Label.Text = "Висота (метри)";
             // 
             // characcteristics_AddProduct_Label
@@ -1252,7 +1254,7 @@
             characcteristics_AddProduct_Label.Location = new Point(8, 201);
             characcteristics_AddProduct_Label.Name = "characcteristics_AddProduct_Label";
             characcteristics_AddProduct_Label.Size = new Size(120, 20);
-            characcteristics_AddProduct_Label.TabIndex = 8;
+            characcteristics_AddProduct_Label.TabIndex = 0;
             characcteristics_AddProduct_Label.Text = "Характеристики";
             // 
             // length_AddProduct_TextBox
@@ -1260,28 +1262,28 @@
             length_AddProduct_TextBox.Location = new Point(8, 290);
             length_AddProduct_TextBox.Name = "length_AddProduct_TextBox";
             length_AddProduct_TextBox.Size = new Size(120, 27);
-            length_AddProduct_TextBox.TabIndex = 8;
+            length_AddProduct_TextBox.TabIndex = 60;
             // 
             // width_AddProduct_TextBox
             // 
             width_AddProduct_TextBox.Location = new Point(8, 257);
             width_AddProduct_TextBox.Name = "width_AddProduct_TextBox";
             width_AddProduct_TextBox.Size = new Size(120, 27);
-            width_AddProduct_TextBox.TabIndex = 7;
+            width_AddProduct_TextBox.TabIndex = 50;
             // 
             // height_AddProduct_TextBox
             // 
             height_AddProduct_TextBox.Location = new Point(8, 224);
             height_AddProduct_TextBox.Name = "height_AddProduct_TextBox";
             height_AddProduct_TextBox.Size = new Size(120, 27);
-            height_AddProduct_TextBox.TabIndex = 6;
+            height_AddProduct_TextBox.TabIndex = 40;
             // 
             // price_AddProduct_TextBox
             // 
             price_AddProduct_TextBox.Location = new Point(8, 118);
             price_AddProduct_TextBox.Name = "price_AddProduct_TextBox";
             price_AddProduct_TextBox.Size = new Size(120, 27);
-            price_AddProduct_TextBox.TabIndex = 4;
+            price_AddProduct_TextBox.TabIndex = 20;
             // 
             // price_AddProduct_lable
             // 
@@ -1289,7 +1291,7 @@
             price_AddProduct_lable.Location = new Point(8, 95);
             price_AddProduct_lable.Name = "price_AddProduct_lable";
             price_AddProduct_lable.Size = new Size(114, 20);
-            price_AddProduct_lable.TabIndex = 3;
+            price_AddProduct_lable.TabIndex = 0;
             price_AddProduct_lable.Text = "Вартість (грн) *";
             // 
             // name_AddProduct_TextBox
@@ -1297,7 +1299,7 @@
             name_AddProduct_TextBox.Location = new Point(8, 65);
             name_AddProduct_TextBox.Name = "name_AddProduct_TextBox";
             name_AddProduct_TextBox.Size = new Size(456, 27);
-            name_AddProduct_TextBox.TabIndex = 2;
+            name_AddProduct_TextBox.TabIndex = 10;
             // 
             // name_AddProduct_Label
             // 
@@ -1305,7 +1307,7 @@
             name_AddProduct_Label.Location = new Point(8, 42);
             name_AddProduct_Label.Name = "name_AddProduct_Label";
             name_AddProduct_Label.Size = new Size(61, 20);
-            name_AddProduct_Label.TabIndex = 1;
+            name_AddProduct_Label.TabIndex = 0;
             name_AddProduct_Label.Text = "Назва *";
             // 
             // addProduct_AddProduct_Label
@@ -1342,7 +1344,7 @@
             pageName_History_LabelText.Location = new Point(3, 3);
             pageName_History_LabelText.Name = "pageName_History_LabelText";
             pageName_History_LabelText.Size = new Size(179, 20);
-            pageName_History_LabelText.TabIndex = 14;
+            pageName_History_LabelText.TabIndex = 0;
             pageName_History_LabelText.Text = "Історія товарів на складі";
             // 
             // lastPage_History_Label
@@ -1351,7 +1353,7 @@
             lastPage_History_Label.Location = new Point(1164, 585);
             lastPage_History_Label.Name = "lastPage_History_Label";
             lastPage_History_Label.Size = new Size(50, 20);
-            lastPage_History_Label.TabIndex = 13;
+            lastPage_History_Label.TabIndex = 0;
             lastPage_History_Label.Text = "label5";
             // 
             // thisPage_History_Label
@@ -1360,7 +1362,7 @@
             thisPage_History_Label.Location = new Point(143, 585);
             thisPage_History_Label.Name = "thisPage_History_Label";
             thisPage_History_Label.Size = new Size(50, 20);
-            thisPage_History_Label.TabIndex = 12;
+            thisPage_History_Label.TabIndex = 0;
             thisPage_History_Label.Text = "label4";
             // 
             // nextPage_History_Button
@@ -1368,7 +1370,7 @@
             nextPage_History_Button.Location = new Point(723, 41);
             nextPage_History_Button.Name = "nextPage_History_Button";
             nextPage_History_Button.Size = new Size(94, 29);
-            nextPage_History_Button.TabIndex = 11;
+            nextPage_History_Button.TabIndex = 30;
             nextPage_History_Button.Text = "Наступна";
             nextPage_History_Button.UseVisualStyleBackColor = true;
             nextPage_History_Button.Click += NextPage_History_Button_Click;
@@ -1388,7 +1390,7 @@
             getPage_History_TextBox.Location = new Point(592, 42);
             getPage_History_TextBox.Name = "getPage_History_TextBox";
             getPage_History_TextBox.Size = new Size(125, 27);
-            getPage_History_TextBox.TabIndex = 9;
+            getPage_History_TextBox.TabIndex = 20;
             getPage_History_TextBox.KeyDown += GetPage_History_TextBox_KeyDown;
             // 
             // lastPage_History_LabelText
@@ -1397,7 +1399,7 @@
             lastPage_History_LabelText.Location = new Point(1039, 585);
             lastPage_History_LabelText.Name = "lastPage_History_LabelText";
             lastPage_History_LabelText.Size = new Size(128, 20);
-            lastPage_History_LabelText.TabIndex = 8;
+            lastPage_History_LabelText.TabIndex = 0;
             lastPage_History_LabelText.Text = "Всього сторінок: ";
             // 
             // thisPage_History_LabelText
@@ -1406,7 +1408,7 @@
             thisPage_History_LabelText.Location = new Point(8, 585);
             thisPage_History_LabelText.Name = "thisPage_History_LabelText";
             thisPage_History_LabelText.Size = new Size(139, 20);
-            thisPage_History_LabelText.TabIndex = 7;
+            thisPage_History_LabelText.TabIndex = 0;
             thisPage_History_LabelText.Text = "Поточна сторінка: ";
             // 
             // historyTable_History_DataGridView
@@ -1430,7 +1432,8 @@
             historyTable_History_DataGridView.RowTemplate.Height = 45;
             historyTable_History_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             historyTable_History_DataGridView.Size = new Size(1238, 507);
-            historyTable_History_DataGridView.TabIndex = 6;
+            historyTable_History_DataGridView.TabIndex = 0;
+            historyTable_History_DataGridView.TabStop = false;
             // 
             // time_History_dataGridViewTextBoxColumn
             // 
@@ -1490,7 +1493,7 @@
             thisPage_InvoiceHistory_Label.Location = new Point(153, 83);
             thisPage_InvoiceHistory_Label.Name = "thisPage_InvoiceHistory_Label";
             thisPage_InvoiceHistory_Label.Size = new Size(58, 20);
-            thisPage_InvoiceHistory_Label.TabIndex = 14;
+            thisPage_InvoiceHistory_Label.TabIndex = 0;
             thisPage_InvoiceHistory_Label.Text = "label12";
             // 
             // thisPage_InvoiceHistory_LabelText
@@ -1499,7 +1502,7 @@
             thisPage_InvoiceHistory_LabelText.Location = new Point(8, 83);
             thisPage_InvoiceHistory_LabelText.Name = "thisPage_InvoiceHistory_LabelText";
             thisPage_InvoiceHistory_LabelText.Size = new Size(139, 20);
-            thisPage_InvoiceHistory_LabelText.TabIndex = 13;
+            thisPage_InvoiceHistory_LabelText.TabIndex = 0;
             thisPage_InvoiceHistory_LabelText.Text = "Поточна сторінка: ";
             // 
             // lastPage_InvoiceHistory_Label
@@ -1508,7 +1511,7 @@
             lastPage_InvoiceHistory_Label.Location = new Point(151, 103);
             lastPage_InvoiceHistory_Label.Name = "lastPage_InvoiceHistory_Label";
             lastPage_InvoiceHistory_Label.Size = new Size(58, 20);
-            lastPage_InvoiceHistory_Label.TabIndex = 12;
+            lastPage_InvoiceHistory_Label.TabIndex = 0;
             lastPage_InvoiceHistory_Label.Text = "label10";
             // 
             // lastPage_InvoiceHistory_LabelText
@@ -1517,7 +1520,7 @@
             lastPage_InvoiceHistory_LabelText.Location = new Point(8, 103);
             lastPage_InvoiceHistory_LabelText.Name = "lastPage_InvoiceHistory_LabelText";
             lastPage_InvoiceHistory_LabelText.Size = new Size(137, 20);
-            lastPage_InvoiceHistory_LabelText.TabIndex = 11;
+            lastPage_InvoiceHistory_LabelText.TabIndex = 0;
             lastPage_InvoiceHistory_LabelText.Text = "Остання сторінка: ";
             // 
             // nextPage_InvoiceHistory_Button
@@ -1525,7 +1528,7 @@
             nextPage_InvoiceHistory_Button.Location = new Point(266, 40);
             nextPage_InvoiceHistory_Button.Name = "nextPage_InvoiceHistory_Button";
             nextPage_InvoiceHistory_Button.Size = new Size(119, 29);
-            nextPage_InvoiceHistory_Button.TabIndex = 10;
+            nextPage_InvoiceHistory_Button.TabIndex = 30;
             nextPage_InvoiceHistory_Button.Text = "Наступна";
             nextPage_InvoiceHistory_Button.UseVisualStyleBackColor = true;
             nextPage_InvoiceHistory_Button.Click += nextPage_InvoiceHistory_Button_Click;
@@ -1535,7 +1538,7 @@
             gatePage_InvoiceHistory_TextBox.Location = new Point(131, 42);
             gatePage_InvoiceHistory_TextBox.Name = "gatePage_InvoiceHistory_TextBox";
             gatePage_InvoiceHistory_TextBox.Size = new Size(129, 27);
-            gatePage_InvoiceHistory_TextBox.TabIndex = 9;
+            gatePage_InvoiceHistory_TextBox.TabIndex = 20;
             gatePage_InvoiceHistory_TextBox.TextChanged += gatePage_InvoiceHistory_TextBox_TextChanged;
             // 
             // previousPage_InvoiceHistory_Button
@@ -1543,7 +1546,7 @@
             previousPage_InvoiceHistory_Button.Location = new Point(8, 40);
             previousPage_InvoiceHistory_Button.Name = "previousPage_InvoiceHistory_Button";
             previousPage_InvoiceHistory_Button.Size = new Size(117, 29);
-            previousPage_InvoiceHistory_Button.TabIndex = 8;
+            previousPage_InvoiceHistory_Button.TabIndex = 10;
             previousPage_InvoiceHistory_Button.Text = "Попередня";
             previousPage_InvoiceHistory_Button.UseVisualStyleBackColor = true;
             previousPage_InvoiceHistory_Button.Click += previousPage_InvoiceHistory_Button_Click;
@@ -1554,7 +1557,7 @@
             pageName_InvoiceHistory_LabelText.Location = new Point(3, 3);
             pageName_InvoiceHistory_LabelText.Name = "pageName_InvoiceHistory_LabelText";
             pageName_InvoiceHistory_LabelText.Size = new Size(133, 20);
-            pageName_InvoiceHistory_LabelText.TabIndex = 7;
+            pageName_InvoiceHistory_LabelText.TabIndex = 0;
             pageName_InvoiceHistory_LabelText.Text = "Історія накладних";
             // 
             // tableOfInvoiceHistory_InvoiceHistory_DataGridView
@@ -1578,7 +1581,7 @@
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.RowTemplate.Height = 45;
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.Size = new Size(377, 479);
-            tableOfInvoiceHistory_InvoiceHistory_DataGridView.TabIndex = 6;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.TabIndex = 50;
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.CellClick += tableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick;
             // 
             // invoiceId_InvoiceHistory_DataGridViewTextBoxColumn
@@ -1617,7 +1620,7 @@
             loadInvoice_InvoiceHistory_LabelText.Location = new Point(881, 9);
             loadInvoice_InvoiceHistory_LabelText.Name = "loadInvoice_InvoiceHistory_LabelText";
             loadInvoice_InvoiceHistory_LabelText.Size = new Size(187, 20);
-            loadInvoice_InvoiceHistory_LabelText.TabIndex = 2;
+            loadInvoice_InvoiceHistory_LabelText.TabIndex = 0;
             loadInvoice_InvoiceHistory_LabelText.Text = "Завантажити накладну Id:";
             // 
             // invoiceSearchWithId_InvoiceHistory_TextBox
@@ -1625,7 +1628,7 @@
             invoiceSearchWithId_InvoiceHistory_TextBox.Location = new Point(1074, 6);
             invoiceSearchWithId_InvoiceHistory_TextBox.Name = "invoiceSearchWithId_InvoiceHistory_TextBox";
             invoiceSearchWithId_InvoiceHistory_TextBox.Size = new Size(174, 27);
-            invoiceSearchWithId_InvoiceHistory_TextBox.TabIndex = 1;
+            invoiceSearchWithId_InvoiceHistory_TextBox.TabIndex = 40;
             invoiceSearchWithId_InvoiceHistory_TextBox.TextChanged += invoiceSearchWithId_InvoiceHistory_TextBox_TextChanged;
             // 
             // invoice_InvoiceHistory_Panel
@@ -1651,7 +1654,7 @@
             closeInvoice_InvoiceHistory_Button.Location = new Point(645, 2);
             closeInvoice_InvoiceHistory_Button.Name = "closeInvoice_InvoiceHistory_Button";
             closeInvoice_InvoiceHistory_Button.Size = new Size(190, 29);
-            closeInvoice_InvoiceHistory_Button.TabIndex = 9;
+            closeInvoice_InvoiceHistory_Button.TabIndex = 60;
             closeInvoice_InvoiceHistory_Button.Text = "Завершити перегляд";
             closeInvoice_InvoiceHistory_Button.UseVisualStyleBackColor = true;
             closeInvoice_InvoiceHistory_Button.Click += closeInvoice_InvoiceHistory_Button_Click;
@@ -1662,7 +1665,7 @@
             timeMakeInvoice_InvoiceHistory_Label.Location = new Point(208, 49);
             timeMakeInvoice_InvoiceHistory_Label.Name = "timeMakeInvoice_InvoiceHistory_Label";
             timeMakeInvoice_InvoiceHistory_Label.Size = new Size(58, 20);
-            timeMakeInvoice_InvoiceHistory_Label.TabIndex = 8;
+            timeMakeInvoice_InvoiceHistory_Label.TabIndex = 0;
             timeMakeInvoice_InvoiceHistory_Label.Text = "label13";
             // 
             // saveInvoiceInFile_InvoiceHistory_Button
@@ -1670,7 +1673,7 @@
             saveInvoiceInFile_InvoiceHistory_Button.Location = new Point(645, 54);
             saveInvoiceInFile_InvoiceHistory_Button.Name = "saveInvoiceInFile_InvoiceHistory_Button";
             saveInvoiceInFile_InvoiceHistory_Button.Size = new Size(190, 29);
-            saveInvoiceInFile_InvoiceHistory_Button.TabIndex = 7;
+            saveInvoiceInFile_InvoiceHistory_Button.TabIndex = 70;
             saveInvoiceInFile_InvoiceHistory_Button.Text = "Зберегти як файл";
             saveInvoiceInFile_InvoiceHistory_Button.UseVisualStyleBackColor = true;
             saveInvoiceInFile_InvoiceHistory_Button.Click += saveInvoiceInFile_InvoiceHistory_Button_Click;
@@ -1681,7 +1684,7 @@
             timeMakeInvoice_InvoiceHistory_LabelText.Location = new Point(3, 49);
             timeMakeInvoice_InvoiceHistory_LabelText.Name = "timeMakeInvoice_InvoiceHistory_LabelText";
             timeMakeInvoice_InvoiceHistory_LabelText.Size = new Size(199, 20);
-            timeMakeInvoice_InvoiceHistory_LabelText.TabIndex = 6;
+            timeMakeInvoice_InvoiceHistory_LabelText.TabIndex = 0;
             timeMakeInvoice_InvoiceHistory_LabelText.Text = "Дата створення накладної: ";
             // 
             // typeInvoice_InvoiceHistory_Label
@@ -1690,7 +1693,7 @@
             typeInvoice_InvoiceHistory_Label.Location = new Point(125, 29);
             typeInvoice_InvoiceHistory_Label.Name = "typeInvoice_InvoiceHistory_Label";
             typeInvoice_InvoiceHistory_Label.Size = new Size(50, 20);
-            typeInvoice_InvoiceHistory_Label.TabIndex = 5;
+            typeInvoice_InvoiceHistory_Label.TabIndex = 0;
             typeInvoice_InvoiceHistory_Label.Text = "label6";
             // 
             // typeInvoice_InvoiceHistory_LabelText
@@ -1699,7 +1702,7 @@
             typeInvoice_InvoiceHistory_LabelText.Location = new Point(3, 29);
             typeInvoice_InvoiceHistory_LabelText.Name = "typeInvoice_InvoiceHistory_LabelText";
             typeInvoice_InvoiceHistory_LabelText.Size = new Size(116, 20);
-            typeInvoice_InvoiceHistory_LabelText.TabIndex = 4;
+            typeInvoice_InvoiceHistory_LabelText.TabIndex = 0;
             typeInvoice_InvoiceHistory_LabelText.Text = "Тип накладної: ";
             // 
             // idInvoice_InvoiceHistory_Label
@@ -1708,7 +1711,7 @@
             idInvoice_InvoiceHistory_Label.Location = new Point(112, 9);
             idInvoice_InvoiceHistory_Label.Name = "idInvoice_InvoiceHistory_Label";
             idInvoice_InvoiceHistory_Label.Size = new Size(50, 20);
-            idInvoice_InvoiceHistory_Label.TabIndex = 3;
+            idInvoice_InvoiceHistory_Label.TabIndex = 0;
             idInvoice_InvoiceHistory_Label.Text = "label4";
             // 
             // idInvoice_InvoiceHistory_LabelText
@@ -1718,7 +1721,7 @@
             idInvoice_InvoiceHistory_LabelText.Location = new Point(3, 9);
             idInvoice_InvoiceHistory_LabelText.Name = "idInvoice_InvoiceHistory_LabelText";
             idInvoice_InvoiceHistory_LabelText.Size = new Size(103, 20);
-            idInvoice_InvoiceHistory_LabelText.TabIndex = 2;
+            idInvoice_InvoiceHistory_LabelText.TabIndex = 0;
             idInvoice_InvoiceHistory_LabelText.Text = "Id накладної: ";
             // 
             // itemsOfInvoice_InvoiceHistory_DataGridView
@@ -1738,7 +1741,8 @@
             itemsOfInvoice_InvoiceHistory_DataGridView.RowHeadersWidth = 51;
             itemsOfInvoice_InvoiceHistory_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             itemsOfInvoice_InvoiceHistory_DataGridView.Size = new Size(832, 479);
-            itemsOfInvoice_InvoiceHistory_DataGridView.TabIndex = 1;
+            itemsOfInvoice_InvoiceHistory_DataGridView.TabIndex = 0;
+            itemsOfInvoice_InvoiceHistory_DataGridView.TabStop = false;
             // 
             // itemId_InvoiceHistory_DataGridViewTextBoxColumn
             // 
@@ -1779,7 +1783,7 @@
             // additionalFeatures_Program_TabPage
             // 
             additionalFeatures_Program_TabPage.Controls.Add(pageName_AdditionalFeatures_LabelText);
-            additionalFeatures_Program_TabPage.Controls.Add(daeleteAllData_AdditionalFeatures_Button);
+            additionalFeatures_Program_TabPage.Controls.Add(deleteAllData_AdditionalFeatures_Button);
             additionalFeatures_Program_TabPage.Controls.Add(saveProductsIntxtFile_AdditionalFeatures_Button);
             additionalFeatures_Program_TabPage.Location = new Point(4, 53);
             additionalFeatures_Program_TabPage.Name = "additionalFeatures_Program_TabPage";
@@ -1795,25 +1799,25 @@
             pageName_AdditionalFeatures_LabelText.Location = new Point(557, 3);
             pageName_AdditionalFeatures_LabelText.Name = "pageName_AdditionalFeatures_LabelText";
             pageName_AdditionalFeatures_LabelText.Size = new Size(132, 20);
-            pageName_AdditionalFeatures_LabelText.TabIndex = 2;
+            pageName_AdditionalFeatures_LabelText.TabIndex = 0;
             pageName_AdditionalFeatures_LabelText.Text = "Додаткові функції";
             // 
-            // daeleteAllData_AdditionalFeatures_Button
+            // deleteAllData_AdditionalFeatures_Button
             // 
-            daeleteAllData_AdditionalFeatures_Button.Location = new Point(409, 579);
-            daeleteAllData_AdditionalFeatures_Button.Name = "daeleteAllData_AdditionalFeatures_Button";
-            daeleteAllData_AdditionalFeatures_Button.Size = new Size(425, 29);
-            daeleteAllData_AdditionalFeatures_Button.TabIndex = 1;
-            daeleteAllData_AdditionalFeatures_Button.Text = "Видалити усі данні програми";
-            daeleteAllData_AdditionalFeatures_Button.UseVisualStyleBackColor = true;
-            daeleteAllData_AdditionalFeatures_Button.Click += daeleteAllData_AdditionalFeatures_Button_Click;
+            deleteAllData_AdditionalFeatures_Button.Location = new Point(409, 579);
+            deleteAllData_AdditionalFeatures_Button.Name = "deleteAllData_AdditionalFeatures_Button";
+            deleteAllData_AdditionalFeatures_Button.Size = new Size(425, 29);
+            deleteAllData_AdditionalFeatures_Button.TabIndex = 20;
+            deleteAllData_AdditionalFeatures_Button.Text = "Видалити усі данні програми";
+            deleteAllData_AdditionalFeatures_Button.UseVisualStyleBackColor = true;
+            deleteAllData_AdditionalFeatures_Button.Click += daeleteAllData_AdditionalFeatures_Button_Click;
             // 
             // saveProductsIntxtFile_AdditionalFeatures_Button
             // 
             saveProductsIntxtFile_AdditionalFeatures_Button.Location = new Point(409, 273);
             saveProductsIntxtFile_AdditionalFeatures_Button.Name = "saveProductsIntxtFile_AdditionalFeatures_Button";
             saveProductsIntxtFile_AdditionalFeatures_Button.Size = new Size(425, 29);
-            saveProductsIntxtFile_AdditionalFeatures_Button.TabIndex = 0;
+            saveProductsIntxtFile_AdditionalFeatures_Button.TabIndex = 10;
             saveProductsIntxtFile_AdditionalFeatures_Button.Text = "Зберегти список продуктів у файл ";
             saveProductsIntxtFile_AdditionalFeatures_Button.UseVisualStyleBackColor = true;
             saveProductsIntxtFile_AdditionalFeatures_Button.Click += saveProductsIntxtFile_AdditionalFeatures_Button_Click;
@@ -1825,7 +1829,7 @@
             saveAndClose_Window.Location = new Point(1059, 12);
             saveAndClose_Window.Name = "saveAndClose_Window";
             saveAndClose_Window.Size = new Size(196, 35);
-            saveAndClose_Window.TabIndex = 1000;
+            saveAndClose_Window.TabIndex = 10000;
             saveAndClose_Window.Text = "Зберегти та вийти ";
             saveAndClose_Window.UseVisualStyleBackColor = true;
             saveAndClose_Window.Click += saveAndClose_Window_Click;
@@ -2018,7 +2022,7 @@
         private Button closeInvoice_InvoiceHistory_Button;
         private TabPage additionalFeatures_Program_TabPage;
         private Label pageName_AdditionalFeatures_LabelText;
-        private Button daeleteAllData_AdditionalFeatures_Button;
+        private Button deleteAllData_AdditionalFeatures_Button;
         private Button saveProductsIntxtFile_AdditionalFeatures_Button;
         private DataGridView newInvoice_Invoice_DataGridView;
         private DataGridViewTextBoxColumn itemId_NewInvoice_Column;
