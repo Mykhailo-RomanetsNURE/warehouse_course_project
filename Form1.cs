@@ -1,4 +1,5 @@
 using System.Data;
+using System.IO;
 using System.Drawing.Printing;
 using System.Reflection.Emit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -63,6 +64,23 @@ namespace Курсовий_проєкт_на_тему_склад
                 if (!program_TabControl.TabPages.Contains(helpTab))
                 {
                     program_TabControl.TabPages.Add(helpTab);
+                    try
+                    {
+                        string path = Path.Combine(Application.StartupPath, "HelpTextFile.txt");
+
+                        if (File.Exists(path))
+                        {
+                            helpText_Help_RichTextBox.Text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                        }
+                        else
+                        {
+                            helpText_Help_RichTextBox.Text = "Файл допомоги не знайдено.";
+                        }
+                    }
+                    catch
+                    {
+                        helpText_Help_RichTextBox.Text = "Помилка при завантаженні допомоги";
+                    }
                 }
                 program_TabControl.SelectedTab = helpTab;
             }

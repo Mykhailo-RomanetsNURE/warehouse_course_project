@@ -183,6 +183,8 @@
             deleteAllData_AdditionalFeatures_Button = new Button();
             saveProductsIntxtFile_AdditionalFeatures_Button = new Button();
             Help_TabPage = new TabPage();
+            label2 = new Label();
+            helpText_Help_RichTextBox = new RichTextBox();
             helpHide_Help_Button = new Button();
             saveAndClose_Window = new Button();
             program_TabControl.SuspendLayout();
@@ -1488,7 +1490,7 @@
             invoiceHistory_Program_TabPage.Padding = new Padding(3);
             invoiceHistory_Program_TabPage.Size = new Size(1254, 616);
             invoiceHistory_Program_TabPage.TabIndex = 6;
-            invoiceHistory_Program_TabPage.Text = "Історія Накладних";
+            invoiceHistory_Program_TabPage.Text = "Історія накладних";
             invoiceHistory_Program_TabPage.UseVisualStyleBackColor = true;
             // 
             // thisPage_InvoiceHistory_Label
@@ -1828,6 +1830,8 @@
             // 
             // Help_TabPage
             // 
+            Help_TabPage.Controls.Add(label2);
+            Help_TabPage.Controls.Add(helpText_Help_RichTextBox);
             Help_TabPage.Controls.Add(helpHide_Help_Button);
             Help_TabPage.Location = new Point(4, 53);
             Help_TabPage.Name = "Help_TabPage";
@@ -1836,6 +1840,27 @@
             Help_TabPage.TabIndex = 8;
             Help_TabPage.Text = "Допомога";
             Help_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 10);
+            label2.Name = "label2";
+            label2.Size = new Size(174, 20);
+            label2.TabIndex = 502;
+            label2.Text = "Допоміжна інформація";
+            // 
+            // helpText_Help_RichTextBox
+            // 
+            helpText_Help_RichTextBox.BackColor = SystemColors.Info;
+            helpText_Help_RichTextBox.Location = new Point(3, 41);
+            helpText_Help_RichTextBox.Name = "helpText_Help_RichTextBox";
+            helpText_Help_RichTextBox.ReadOnly = true;
+            helpText_Help_RichTextBox.ScrollBars = RichTextBoxScrollBars.Vertical;
+            helpText_Help_RichTextBox.Size = new Size(1245, 569);
+            helpText_Help_RichTextBox.TabIndex = 0;
+            helpText_Help_RichTextBox.TabStop = false;
+            helpText_Help_RichTextBox.Text = "";
             // 
             // helpHide_Help_Button
             // 
@@ -1899,6 +1924,7 @@
             additionalFeatures_Program_TabPage.ResumeLayout(false);
             additionalFeatures_Program_TabPage.PerformLayout();
             Help_TabPage.ResumeLayout(false);
+            Help_TabPage.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2061,5 +2087,7 @@
         private DataGridViewTextBoxColumn typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn;
         private TabPage Help_TabPage;
         private Button helpHide_Help_Button;
+        private Label label2;
+        private RichTextBox helpText_Help_RichTextBox;
     }
 }
