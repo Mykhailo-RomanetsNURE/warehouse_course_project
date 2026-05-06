@@ -66,17 +66,17 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void Notification_AddProduct(string message, int time)
         {
-            notificationTimer.Stop();
+            _notificationTimer.Stop();
             notification_AddProduct_Label.Text = message;
-            notificationTimer.Interval = time;
-            notificationTimer.Tick -= TimerTick;
-            notificationTimer.Tick += TimerTick;
-            notificationTimer.Start();
+            _notificationTimer.Interval = time;
+            _notificationTimer.Tick -= TimerTick;
+            _notificationTimer.Tick += TimerTick;
+            _notificationTimer.Start();
         }
         private void TimerTick(object sender, EventArgs e)
         {
             notification_AddProduct_Label.Text = "";
-            notificationTimer.Stop();
+            _notificationTimer.Stop();
         }
     }
 }

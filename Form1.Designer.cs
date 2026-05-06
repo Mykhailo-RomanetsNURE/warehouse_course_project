@@ -159,6 +159,9 @@
             previousPage_InvoiceHistory_Button = new Button();
             pageName_InvoiceHistory_LabelText = new Label();
             tableOfInvoiceHistory_InvoiceHistory_DataGridView = new DataGridView();
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             loadInvoice_InvoiceHistory_LabelText = new Label();
             invoiceSearchWithId_InvoiceHistory_TextBox = new TextBox();
             invoice_InvoiceHistory_Panel = new Panel();
@@ -179,10 +182,9 @@
             pageName_AdditionalFeatures_LabelText = new Label();
             deleteAllData_AdditionalFeatures_Button = new Button();
             saveProductsIntxtFile_AdditionalFeatures_Button = new Button();
+            Help_TabPage = new TabPage();
+            helpHide_Help_Button = new Button();
             saveAndClose_Window = new Button();
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             program_TabControl.SuspendLayout();
             products_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableOfProducts_ViewProducts_DataGridView).BeginInit();
@@ -199,6 +201,7 @@
             invoice_InvoiceHistory_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)itemsOfInvoice_InvoiceHistory_DataGridView).BeginInit();
             additionalFeatures_Program_TabPage.SuspendLayout();
+            Help_TabPage.SuspendLayout();
             SuspendLayout();
             // 
             // program_TabControl
@@ -209,6 +212,7 @@
             program_TabControl.Controls.Add(tabPage6);
             program_TabControl.Controls.Add(invoiceHistory_Program_TabPage);
             program_TabControl.Controls.Add(additionalFeatures_Program_TabPage);
+            program_TabControl.Controls.Add(Help_TabPage);
             program_TabControl.Dock = DockStyle.Fill;
             program_TabControl.Location = new Point(0, 0);
             program_TabControl.Name = "program_TabControl";
@@ -1584,6 +1588,36 @@
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.TabIndex = 50;
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.CellClick += TableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick;
             // 
+            // invoiceId_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "InvoiceId";
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 1F;
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Id ";
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.Name = "invoiceId_InvoiceHistory_DataGridViewTextBoxColumn";
+            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Date";
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 2F;
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Дата";
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn";
+            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn
+            // 
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Type";
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 3F;
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Тип";
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn";
+            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // loadInvoice_InvoiceHistory_LabelText
             // 
             loadInvoice_InvoiceHistory_LabelText.AutoSize = true;
@@ -1792,6 +1826,27 @@
             saveProductsIntxtFile_AdditionalFeatures_Button.UseVisualStyleBackColor = true;
             saveProductsIntxtFile_AdditionalFeatures_Button.Click += SaveProductsIntxtFile_AdditionalFeatures_Button_Click;
             // 
+            // Help_TabPage
+            // 
+            Help_TabPage.Controls.Add(helpHide_Help_Button);
+            Help_TabPage.Location = new Point(4, 53);
+            Help_TabPage.Name = "Help_TabPage";
+            Help_TabPage.Padding = new Padding(3);
+            Help_TabPage.Size = new Size(1254, 616);
+            Help_TabPage.TabIndex = 8;
+            Help_TabPage.Text = "Допомога";
+            Help_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // helpHide_Help_Button
+            // 
+            helpHide_Help_Button.Location = new Point(841, 6);
+            helpHide_Help_Button.Name = "helpHide_Help_Button";
+            helpHide_Help_Button.Size = new Size(410, 29);
+            helpHide_Help_Button.TabIndex = 500;
+            helpHide_Help_Button.Text = "Щоб приховати допомогу натисніть на цю кнопку";
+            helpHide_Help_Button.UseVisualStyleBackColor = true;
+            helpHide_Help_Button.Click += HelpHide_Help_Button_Click;
+            // 
             // saveAndClose_Window
             // 
             saveAndClose_Window.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -1803,36 +1858,6 @@
             saveAndClose_Window.Text = "Зберегти та вийти ";
             saveAndClose_Window.UseVisualStyleBackColor = true;
             saveAndClose_Window.Click += SaveAndClose_Window_Click;
-            // 
-            // invoiceId_InvoiceHistory_DataGridViewTextBoxColumn
-            // 
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "InvoiceId";
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 1F;
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Id ";
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.Name = "invoiceId_InvoiceHistory_DataGridViewTextBoxColumn";
-            invoiceId_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn
-            // 
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Date";
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 2F;
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Дата";
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn";
-            dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn
-            // 
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.DataPropertyName = "Type";
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.FillWeight = 3F;
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.HeaderText = "Тип";
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.MinimumWidth = 6;
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.Name = "typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn";
-            typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Warehouse_Window_Form
             // 
@@ -1846,6 +1871,7 @@
             KeyPreview = true;
             Name = "Warehouse_Window_Form";
             Text = "Склад";
+            FormClosing += Warehouse_Window_Form_FormClosing;
             KeyDown += Warehouse_Window_Form_KeyDown;
             program_TabControl.ResumeLayout(false);
             products_TabPage.ResumeLayout(false);
@@ -1872,6 +1898,7 @@
             ((System.ComponentModel.ISupportInitialize)itemsOfInvoice_InvoiceHistory_DataGridView).EndInit();
             additionalFeatures_Program_TabPage.ResumeLayout(false);
             additionalFeatures_Program_TabPage.PerformLayout();
+            Help_TabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2032,5 +2059,7 @@
         private DataGridViewTextBoxColumn invoiceId_InvoiceHistory_DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateAddInvoice_InvoiceHistory_DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typeOfInvoice_InvoiceHistory_DataGridViewTextBoxColumn;
+        private TabPage Help_TabPage;
+        private Button helpHide_Help_Button;
     }
 }

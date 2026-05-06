@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing.Printing;
 using System.Xml.Linq;
 
@@ -35,14 +36,9 @@ namespace Курсовий_проєкт_на_тему_склад
         public void AddIncident(Incident incident)
         {
             this.History.Insert(0, incident);
-
-            if (this.History.Count > 1000)
-            {
-                int countToRemove = this.History.Count - 1000;
-
-                this.History.RemoveRange(1000, countToRemove);
-            }
-        }/**/
+            DateTime treshTime = DateTime.Now.AddMonths(-2);
+            this.History.RemoveAll(i => i.Date < treshTime);
+        }
 
         public void AddInvoice(Warehouse warehouseMhetod, bool IsExpenditureInvoice)
         {
@@ -75,12 +71,9 @@ namespace Курсовий_проєкт_на_тему_склад
             }
 
             InvoiceLastId++;
-            if (warehouseMhetod.InvoicesHistory.Count > 1000)
-            {
-                int countToRemove = warehouseMhetod.InvoicesHistory.Count - 1000;
-                warehouseMhetod.InvoicesHistory.RemoveRange(1000, countToRemove);
-            }
-        }/**/
+            DateTime treshTime = DateTime.Now.AddMonths(-2);
+            this.InvoicesHistory.RemoveAll(i => i.Date < treshTime);
+        }
         public void DeleteItemInNewInvoice(int id)
         {
             this.InvoiceList.RemoveAll(i => i.Id == id);
