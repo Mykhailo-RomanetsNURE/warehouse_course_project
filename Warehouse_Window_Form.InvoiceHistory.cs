@@ -7,33 +7,30 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
-        public void LoaditemsToInvoiceHistoryTable(int pageNumber)
+        public void LoadItemsToInvoiceHistoryTable(string pageNumberStr, int num = 0)/*зробити щоб в таблицю виводило тип таблиці а  не правда чи ні*/
         {
-            int pageSize = 10;
-
-            int totalItems = warehouse.InvoicesHistory.Count;
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            if (totalPages == 0) totalPages = 1;
-            if (pageNumber > totalPages) pageNumber = totalPages;
-            if (pageNumber < 1) pageNumber = 1;
-
-            var itemsForPage = warehouse.InvoicesHistory
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+            if (int.TryParse(pageNumberStr, out int pageNumber))
+            {
+                pageNumber+= num;
+            }
+            else
+            {
+                pageNumber = 1;
+            }
+            var result = warehouse.ItemsToInvoiceHistoryTable(pageNumber);
 
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.AutoGenerateColumns = false;
             tableOfInvoiceHistory_InvoiceHistory_DataGridView.DataSource = null;
-            tableOfInvoiceHistory_InvoiceHistory_DataGridView.DataSource = itemsForPage;
+            tableOfInvoiceHistory_InvoiceHistory_DataGridView.DataSource = result.itemsForPage;
 
-            thisPage_InvoiceHistory_Label.Text = pageNumber.ToString();
-            gatePage_InvoiceHistory_TextBox.Text = pageNumber.ToString();
-            lastPage_InvoiceHistory_Label.Text = pageNumber.ToString();
+            thisPage_InvoiceHistory_Label.Text = result.pageNumber.ToString();
+            gatePage_InvoiceHistory_TextBox.Text = result.pageNumber.ToString();
+            lastPage_InvoiceHistory_Label.Text = result.totalPages.ToString();
         }
         public void LoadInvoiceInInvoiceHistoryPage(int id)
         {
-            Invoice invoice = warehouse.InvoicesHistory.FirstOrDefault(inv => inv.InvoiceId == id);
-            if (invoice != null)
+            var invoice = warehouse.TakeInvoice(id);
+            if (invoice.InvoiceId != 0)
             {
                 invoice_InvoiceHistory_Panel.Visible = true;
                 idInvoice_InvoiceHistory_Label.Text = invoice.InvoiceId.ToString();
@@ -56,38 +53,17 @@ namespace Курсовий_проєкт_на_тему_склад
         private void previousPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
             string pageNumberStr = thisPage_InvoiceHistory_Label.Text.Trim();
-            if (int.TryParse(pageNumberStr, out int pageNumber))
-            {
-                LoaditemsToInvoiceHistoryTable(pageNumber - 1);
-            }
-            else
-            {
-                LoaditemsToInvoiceHistoryTable(1);
-            }
+            LoadItemsToInvoiceHistoryTable(pageNumberStr, -1);
         }
         private void gatePage_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
         {
             string pageNumberStr = gatePage_InvoiceHistory_TextBox.Text.Trim();
-            if (int.TryParse(pageNumberStr, out int pageNumber))
-            {
-                LoaditemsToInvoiceHistoryTable(pageNumber);
-            }
-            else
-            {
-                LoaditemsToInvoiceHistoryTable(1);
-            }
+            LoadItemsToInvoiceHistoryTable(pageNumberStr);
         }
         private void nextPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
             string pageNumberStr = thisPage_InvoiceHistory_Label.Text.Trim();
-            if (int.TryParse(pageNumberStr, out int pageNumber))
-            {
-                LoaditemsToInvoiceHistoryTable(pageNumber + 1);
-            }
-            else
-            {
-                LoaditemsToInvoiceHistoryTable(1);
-            }
+            LoadItemsToInvoiceHistoryTable(pageNumberStr, 1);
         }
         private void invoiceSearchWithId_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -96,7 +72,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 LoadInvoiceInInvoiceHistoryPage(id);
             }
         }
-        private void tableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void tableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)/*!!!є конвертація через Convert.ToInt32*/
         {
             if (e.RowIndex >= 0)
             {
@@ -111,8 +87,14 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void saveInvoiceInFile_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
-            Invoice invoice = warehouse.InvoicesHistory.FirstOrDefault(inv => inv.InvoiceId.ToString() == idInvoice_InvoiceHistory_Label.Text);
-            ExportInvoiceToFile(invoice);
+            if (int.TryParse(idInvoice_InvoiceHistory_Label.Text, out int id))
+            {
+                Invoice invoice = warehouse.TakeInvoice(id);
+                if (invoice.InvoiceId != 0)
+                {
+                    invoice.ExportInvoiceToFile();
+                }
+            }
         }    
     }
 }

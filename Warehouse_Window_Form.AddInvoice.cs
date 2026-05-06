@@ -14,7 +14,6 @@ namespace Курсовий_проєкт_на_тему_склад
             newInvoice_Invoice_DataGridView.AutoGenerateColumns = false;
             newInvoice_Invoice_DataGridView.DataSource = null;
             newInvoice_Invoice_DataGridView.DataSource = warehouse.InvoiceList;
-            idOfInvoice_Invoice_Label.Text = warehouse.InvoiceLastId.ToString();
             newInvoice_Invoice_DataGridView.Enabled = false;
             if (warehouse.InvoiceList == null || warehouse.InvoiceList.Count == 0)
             {
@@ -25,7 +24,40 @@ namespace Курсовий_проєкт_на_тему_склад
                 typeOfInvoice_Invoice_ComboBox.Enabled = false;
             }
         }
-        public void LoadProductDataInvoniceItem()/*є код що бажано винести в окремий метод*/
+        public void VisibleInvoiceItemControls(bool visible)
+        {
+            productName_Invoice_LabelText.Visible = visible;
+            productName_Invoice_Label.Visible = visible;
+            quantityProduct_Invoice_Label.Visible = visible;
+            quantityProduct_Invoice_TextBox.Visible = visible;
+            thisQuantityProduct_Invoice_Label.Visible = visible;
+            thisQuantityProduct_Invoice_LabelNumber.Visible = visible;
+            productPrice_Invoice_Label.Visible = visible;
+            productPrice_Invoice_TextBox.Visible = visible;
+            thisProductPrice_Invoice_Label.Visible = visible;
+            thisProductPrice_Invoice_LabelNumber.Visible = visible;
+            noProduct_Invoice_Button.Visible = visible;
+            okProduct_Invoice_Button.Visible = visible;
+        }
+        public void LoadItemData(Product? product)
+        {
+            if (product != null)
+            {
+                productName_Invoice_Label.Text = product.Name;
+                thisQuantityProduct_Invoice_LabelNumber.Text = product.Quantity.ToString();
+                productPrice_Invoice_TextBox.Text = product.Price.ToString();
+                thisProductPrice_Invoice_LabelNumber.Text = product.Price.ToString();
+            }
+            else
+            {
+                productName_Invoice_Label.Text = "";
+                quantityProduct_Invoice_TextBox.Clear();
+                thisQuantityProduct_Invoice_LabelNumber.Text = "";
+                productPrice_Invoice_TextBox.Clear();
+                thisProductPrice_Invoice_LabelNumber.Text = "";
+            }
+        }
+        public void LoadProductDataInvoniceItem()
         {
             string input = productId_Invoice_TextBox.Text.Trim();
             if (int.TryParse(input, out int productId))
@@ -36,88 +68,30 @@ namespace Курсовий_проєкт_на_тему_склад
                     var item = warehouse.InvoiceList.FirstOrDefault(i => i.Id == productId);
                     if (item != null)
                     {
+                        LoadItemData(product);
+                        VisibleInvoiceItemControls(true);
                         panelName_Invoice_Label.Text = "Редагування товару в накладній";
-
-                        productName_Invoice_LabelText.Visible = true;
-                        productName_Invoice_Label.Visible = true;
-                        productName_Invoice_Label.Text = product.Name;
-
-                        quantityProduct_Invoice_Label.Visible = true;
-                        quantityProduct_Invoice_TextBox.Visible = true;
                         quantityProduct_Invoice_TextBox.Text = item.Quantity.ToString();
-                        thisQuantityProduct_Invoice_Label.Visible = true;
-                        thisQuantityProduct_Invoice_LabelNumber.Visible = true;
-                        thisQuantityProduct_Invoice_LabelNumber.Text = product.Quantity.ToString();
-
-                        productPrice_Invoice_Label.Visible = true;
-                        productPrice_Invoice_TextBox.Visible = true;
-                        productPrice_Invoice_TextBox.Text = item.Price.ToString();
-                        thisProductPrice_Invoice_Label.Visible = true;
-                        thisProductPrice_Invoice_LabelNumber.Visible = true;
-                        thisProductPrice_Invoice_LabelNumber.Text = product.Price.ToString();
-
-                        noProduct_Invoice_Button.Visible = true;
                         noProduct_Invoice_Button.Text = "Видалити";
-                        okProduct_Invoice_Button.Visible = true;
                         okProduct_Invoice_Button.Text = "Змінити";
                         return;
                     }
+                    LoadItemData(product);
+                    VisibleInvoiceItemControls(true);
                     panelName_Invoice_Label.Text = "Додавання товару в накладну";
-
-                    productName_Invoice_LabelText.Visible = true;
-                    productName_Invoice_Label.Visible = true;
-                    productName_Invoice_Label.Text = product.Name;
-
-                    quantityProduct_Invoice_Label.Visible = true;
-                    quantityProduct_Invoice_TextBox.Visible = true;
-                    thisQuantityProduct_Invoice_Label.Visible = true;
-                    thisQuantityProduct_Invoice_LabelNumber.Visible = true;
-                    thisQuantityProduct_Invoice_LabelNumber.Text = product.Quantity.ToString();
-
-                    productPrice_Invoice_Label.Visible = true;
-                    productPrice_Invoice_TextBox.Visible = true;
-                    productPrice_Invoice_TextBox.Text = product.Price.ToString();
-                    thisProductPrice_Invoice_Label.Visible = true;
-                    thisProductPrice_Invoice_LabelNumber.Visible = true;
-                    thisProductPrice_Invoice_LabelNumber.Text = product.Price.ToString();
-
-                    noProduct_Invoice_Button.Visible = true;
                     noProduct_Invoice_Button.Text = "Очистити";
-                    okProduct_Invoice_Button.Visible = true;
                     okProduct_Invoice_Button.Text = "Додати товар до накладної";
                     return;
                 }
             }
+            LoadItemData(null);
+            VisibleInvoiceItemControls(false);
             panelName_Invoice_Label.Text = "Додавання товару в накладну";
-
-            productName_Invoice_LabelText.Visible = false;
-            productName_Invoice_Label.Visible = false;
-            productName_Invoice_Label.Text = "";
-
-            quantityProduct_Invoice_Label.Visible = false;
-            quantityProduct_Invoice_TextBox.Visible = false;
-            quantityProduct_Invoice_TextBox.Clear();
-            thisQuantityProduct_Invoice_Label.Visible = false;
-            thisQuantityProduct_Invoice_LabelNumber.Visible = false;
-            thisQuantityProduct_Invoice_LabelNumber.Text = "";
-
-            productPrice_Invoice_Label.Visible = false;
-            productPrice_Invoice_TextBox.Visible = false;
-            productPrice_Invoice_TextBox.Clear();
-            thisProductPrice_Invoice_Label.Visible = false;
-            thisProductPrice_Invoice_LabelNumber.Visible = false;
-            thisProductPrice_Invoice_LabelNumber.Text = "";
-
-            noProduct_Invoice_Button.Visible = false;
-            okProduct_Invoice_Button.Visible = false;
         }
         public void AddNewInvoice()
         {
             bool IsExpenditureInvoice = typeOfInvoice_Invoice_ComboBox.SelectedIndex == 0;
-            Invoice invoice = new Invoice(warehouse, IsExpenditureInvoice, warehouse.InvoiceList);
-            warehouse.AddInvoice(invoice, warehouse);
-            warehouse.InvoiceList.Clear();
-            warehouse.InvoiceLastId++;
+            warehouse.AddInvoice(warehouse, IsExpenditureInvoice);
             LoadItemsToInvoiceTable();
         }
         private void productId_Invoice_TextBox_TextChanged(object sender, EventArgs e)
@@ -136,7 +110,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 string inputId = productId_Invoice_TextBox.Text.Trim();
                 if (int.TryParse(inputId, out int id))
                 {
-                    warehouse.InvoiceList.RemoveAll(i => i.Id == id);
+                    warehouse.DeleteItemInNewInvoice(id);
                     LoadItemsToInvoiceTable();
                     productId_Invoice_TextBox.Clear();
                     LoadProductDataInvoniceItem();
@@ -145,51 +119,36 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void cleanInvoice_Invoice_Button_Click(object sender, EventArgs e)
         {
-            warehouse.InvoiceList = new List<ItemOfInvoice>();
-            LoadItemsToInvoiceTable();
-            LoadProductDataInvoniceItem();
+            DialogResult result = MessageBox.Show("Ви впевнені, що хочете очистити нову накладну?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                warehouse.ClearNewInvoice();
+                LoadItemsToInvoiceTable();
+                LoadProductDataInvoniceItem();
+            }
         }
-        private void okProduct_Invoice_Button_Click(object sender, EventArgs e)
+        private void okProduct_Invoice_Button_Click(object sender, EventArgs e)/*доробити повідомлення*/
         {
             string inputId = productId_Invoice_TextBox.Text.Trim();
             string inputQuantity = quantityProduct_Invoice_TextBox.Text.Trim();
             string inputPrice = productPrice_Invoice_TextBox.Text.Trim();
+            string inputOldQuantity = thisQuantityProduct_Invoice_LabelNumber.Text.Trim();
+            int comboBoxIndex = typeOfInvoice_Invoice_ComboBox.SelectedIndex;
 
-            if (int.TryParse(inputId, out int id) && int.TryParse(inputQuantity, out int quantity) && double.TryParse(inputPrice, out double price))
+            if (warehouse.DovloadDataToInvoice(inputId, inputQuantity, inputPrice, inputOldQuantity, comboBoxIndex))
             {
-                if (id > 0 && quantity > 0 && price > 0 && (typeOfInvoice_Invoice_ComboBox.SelectedIndex == 0 || (typeOfInvoice_Invoice_ComboBox.SelectedIndex == 1 && Convert.ToInt32(thisQuantityProduct_Invoice_LabelNumber.Text) >= quantity)))
-                {
-                    var existingItem = warehouse.InvoiceList.FirstOrDefault(i => i.Id == id);
-                    if (existingItem == null)
-                    {
-                        ItemOfInvoice item = new ItemOfInvoice(id, quantity, (double)price, warehouse);
-                        warehouse.InvoiceList.Add(item);
-                    }
-                    else
-                    {
-                        existingItem.Quantity = quantity;
-                        existingItem.Price = price;
-                        for (int i = 0; i < warehouse.InvoiceList.Count; i++)
-                        {
-                            if (warehouse.InvoiceList[i].Id == id)
-                            {
-                                warehouse.InvoiceList[i] = existingItem;
-                                break;
-                            }
-                        }
-                    }
-                    LoadItemsToInvoiceTable();
-                    productId_Invoice_TextBox.Clear();
-                    LoadProductDataInvoniceItem();
-                    return;
-                }
+                LoadItemsToInvoiceTable();
+                productId_Invoice_TextBox.Clear();
+                LoadProductDataInvoniceItem();
             }
-
-            MessageBox.Show("Нажаль введені данні мають помилку.");
+            else
+            {
+                MessageBox.Show("Нажаль введені данні мають помилку.");
+            }
         }
         private void addNewInvoice_Button_Click(object sender, EventArgs e)
         {
-            if (warehouse.InvoiceList != null && warehouse.InvoiceList.Count() != 0)
+            if (!warehouse.IsNewInvoiceEmpty())
             {
                 AddNewInvoice();
             }
@@ -200,10 +159,10 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void addNewInvoice_Invoice_Button_Click(object sender, EventArgs e)
         {
-            if (warehouse.InvoiceList != null && warehouse.InvoiceList.Count() != 0)
+            if (!warehouse.IsNewInvoiceEmpty())
             {
                 AddNewInvoice();
-                ExportInvoiceToFile(warehouse.InvoicesHistory[0]);
+                warehouse.InvoicesHistory[0].ExportInvoiceToFile();
             }
             else
             {

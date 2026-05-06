@@ -7,7 +7,7 @@ namespace Курсовий_проєкт_на_тему_склад
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Warehouse warehouse = new Warehouse();
+            Warehouse warehouse = FileSaveLoad.Load();
             Application.Run(new Warehouse_Window_Form(warehouse));
         }
     }

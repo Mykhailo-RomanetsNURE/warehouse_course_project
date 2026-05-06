@@ -161,9 +161,18 @@ namespace Курсовий_проєкт_на_тему_склад
             DialogResult result = MessageBox.Show("Видалений товар не можливо буде повернути, залишаться лише записи в історії. Ви впевнені Що хочете його видалити?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+
                 if (int.TryParse(id_ViewSpecificProduct_Label.Text, out int id))
                 {
                     warehouse.RemoveProduct(id);
+                    if (int.TryParse(productId_Invoice_TextBox.Text.Trim(), out int productId))
+                    {
+                        if (productId == id)
+                        {
+                            productId_Invoice_TextBox.Clear();
+                            LoadProductDataInvoniceItem();
+                        }
+                    }
                 }
                 else
                 {

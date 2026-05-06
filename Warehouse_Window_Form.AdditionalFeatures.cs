@@ -14,7 +14,7 @@
                 productId_Invoice_TextBox.Text = "";
                 LoadItemsToInvoiceTable();
                 LoadDataToHistoryTable("1");
-                LoaditemsToInvoiceHistoryTable(1);
+                LoadItemsToInvoiceHistoryTable(1);
                 invoice_InvoiceHistory_Panel.Visible = false;
                 invoiceSearchWithId_InvoiceHistory_TextBox.Text = "";
             }

@@ -38,23 +38,19 @@ namespace Курсовий_проєкт_на_тему_склад
             }
             if (program_TabControl.SelectedIndex == 4)
             {
-                if (int.TryParse(thisPage_InvoiceHistory_Label.Text, out int pageNumber))
-                {
-                    LoaditemsToInvoiceHistoryTable(pageNumber);
-                }
-                else
-                {
-                    LoaditemsToInvoiceHistoryTable(1);
-                }
+                string pageNumber = thisPage_InvoiceHistory_Label.Text.Trim();
+                LoadItemsToInvoiceHistoryTable(pageNumber);
             }
         }
         private void Warehouse_Window_Form_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                var result = MessageBox.Show("Ви впевнені, що хочете вийти з програми?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show("Ви впевнені, що хочете вийти з програми (данні будуть збережені)?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    warehouse.ClearNewInvoice();
+                    FileSaveLoad.Save(warehouse);
                     this.Close();
                 }
             }
@@ -65,31 +61,14 @@ namespace Курсовий_проєкт_на_тему_склад
                 e.SuppressKeyPress = true;
             }
         }
-        private void ExportInvoiceToFile(Invoice invoice)
+        private void saveAndClose_Window_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            saveDialog.FileName = $"Invoice_{invoice.InvoiceId}.txt";
-
-            if (saveDialog.ShowDialog() == DialogResult.OK)
+            var result = MessageBox.Show("Ви впевнені, що хочете вийти з програми (данні будуть збережені)?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                try
-                {
-                    using StreamWriter writer = new StreamWriter(saveDialog.FileName);
-                    writer.WriteLine($"------------------ Id накладної: {invoice.InvoiceId} ------------------");
-                    writer.WriteLine($"Дата створення: {invoice.Date}");
-                    writer.WriteLine($"Тип накладної: {(invoice.IsExpenditureInvoice ? "Прибуткова" : "Видаткова")}");
-                    writer.WriteLine(new string('-', 50));
-                    foreach (var item in invoice.Items)
-                    {
-                        writer.WriteLine(item.ToString());
-                    }
-                    MessageBox.Show("Накладна успішно експортована!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Нажаль виникла помилка при запису файлу");
-                }
+                warehouse.ClearNewInvoice();
+                FileSaveLoad.Save(warehouse);
+                this.Close();
             }
         }
     }

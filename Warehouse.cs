@@ -4,25 +4,25 @@ using System.Xml.Linq;
 
 namespace Курсовий_проєкт_на_тему_склад
 {
-	public class Warehouse
-	{
-		public List<Product> Products { get; set; }
-		public int MaxId { get; set; }
-		public int InvoiceLastId { get; set; }
+    public class Warehouse
+    {
+        public List<Product> Products { get; set; }
+        public int MaxId { get; set; }
+        public int InvoiceLastId { get; set; }
         public List<Incident> History { get; set; }
         public List<ItemOfInvoice> InvoiceList { get; set; }
         public List<Invoice> InvoicesHistory { get; set; }
         public Warehouse()
-		{
-			Products = new List<Product>();
-			MaxId = 1;
-			InvoiceLastId = 1;
-			History = new List<Incident>();
+        {
+            Products = new List<Product>();
+            MaxId = 1;
+            InvoiceLastId = 1;
+            History = new List<Incident>();
             InvoiceList = new List<ItemOfInvoice>();
             InvoicesHistory = new List<Invoice>();
         }
-		public void AddIncident(Incident incident)
-		{
+        public void AddIncident(Incident incident)
+        {
             this.History.Insert(0, incident);
 
             if (this.History.Count > 1000)
@@ -32,9 +32,37 @@ namespace Курсовий_проєкт_на_тему_склад
                 this.History.RemoveRange(1000, countToRemove);
             }
         }
-		public void AddInvoice(Invoice invoice, Warehouse warehouseMhetod)
+        public void AddInvoice(Warehouse warehouseMhetod, bool IsExpenditureInvoice)
         {
+            Invoice invoice = new Invoice(this, IsExpenditureInvoice, this.InvoiceList);
             warehouseMhetod.InvoicesHistory.Insert(0, invoice);
+            this.InvoiceList.Clear();
+
+            for (int i = 0; i < invoice.Items.Count; i++)
+            {
+                var item = invoice.Items[i];
+                foreach (Product product in this.Products)
+                {
+                    if (item.Id == product.Id)
+                    {
+                        if (invoice.IsExpenditureInvoice == false)
+                        {
+                            product.Quantity -= item.Quantity;
+                            this.AddIncident(new Incident(DateTime.Now, "Видано товар: " + product.Name + ", кількість: " + item.Quantity+", Ціна: " + item.Price+", накладна: " + invoice.InvoiceId, product.Id));
+                        }
+                        else
+                        {
+                            product.Quantity += item.Quantity;
+                            this.AddIncident(new Incident(DateTime.Now, "Прийнято товар: " + product.Name + ", кількість: " + item.Quantity+", Ціна: " + item.Price+", накладна: " + invoice.InvoiceId, product.Id));
+                        }
+                        product.DateAndTime = invoice.Date;
+                        product.Price = item.Price;
+                        break;
+                    }
+                }
+            }
+
+            InvoiceLastId++;
             if (warehouseMhetod.InvoicesHistory.Count > 1000)
             {
                 int countToRemove = warehouseMhetod.InvoicesHistory.Count - 1000;
@@ -88,7 +116,7 @@ namespace Курсовий_проєкт_на_тему_склад
         public Product TakeProduct(int id)
         {
             return this.Products.FirstOrDefault(p => p.Id == id) ?? new Product();
-            
+
         }
         public void CleanHistoryProduct(int id)
         {
@@ -169,10 +197,74 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
+        }
+        public void DeleteItemInNewInvoice(int id)
+        {
+            this.InvoiceList.RemoveAll(i => i.Id == id);
+        }
+        public void ClearNewInvoice()
+        {
+            this.InvoiceList.Clear();
+        }
+        public bool DovloadDataToInvoice(string inputId, string inputQuantity,string inputPrice, string inputOldQuantity, int selectedIndex)
+        {
+            if (int.TryParse(inputId, out int id) && int.TryParse(inputQuantity, out int quantity) && double.TryParse(inputPrice, out double price) && int.TryParse(inputOldQuantity, out int oldQuantity))
+            {
+                int index = this.Products.FindIndex(p => p.Id == id);
+                if (index >= 0)
+                {
+                    if (id > 0 && quantity > 0 && price > 0 && (selectedIndex == 0 || (selectedIndex == 1 && oldQuantity >= quantity)))
+                    {
+                        var existingItem = this.InvoiceList.FirstOrDefault(i => i.Id == id);
+                        if (existingItem == null)
+                        {
+                            ItemOfInvoice item = new ItemOfInvoice(id, quantity, (double)price, this);
+                            this.InvoiceList.Add(item);
+                        }
+                        else
+                        {
+                            existingItem.Quantity = quantity;
+                            existingItem.Price = price;
+                            for (int i = 0; i < this.InvoiceList.Count; i++)
+                            {
+                                if (this.InvoiceList[i].Id == id)
+                                {
+                                    this.InvoiceList[i] = existingItem;
+                                    break;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool IsNewInvoiceEmpty()
+        {
+            return this.InvoiceList == null || this.InvoiceList.Count == 0;
+        }
+        public (List<Invoice> itemsForPage, int pageNumber, int totalPages, int totalItems) ItemsToInvoiceHistoryTable(int pageNumber)
+        {
+            int totalItems = this.InvoicesHistory.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / Constants.PAGE_SIZE);
+            if (totalPages == 0) totalPages = 1;
+            if (pageNumber > totalPages) pageNumber = totalPages;
+            if (pageNumber < 1) pageNumber = 1;
+
+            var itemsForPage = this.InvoicesHistory
+                    .Skip((pageNumber - 1) * Constants.PAGE_SIZE)
+                    .Take(Constants.PAGE_SIZE)
+                    .ToList();
+            return (itemsForPage, pageNumber, totalPages, totalItems);
+        }
+        public Invoice TakeInvoice(int id)
+        {
+            return this.InvoicesHistory.FirstOrDefault(inv => inv.InvoiceId == id) ?? new Invoice();
         }
     }
 }

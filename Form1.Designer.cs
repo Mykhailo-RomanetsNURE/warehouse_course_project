@@ -1828,6 +1828,7 @@
             saveAndClose_Window.TabIndex = 1000;
             saveAndClose_Window.Text = "Зберегти та вийти ";
             saveAndClose_Window.UseVisualStyleBackColor = true;
+            saveAndClose_Window.Click += saveAndClose_Window_Click;
             // 
             // Warehouse_Window_Form
             // 
