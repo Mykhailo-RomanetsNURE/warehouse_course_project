@@ -2,13 +2,13 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
-        private void daeleteAllData_AdditionalFeatures_Button_Click(object sender, EventArgs e)
+        private void DeleteAllData_AdditionalFeatures_Button_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Ви впевненні що хочете видалити всі данні, повернутись назад буде неможливо","Підтвердження", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 warehouse.ClearWarehouse();
-                loadDataToTable("1");
+                LoadDataToTable("1");
                 productInfo_ViewProducts_Panel.Visible = false;
                 LoadItemsToInvoiceTable();
                 productId_Invoice_TextBox.Text = "";
@@ -19,7 +19,7 @@
                 invoiceSearchWithId_InvoiceHistory_TextBox.Text = "";
             }
         }
-        private void saveProductsIntxtFile_AdditionalFeatures_Button_Click(object sender, EventArgs e)
+        private void SaveProductsIntxtFile_AdditionalFeatures_Button_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";

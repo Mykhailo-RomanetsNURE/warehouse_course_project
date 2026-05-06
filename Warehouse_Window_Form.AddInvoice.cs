@@ -94,11 +94,11 @@ namespace Курсовий_проєкт_на_тему_склад
             warehouse.AddInvoice(warehouse, IsExpenditureInvoice);
             LoadItemsToInvoiceTable();
         }
-        private void productId_Invoice_TextBox_TextChanged(object sender, EventArgs e)
+        private void ProductId_Invoice_TextBox_TextChanged(object sender, EventArgs e)
         {
             LoadProductDataInvoniceItem();
         }
-        private void noProduct_Invoice_Button_Click(object sender, EventArgs e)
+        private void NoProduct_Invoice_Button_Click(object sender, EventArgs e)
         {
             if (productId_Invoice_TextBox.Text == "Очистити")
             {
@@ -117,7 +117,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
             }
         }
-        private void cleanInvoice_Invoice_Button_Click(object sender, EventArgs e)
+        private void CleanInvoice_Invoice_Button_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Ви впевнені, що хочете очистити нову накладну?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
@@ -127,7 +127,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 LoadProductDataInvoniceItem();
             }
         }
-        private void okProduct_Invoice_Button_Click(object sender, EventArgs e)/*доробити повідомлення*/
+        private void OkProduct_Invoice_Button_Click(object sender, EventArgs e)
         {
             string inputId = productId_Invoice_TextBox.Text.Trim();
             string inputQuantity = quantityProduct_Invoice_TextBox.Text.Trim();
@@ -143,10 +143,17 @@ namespace Курсовий_проєкт_на_тему_склад
             }
             else
             {
-                MessageBox.Show("Нажаль введені данні мають помилку.");
+                if (comboBoxIndex == 0)
+                {
+                    MessageBox.Show("Нажаль введені данні містять помилку, перевірте правильність введених даних, кількість повинна бути цілою та не від'ємною, ціна повинна бути більше 0.");
+                }
+                else
+                {
+                    MessageBox.Show("Нажаль введені данні містять помилку, перевірте правильність введених даних, кількість повинна бути цілою, не від'ємною та не має перевищувати наявну кільксть на складі, ціна повинна бути більше 0.");
+                }
             }
         }
-        private void addNewInvoice_Button_Click(object sender, EventArgs e)
+        private void AddNewInvoice_Button_Click(object sender, EventArgs e)
         {
             if (!warehouse.IsNewInvoiceEmpty())
             {
@@ -157,7 +164,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 MessageBox.Show("Неможливо створити накладну без товарів.");
             }
         }
-        private void addNewInvoice_Invoice_Button_Click(object sender, EventArgs e)
+        private void AddNewInvoice_Invoice_Button_Click(object sender, EventArgs e)
         {
             if (!warehouse.IsNewInvoiceEmpty())
             {

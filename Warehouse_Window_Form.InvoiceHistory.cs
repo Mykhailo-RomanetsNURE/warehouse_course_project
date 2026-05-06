@@ -7,7 +7,7 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
-        public void LoadItemsToInvoiceHistoryTable(string pageNumberStr, int num = 0)/*зробити щоб в таблицю виводило тип таблиці а  не правда чи ні*/
+        public void LoadItemsToInvoiceHistoryTable(string pageNumberStr, int num = 0)
         {
             if (int.TryParse(pageNumberStr, out int pageNumber))
             {
@@ -50,29 +50,29 @@ namespace Курсовий_проєкт_на_тему_склад
                 itemsOfInvoice_InvoiceHistory_DataGridView.DataSource = invoice.Items;
             }
         }
-        private void previousPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
+        private void PreviousPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
             string pageNumberStr = thisPage_InvoiceHistory_Label.Text.Trim();
             LoadItemsToInvoiceHistoryTable(pageNumberStr, -1);
         }
-        private void gatePage_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
+        private void GetPage_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
         {
             string pageNumberStr = gatePage_InvoiceHistory_TextBox.Text.Trim();
             LoadItemsToInvoiceHistoryTable(pageNumberStr);
         }
-        private void nextPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
+        private void NextPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
             string pageNumberStr = thisPage_InvoiceHistory_Label.Text.Trim();
             LoadItemsToInvoiceHistoryTable(pageNumberStr, 1);
         }
-        private void invoiceSearchWithId_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
+        private void InvoiceSearchWithId_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
         {
             if (int.TryParse(invoiceSearchWithId_InvoiceHistory_TextBox.Text.Trim(), out int id))
             {
                 LoadInvoiceInInvoiceHistoryPage(id);
             }
         }
-        private void tableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)/*!!!є конвертація через Convert.ToInt32*/
+        private void TableOfInvoiceHistory_InvoiceHistory_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -81,11 +81,11 @@ namespace Курсовий_проєкт_на_тему_склад
                 LoadInvoiceInInvoiceHistoryPage(thisId);
             }
         }
-        private void closeInvoice_InvoiceHistory_Button_Click(object sender, EventArgs e)
+        private void CloseInvoice_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
             invoice_InvoiceHistory_Panel.Visible = false;
         }
-        private void saveInvoiceInFile_InvoiceHistory_Button_Click(object sender, EventArgs e)
+        private void SaveInvoiceInFile_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {
             if (int.TryParse(idInvoice_InvoiceHistory_Label.Text, out int id))
             {

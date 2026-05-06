@@ -6,6 +6,7 @@ namespace Курсовий_проєкт_на_тему_склад
 	{
 		public int InvoiceId { get; set; }
 		public DateTime Date { get; set; }
+        public string Type {  get; set; }
 		public bool IsExpenditureInvoice { get; set; }/*true прибуткова чи false видаткова накладна*/
 		public List<ItemOfInvoice> Items { get; set; }
 		public Invoice(Warehouse warehouse, bool isExpenditureInvoice, List<ItemOfInvoice> items)/**/
@@ -13,6 +14,14 @@ namespace Курсовий_проєкт_на_тему_склад
 			this.InvoiceId = warehouse.InvoiceLastId;
 			this.Date = DateTime.Now;
 			this.IsExpenditureInvoice = isExpenditureInvoice;
+            if (isExpenditureInvoice)
+            {
+                this.Type = "Прибуткова";
+            }
+            else
+            {
+                this.Type = "Видаткова";
+            }
 			this.Items = new List<ItemOfInvoice>(items);
 		}
 		public Invoice()
@@ -20,6 +29,7 @@ namespace Курсовий_проєкт_на_тему_склад
 			this.InvoiceId = 0;
             this.Date = DateTime.Now;
 			this.IsExpenditureInvoice = true;
+            this.Type = "Прибуткова";
             this.Items = new List<ItemOfInvoice>();
         }
         public void ExportInvoiceToFile()

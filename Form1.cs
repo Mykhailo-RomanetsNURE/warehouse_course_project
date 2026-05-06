@@ -7,6 +7,7 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
+        private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
         public Warehouse warehouse;
         public Warehouse_Window_Form(Warehouse warehouse)
         {
@@ -16,7 +17,7 @@ namespace Курсовий_проєкт_на_тему_склад
             this.warehouse = warehouse;
 
             search_ViewProducts_СomboBox.SelectedIndex = 0;
-            loadDataToTable("1");
+            LoadDataToTable("1");
 
             LoadItemsToInvoiceTable();
             LoadProductDataInvoniceItem();
@@ -24,12 +25,11 @@ namespace Курсовий_проєкт_на_тему_склад
 
             LoadDataToHistoryTable("1");
         }
-        private System.Windows.Forms.Timer notificationTimer = new System.Windows.Forms.Timer();
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (program_TabControl.SelectedIndex == 0)
             {
-                loadDataToTable(historyThisPageNumber_ViewSpecificProduct_Label.Text);
+                LoadDataToTable(historyThisPageNumber_ViewSpecificProduct_Label.Text);
             }
             if (program_TabControl.SelectedIndex == 3)
             {
@@ -61,7 +61,7 @@ namespace Курсовий_проєкт_на_тему_склад
                 e.SuppressKeyPress = true;
             }
         }
-        private void saveAndClose_Window_Click(object sender, EventArgs e)
+        private void SaveAndClose_Window_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Ви впевнені, що хочете вийти з програми (данні будуть збережені)?", "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)

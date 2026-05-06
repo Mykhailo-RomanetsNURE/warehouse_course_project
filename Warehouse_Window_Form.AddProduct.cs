@@ -6,7 +6,7 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
-        private void addProduct_Addproduct_Button_Click(object sender, EventArgs e)
+        private void AddProduct_Addproduct_Button_Click(object sender, EventArgs e)
         {
             string inputName = name_AddProduct_TextBox.Text.Trim();
             string inputNote = note_AddProduct_TextBox.Text.Trim();
@@ -20,7 +20,7 @@ namespace Курсовий_проєкт_на_тему_склад
 
             if (isAllTrue.All(x => x == true))
             {
-                notification_AddProduct("Товар успішно додано, йому приділено ID: " + (warehouse.MaxId - 1), 5000);
+                Notification_AddProduct("Товар успішно додано, йому приділено ID: " + (warehouse.MaxId - 1), 5000);
                 name_AddProduct_TextBox.Clear();
                 price_AddProduct_TextBox.Clear();
                 quantity_AddProduct_TextBox.Clear();
@@ -64,16 +64,16 @@ namespace Курсовий_проєкт_на_тему_склад
                 MessageBox.Show(errorMessage, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void notification_AddProduct(string message, int time)
+        private void Notification_AddProduct(string message, int time)
         {
             notificationTimer.Stop();
             notification_AddProduct_Label.Text = message;
             notificationTimer.Interval = time;
-            notificationTimer.Tick -= timerTick;
-            notificationTimer.Tick += timerTick;
+            notificationTimer.Tick -= TimerTick;
+            notificationTimer.Tick += TimerTick;
             notificationTimer.Start();
         }
-        private void timerTick(object sender, EventArgs e)
+        private void TimerTick(object sender, EventArgs e)
         {
             notification_AddProduct_Label.Text = "";
             notificationTimer.Stop();

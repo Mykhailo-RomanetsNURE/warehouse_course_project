@@ -9,7 +9,7 @@ namespace Курсовий_проєкт_на_тему_склад
 	public partial class Warehouse_Window_Form : Form
     {
         /*перегляд списку товарів*/
-        private void loadDataToTable(string pageNumber, int num = 0)
+        private void LoadDataToTable(string pageNumber, int num = 0)
         {
             if (!int.TryParse(pageNumber, out int pageNumberInt))
             {
@@ -35,38 +35,38 @@ namespace Курсовий_проєкт_на_тему_склад
             searchCommentNumber_Products_Label.Text = result.totalItems.ToString();
             getPage_ViewProducts_TextBox.Text = result.pageNumber.ToString();
         }
-        private void search_ViewProducts_СomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void Search_ViewProducts_СomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadDataToTable("1");
+            LoadDataToTable("1");
         }
-        private void allProductsGetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void AllProductsGetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 string input = getPage_ViewProducts_TextBox.Text.Trim();
-                loadDataToTable(input);
+                LoadDataToTable(input);
             }
         }
-        private void previousPage_ViewProducts_Button_Click(object sender, EventArgs e)
+        private void PreviousPage_ViewProducts_Button_Click(object sender, EventArgs e)
         {
             string input = thisPage_ViewProductsNumber_Label.Text.Trim();
-            loadDataToTable(input, -1);
+            LoadDataToTable(input, -1);
         }
-        private void nextPage_ViewProducts_Button_Click(object sender, EventArgs e)
+        private void NextPage_ViewProducts_Button_Click(object sender, EventArgs e)
         {
             string input = thisPage_ViewProductsNumber_Label.Text.Trim();
-            loadDataToTable(input, 1);
+            LoadDataToTable(input, 1);
         }
-        private void search_Products_CheckBox_CheckedChanged(object sender, EventArgs e)
+        private void Search_Products_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-             loadDataToTable("1");
+             LoadDataToTable("1");
         }
-        private void searchWithName_ViewProducts_TextBox_TextChanged(object sender, EventArgs e)
+        private void SearchWithName_ViewProducts_TextBox_TextChanged(object sender, EventArgs e)
         {
-            loadDataToTable("1");
+            LoadDataToTable("1");
         }
         /*перегляд товару*/
-        private void allProductTable_ViewProducts_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку*/
+        private void AllProductTable_ViewProducts_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -91,17 +91,17 @@ namespace Курсовий_проєкт_на_тему_склад
                 note_ViewSpecificProduct_TextBox.Text = thisProduct.Note;
                 quantity_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.Quantity);
                 time_ViewSpecificProduct_Label.Text = Convert.ToString(thisProduct.DateAndTime);
-                loadHistoryToTable("1", Convert.ToString(thisId));
+                LoadHistoryToTable("1", Convert.ToString(thisId));
                 historyGetPage_ViewSpecificProduct_TextBox.Text = "1";
             }
         }
-        private void close_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void Close_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             productInfo_ViewProducts_Panel.Visible = false;
             string input = thisPage_ViewProductsNumber_Label.Text.Trim();
-            loadDataToTable(input);
+            LoadDataToTable(input);
         }
-        private void saveAndClose_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void SaveAndClose_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             int thisId = Convert.ToInt32(id_ViewSpecificProduct_Label.Text);
             Product newInfoProduct = warehouse.TakeProduct(thisId);
@@ -117,7 +117,7 @@ namespace Курсовий_проєкт_на_тему_склад
             {
                 productInfo_ViewProducts_Panel.Visible = false;
                 string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
-                loadDataToTable(inputPageNumder);
+                LoadDataToTable(inputPageNumder);
             }
             else
             {
@@ -149,14 +149,14 @@ namespace Курсовий_проєкт_на_тему_склад
                 MessageBox.Show(errorMessage, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void copyId_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void CopyId_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             if (id_ViewSpecificProduct_Label.Text != "" || id_ViewSpecificProduct_Label.Text != null)
             {
                 Clipboard.SetText(id_ViewSpecificProduct_Label.Text);
             }
         }
-        private void delete_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void Delete_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Видалений товар не можливо буде повернути, залишаться лише записи в історії. Ви впевнені Що хочете його видалити?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
@@ -180,11 +180,11 @@ namespace Курсовий_проєкт_на_тему_склад
                 }
                 productInfo_ViewProducts_Panel.Visible = false;
                 string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
-                loadDataToTable(inputPageNumder);
+                LoadDataToTable(inputPageNumder);
             }
         }
         /*Перегляд історії товару*/
-        private void loadHistoryToTable(string pageNumber, string id, int num = 0)/*розділити логіку та форму*/
+        private void LoadHistoryToTable(string pageNumber, string id, int num = 0)
         {
             if (!int.TryParse(id, out int idInt))
             {
@@ -206,35 +206,35 @@ namespace Курсовий_проєкт_на_тему_склад
             historyLastPage_ViewSpecificProduct_Label.Text = result.totalPages.ToString();
             historyThisPageNumber_ViewSpecificProduct_Label.Text = result.pageNumber.ToString();
         }
-        private void historyPreviousPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void HistoryPreviousPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             string thisId = id_ViewSpecificProduct_Label.Text.Trim();
             string input = historyThisPageNumber_ViewSpecificProduct_Label.Text.Trim();
-            loadHistoryToTable(input, thisId, -1);
+            LoadHistoryToTable(input, thisId, -1);
         }
-        private void historyNextPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
+        private void HistoryNextPage_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             string thisId = id_ViewSpecificProduct_Label.Text.Trim();
             string input = historyThisPageNumber_ViewSpecificProduct_Label.Text.Trim();
-            loadHistoryToTable(input, thisId, 1);
+            LoadHistoryToTable(input, thisId, 1);
         }
-        private void historyGetPage_ViewSpecificProduct_TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void HistoryGetPage_ViewSpecificProduct_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 string input = historyGetPage_ViewSpecificProduct_TextBox.Text.Trim();
                 string thisId = id_ViewSpecificProduct_Label.Text.Trim();
-                loadHistoryToTable(input, thisId);
+                LoadHistoryToTable(input, thisId);
             }
         }
-        private void deleteHistory_ViewSpecificProduct_Button_Click(object sender, EventArgs e)/*Конвертація через Convert.ToInt32 що можливо може викликати помилку*/
+        private void DeleteHistory_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Якщо ви видалите історію товару, всі записи будуть безповоротно втрачені. Ви впевнені?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 string thisId = id_ViewSpecificProduct_Label.Text.Trim();
                 warehouse.CleanHistoryProduct(Convert.ToInt32(thisId));
-                loadHistoryToTable("1", thisId);
+                LoadHistoryToTable("1", thisId);
             }
         }
 

@@ -4,16 +4,16 @@ using Курсовий_проєкт_на_тему_склад;
 
 public class Product
 {
-	public int Id { get; set; }/*ідентифікатор*/
-    public string Name { get; set; }/*Назва*/
-	public int Quantity { get; set; }/*кількість*/
-	public double Price { get; set; }/*ціна*/
-	public DateTime DateAndTime { get; set; }/*дата і час останнього завезення товару*/
-	public double Height { get; set; }/*висота*/
-	public double Width { get; set; }/*ширина*/
-	public double Length { get; set; }/*довжина*/
-	public double Weight { get; set; }/*вага*/
-	public string Note { get; set; }/*примітка*/
+	public int Id { get; set; }
+    public string Name { get; set; }
+	public int Quantity { get; set; }
+	public double Price { get; set; }
+	public DateTime DateAndTime { get; set; }
+	public double Height { get; set; }
+	public double Width { get; set; }
+	public double Length { get; set; }
+	public double Weight { get; set; }
+	public string Note { get; set; }
 	
 	public Product(string name,int quantity, double price, double height, double width, double length, double weight, string note, Warehouse warehouseForConstructor)
 	{
