@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Drawing.Printing;
-using System.Xml.Linq;
-
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
     public class Warehouse
     {
@@ -146,8 +141,9 @@ namespace Курсовий_проєкт_на_тему_склад
             {
                 if (index != -1)
                 {
+                    Product product = this.Products[index];
+                    this.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + product.Name, id));
                     this.Products.RemoveAt(index);
-                    this.AddIncident(new Incident(DateTime.Now, "Видалено товар: " + this.Products.FirstOrDefault(p => p.Id == id), id));
                 }
                 else
                 {

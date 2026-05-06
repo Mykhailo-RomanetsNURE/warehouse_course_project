@@ -784,7 +784,7 @@
             getPage_ViewProducts_TextBox.Name = "getPage_ViewProducts_TextBox";
             getPage_ViewProducts_TextBox.Size = new Size(125, 27);
             getPage_ViewProducts_TextBox.TabIndex = 50;
-            getPage_ViewProducts_TextBox.KeyDown += AllProductsGetPage_ViewProducts_TextBox_KeyDown;
+            getPage_ViewProducts_TextBox.KeyDown += GetPage_ViewProducts_TextBox_KeyDown;
             // 
             // nextPage_ViewProducts_Button
             // 
@@ -1545,7 +1545,7 @@
             gatePage_InvoiceHistory_TextBox.Name = "gatePage_InvoiceHistory_TextBox";
             gatePage_InvoiceHistory_TextBox.Size = new Size(129, 27);
             gatePage_InvoiceHistory_TextBox.TabIndex = 20;
-            gatePage_InvoiceHistory_TextBox.TextChanged += GetPage_InvoiceHistory_TextBox_TextChanged;
+            gatePage_InvoiceHistory_TextBox.KeyDown += GatePage_InvoiceHistory_TextBox_KeyDown;
             // 
             // previousPage_InvoiceHistory_Button
             // 

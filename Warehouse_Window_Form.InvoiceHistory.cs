@@ -1,9 +1,4 @@
-﻿using System.Data;
-using System.Drawing.Printing;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
@@ -55,10 +50,17 @@ namespace Курсовий_проєкт_на_тему_склад
             string pageNumberStr = thisPage_InvoiceHistory_Label.Text.Trim();
             LoadItemsToInvoiceHistoryTable(pageNumberStr, -1);
         }
-        private void GetPage_InvoiceHistory_TextBox_TextChanged(object sender, EventArgs e)
+        private void GatePage_InvoiceHistory_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            string pageNumberStr = gatePage_InvoiceHistory_TextBox.Text.Trim();
-            LoadItemsToInvoiceHistoryTable(pageNumberStr);
+            if (e.KeyCode == Keys.Enter)
+            {
+                string pageNumberStr = gatePage_InvoiceHistory_TextBox.Text.Trim();
+                LoadItemsToInvoiceHistoryTable(pageNumberStr);
+
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
         private void NextPage_InvoiceHistory_Button_Click(object sender, EventArgs e)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
 	public class ItemOfInvoice
 	{
@@ -16,7 +15,7 @@ namespace Курсовий_проєкт_на_тему_склад
 		}
 		override public string ToString()
         {
-            return $@"Id Товару: {Id}, Назва: {Name}\nКількість: {Quantity}, Ціна: {Price}";
+            return $@"Id Товару: {Id}, Назва: {Name}, Кількість: {Quantity}, Ціна: {Price}";
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
 	public class Incident	
 	{

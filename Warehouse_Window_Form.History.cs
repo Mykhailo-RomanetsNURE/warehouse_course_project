@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
@@ -40,6 +38,10 @@ namespace Курсовий_проєкт_на_тему_склад
             {
                 string input = getPage_History_TextBox.Text.Trim();
                 LoadDataToHistoryTable(input);
+
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }

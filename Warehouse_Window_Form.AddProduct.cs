@@ -1,8 +1,4 @@
-﻿using System;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {

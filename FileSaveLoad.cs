@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Курсовий_проєкт_на_тему_склад;
 
 public class FileSaveLoad

@@ -1,10 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Drawing.Printing;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
 	public partial class Warehouse_Window_Form : Form
     {
@@ -39,12 +33,16 @@ namespace Курсовий_проєкт_на_тему_склад
         {
             LoadDataToTable("1");
         }
-        private void AllProductsGetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void GetPage_ViewProducts_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 string input = getPage_ViewProducts_TextBox.Text.Trim();
                 LoadDataToTable(input);
+
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
         private void PreviousPage_ViewProducts_Button_Click(object sender, EventArgs e)
@@ -103,50 +101,60 @@ namespace Курсовий_проєкт_на_тему_склад
         }
         private void SaveAndClose_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
         {
-            int thisId = Convert.ToInt32(id_ViewSpecificProduct_Label.Text);
-            Product newInfoProduct = warehouse.TakeProduct(thisId);
-            string name = name_ViewSpecificProduct_TextBox.Text.Trim();
-            string note = note_ViewSpecificProduct_TextBox.Text.Trim();
-            string price = price_ViewSpecificProduct_TextBox.Text.Trim();
-            string height = height_ViewSpecificProduct_TextBox.Text.Trim();
-            string width = width_ViewSpecificProduct_TextBox.Text.Trim();
-            string length = length_ViewSpecificProduct_TextBox.Text.Trim();
-            string weight = weight_ViewSpecificProduct_TextBox.Text.Trim();
-            bool[] isAllTrue = Product.ChangeProductInfo(newInfoProduct.Id, name, price, newInfoProduct.Quantity.ToString(), height, width, length, weight, note, newInfoProduct, warehouse);
-            if (isAllTrue.All(x => x == true))
+            if (int.TryParse(id_ViewSpecificProduct_Label.Text.Trim(), out int thisId))
             {
-                productInfo_ViewProducts_Panel.Visible = false;
-                string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
-                LoadDataToTable(inputPageNumder);
-            }
-            else
-            {
-                string errorMessage = "";
-                if (isAllTrue[0] == false)
+                int index = warehouse.InvoiceList.FindIndex(x => x.Id == thisId);
+                if (index == -1)
                 {
-                    errorMessage += "Назва не може бути порожньою або повторюватись.\n";
+                    Product newInfoProduct = warehouse.TakeProduct(thisId);
+                    string name = name_ViewSpecificProduct_TextBox.Text.Trim();
+                    string note = note_ViewSpecificProduct_TextBox.Text.Trim();
+                    string price = price_ViewSpecificProduct_TextBox.Text.Trim();
+                    string height = height_ViewSpecificProduct_TextBox.Text.Trim();
+                    string width = width_ViewSpecificProduct_TextBox.Text.Trim();
+                    string length = length_ViewSpecificProduct_TextBox.Text.Trim();
+                    string weight = weight_ViewSpecificProduct_TextBox.Text.Trim();
+                    bool[] isAllTrue = Product.ChangeProductInfo(newInfoProduct.Id, name, price, newInfoProduct.Quantity.ToString(), height, width, length, weight, note, newInfoProduct, warehouse);
+                    if (isAllTrue.All(x => x == true))
+                    {
+                        productInfo_ViewProducts_Panel.Visible = false;
+                        string inputPageNumder = thisPage_ViewProductsNumber_Label.Text.Trim();
+                        LoadDataToTable(inputPageNumder);
+                    }
+                    else
+                    {
+                        string errorMessage = "";
+                        if (isAllTrue[0] == false)
+                        {
+                            errorMessage += "Назва не може бути порожньою або повторюватись.\n";
+                        }
+                        if (isAllTrue[1] == false)
+                        {
+                            errorMessage += "Ціна повинна бути додатним числом і більшою за 0.\n";
+                        }
+                        if (isAllTrue[3] == false)
+                        {
+                            errorMessage += "Висота повинна бути невід'ємним числом.\n";
+                        }
+                        if (isAllTrue[4] == false)
+                        {
+                            errorMessage += "Ширина повинна бути невід'ємним числом.\n";
+                        }
+                        if (isAllTrue[5] == false)
+                        {
+                            errorMessage += "Довжина повинна бути невід'ємним числом.\n";
+                        }
+                        if (isAllTrue[6] == false)
+                        {
+                            errorMessage += "Вага повинна бути невід'ємним числом.\n";
+                        }
+                        MessageBox.Show(errorMessage, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                if (isAllTrue[1] == false)
+                else
                 {
-                    errorMessage += "Ціна повинна бути додатним числом і більшою за 0.\n";
+                    MessageBox.Show("Зміна характеристик товару неможлива підчас того як він приймає участь у створенні нової накладної.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                if (isAllTrue[3] == false)
-                {
-                    errorMessage += "Висота повинна бути невід'ємним числом.\n";
-                }
-                if (isAllTrue[4] == false)
-                {
-                    errorMessage += "Ширина повинна бути невід'ємним числом.\n";
-                }
-                if (isAllTrue[5] == false)
-                {
-                    errorMessage += "Довжина повинна бути невід'ємним числом.\n";
-                }
-                if (isAllTrue[6] == false)
-                {
-                    errorMessage += "Вага повинна бути невід'ємним числом.\n";
-                }
-                MessageBox.Show(errorMessage, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void CopyId_ViewSpecificProduct_Button_Click(object sender, EventArgs e)
@@ -225,6 +233,10 @@ namespace Курсовий_проєкт_на_тему_склад
                 string input = historyGetPage_ViewSpecificProduct_TextBox.Text.Trim();
                 string thisId = id_ViewSpecificProduct_Label.Text.Trim();
                 LoadHistoryToTable(input, thisId);
+
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
         private void DeleteHistory_ViewSpecificProduct_Button_Click(object sender, EventArgs e)

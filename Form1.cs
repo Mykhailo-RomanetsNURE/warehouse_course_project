@@ -1,9 +1,3 @@
-using System.Data;
-using System.IO;
-using System.Drawing.Printing;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
@@ -55,6 +49,17 @@ namespace Курсовий_проєкт_на_тему_склад
             }
             if (e.KeyCode == Keys.Enter)
             {
+                var activElement = this.ActiveControl;
+
+                if (activElement == null)
+                {
+                    return;
+                }
+
+                if (activElement.Name == "gatePage_InvoiceHistory_TextBox" || activElement.Name == "getPage_ViewProducts_TextBox" || activElement.Name == "getPage_History_TextBox"|| activElement.Name == "historyGetPage_ViewSpecificProduct_TextBox")
+                {
+                    return;
+                }
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
                 e.Handled = true;
                 e.SuppressKeyPress = true;

@@ -1,6 +1,4 @@
-﻿using System;
-using Курсовий_проєкт_на_тему_склад;
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
 	public class Invoice
 	{
@@ -46,10 +44,11 @@ namespace Курсовий_проєкт_на_тему_склад
                     writer.WriteLine($"Id накладної: {this.InvoiceId}");
                     writer.WriteLine($"Дата створення: {this.Date}");
                     writer.WriteLine($"Тип накладної: {(this.IsExpenditureInvoice ? "Прибуткова" : "Видаткова")}");
-                    writer.WriteLine(new string('-', 60));
+                    writer.WriteLine(new string('=', 60));
                     foreach (var item in this.Items)
                     {
                         writer.WriteLine(item.ToString());
+                        writer.WriteLine(new string('-', 60));
                     }
                     MessageBox.Show("Накладна успішно експортована!");
                 }

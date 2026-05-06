@@ -1,6 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
-using Курсовий_проєкт_на_тему_склад;
+﻿using Курсовий_проєкт_на_тему_склад;
 
 public class Product
 {
@@ -71,7 +69,7 @@ public class Product
     }
     public static (Product product, bool[] isAllTrue) CreateProduct(bool isItAdd, int id, string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
     {
-        bool[] isAllTrue = new bool[8];
+        bool[] isAllTrue = new bool[7];
         Array.Fill(isAllTrue, true);
         Product emptyProduct = new Product();
         emptyProduct.Id = id;
@@ -151,23 +149,6 @@ public class Product
             }
         }
 
-        if (length != "")
-        {
-            string normalizedLength = length.Replace(',', '.');
-            if (double.TryParse(normalizedLength, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputLength))
-            {
-                if (inputLength < 0)
-                {
-                    isAllTrue[6] = false;
-                }
-                else
-                {
-                    isAllTrue[6] = true;
-                    emptyProduct.Length = inputLength;
-                }
-            }
-        }
-
         if (width != "")
         {
             string normalizedWidth = width.Replace(',', '.');
@@ -185,6 +166,23 @@ public class Product
             }
         }
 
+        if (length != "")
+        {
+            string normalizedLength = length.Replace(',', '.');
+            if (double.TryParse(normalizedLength, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double inputLength))
+            {
+                if (inputLength < 0)
+                {
+                    isAllTrue[5] = false;
+                }
+                else
+                {
+                    isAllTrue[5] = true;
+                    emptyProduct.Length = inputLength;
+                }
+            }
+        }
+
         if (weight != "")
         {
             string normalizedWeight = weight.Replace(',', '.');
@@ -192,11 +190,11 @@ public class Product
             {
                 if (inputWeight < 0)
                 {
-                    isAllTrue[7] = false;
+                    isAllTrue[6] = false;
                 }
                 else
                 {
-                    isAllTrue[7] = true;
+                    isAllTrue[6] = true;
                     emptyProduct.Weight = inputWeight;
                 }
             }

@@ -1,9 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace Курсовий_проєкт_на_тему_склад
+﻿namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
@@ -91,6 +86,17 @@ namespace Курсовий_проєкт_на_тему_склад
         public void AddNewInvoice()
         {
             bool IsExpenditureInvoice = typeOfInvoice_Invoice_ComboBox.SelectedIndex == 0;
+            if (productInfo_ViewProducts_Panel.Visible == true)
+            {
+                if (int.TryParse(id_ViewSpecificProduct_Label.Text.Trim(), out int id))
+                {
+                    int index = warehouse.InvoiceList.FindIndex(i => i.Id == id);
+                    if (index != -1)
+                    {
+                        productInfo_ViewProducts_Panel.Visible = false;
+                    }
+                }
+            }
             warehouse.AddInvoice(warehouse, IsExpenditureInvoice);
             LoadItemsToInvoiceTable();
         }
