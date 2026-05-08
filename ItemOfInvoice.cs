@@ -6,6 +6,13 @@
 		public string Name { get; set; }
 		public int Quantity { get; set; }
 		public double Price { get; set; }
+		public ItemOfInvoice() /*Цей конструктор було додано для коректного збереження та завантаження программи в/з Json*/
+		{ 
+			Id = 0;
+			Name = "";
+			Quantity = 0;
+			Price = 0;
+		}
 		public ItemOfInvoice(int id, int quantity, double price,Warehouse warehouse)
 		{
 			this.Id = id;

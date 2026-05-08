@@ -12,22 +12,6 @@ public class Product
 	public double Length { get; set; }
 	public double Weight { get; set; }
 	public string Note { get; set; }
-	
-	public Product(string name,int quantity, double price, double height, double width, double length, double weight, string note, Warehouse warehouseForConstructor)
-	{
-		this.Id = warehouseForConstructor.MaxId;
-		warehouseForConstructor.MaxId ++;	
-        this.Name = name;
-		this.Quantity = quantity;
-		this.Price = price;
-		this.DateAndTime = DateTime.Now;
-		this.Height = height;
-		this.Width = width;
-		this.Length = length;
-		this.Weight = weight;
-		this.Note = note;
-		warehouseForConstructor.AddIncident(new Incident(DateTime.Now, "Додано новий товар: " + name, this.Id));
-    }
     public Product(Product product, Warehouse warehouseForConstructor, bool isAdd = true)
     {
         if (isAdd)
