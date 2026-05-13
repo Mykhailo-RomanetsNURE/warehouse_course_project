@@ -2,17 +2,18 @@
 
 public class Product
 {
-	public int Id { get; set; }
-    public string Name { get; set; }
-	public int Quantity { get; set; }
-	public double Price { get; set; }
-	public DateTime DateAndTime { get; set; }
-	public double Height { get; set; }
-	public double Width { get; set; }
-	public double Length { get; set; }
-	public double Weight { get; set; }
-	public string Note { get; set; }
-    public Product(Product product, Warehouse warehouseForConstructor, bool isAdd = true)
+    /*клас для товару що міститься на складі*/
+	public int Id { get; set; }/*Id товару, для зручнішого встановлення звязку з товаром у списку, та користуванням данними товару користувачем*/
+    public string Name { get; set; }/*Назва товару*/
+	public int Quantity { get; set; }/*Кількість товару що мітиться на складі*/
+	public double Price { get; set; }/*Ціна яка була визначена користувачем або використана підчас останнього відправлення або отримання цього товару */
+	public DateTime DateAndTime { get; set; }/*Дата та час останьої зміни кількості товару (коли додано насклад або коли його завезли або відправили)*/
+	public double Height { get; set; }/*висота товару*/
+	public double Width { get; set; }/*ширина товару*/
+	public double Length { get; set; }/*висота товару*/
+	public double Weight { get; set; }/*вага товару*/
+	public string Note { get; set; }/*примітка що залишив користувач к цьому товару*/
+    public Product(Product product, Warehouse warehouseForConstructor, bool isAdd = true)/*конструктор що додає створює та додає товар на склад*/
     {
         if (isAdd)
         {
@@ -38,7 +39,7 @@ public class Product
             warehouseForConstructor.AddIncident(new Incident(DateTime.Now, "Додано новий товар: " + product.Name, this.Id));
         }
     }
-    public Product()
+    public Product()/*порожній конструктор для створення товару без характеристик*/
     {
         this.Id = 0;
         this.Name = "";
@@ -51,7 +52,7 @@ public class Product
         this.Weight = 0;
         this.Note = "";
     }
-    public static (Product product, bool[] isAllTrue) CreateProduct(bool isItAdd, int id, string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
+    public static (Product product, bool[] isAllTrue) CreateProduct(bool isItAdd, int id, string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)/*метод для створення нового товару або зміни характеристик старого*/
     {
         bool[] isAllTrue = new bool[7];
         Array.Fill(isAllTrue, true);
@@ -188,7 +189,7 @@ public class Product
 
         return (emptyProduct, isAllTrue);
     }
-	public static bool[] AddNewProduct (string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)
+	public static bool[] AddNewProduct (string name, string price, string quantity, string height, string width, string length, string weight, string note, Warehouse warehouse)/*метод для додання нового товару до складу*/
 	{
         var result = Product.CreateProduct(true, 0, name, price, quantity, height, width, length, weight, note, warehouse);
         bool[] isAllTrue = result.isAllTrue;
@@ -199,7 +200,7 @@ public class Product
         }
         return isAllTrue;
     }
-    public static bool[] ChangeProductInfo (int id,string name, string price, string quantity, string height, string width, string length, string weight, string note,Product product, Warehouse warehouse)
+    public static bool[] ChangeProductInfo (int id,string name, string price, string quantity, string height, string width, string length, string weight, string note,Product product, Warehouse warehouse)/*метод для зміни інформації о товарі*/
     {
         var result = Product.CreateProduct(false, id, name, price, quantity, height, width, length, weight, note, warehouse);
         bool[] isAllTrue = result.isAllTrue;
@@ -215,9 +216,8 @@ public class Product
         return isAllTrue;
 
     }
-    public static bool AreProductsEqual(Product p1, Product p2)
+    public static bool AreProductsEqual(Product p1, Product p2)/*метод що порівнює поля двох товарів*/
     {
         return (p1.Id, p1.Name, p1.Price, p1.Quantity, p1.Height, p1.Width, p1.Length, p1.Weight, p1.Note) == (p2.Id, p2.Name, p2.Price, p2.Quantity, p2.Height, p2.Width, p2.Length, p2.Weight, p2.Note);
     }
-
 }

@@ -2,14 +2,15 @@
 {
     public class Warehouse
     {
-        public List<Product> Products { get; set; }
-        public int MaxId { get; set; }
-        public int InvoiceLastId { get; set; }
-        public List<Incident> History { get; set; }
-        public List<ItemOfInvoice> InvoiceList { get; set; }
-        public List<Invoice> InvoicesHistory { get; set; }
+        /*клас обєкт якого зберігає в собі усі поточні данні програми*/
+        public List<Product> Products { get; set; }/*список продуктів зареєстрованих на складі*/
+        public int MaxId { get; set; }/*максимальний Id товару що ще небув використан*/
+        public int InvoiceLastId { get; set; } /*Id останньої створеної накладної*/
+        public List<Incident> History { get; set; }/*список інцидентів що стались на складі , для відображення користувачеві, кожен інцидент зберігається 2 місяці*/
+        public List<ItemOfInvoice> InvoiceList { get; set; }/*список накладних що були створені за останні 2 місяці*/
+        public List<Invoice> InvoicesHistory { get; set; }/* накладна що в данний момент створюється, якщо накладну користувач не зберіг а список залишився у цьому полі, поле буде відформатовано перед збереженням у файл*/
 
-        public Warehouse()
+        public Warehouse()/*Конструктор що створює порожній склад*/
         {
             Products = new List<Product>();
             MaxId = 1;
@@ -18,7 +19,7 @@
             InvoiceList = new List<ItemOfInvoice>();
             InvoicesHistory = new List<Invoice>();
         }
-        public void ClearWarehouse()
+        public void ClearWarehouse()/*метод для очистки усіх данних збережених на складі*/
         {
             this.Products.Clear();
             this.MaxId = 1;
@@ -28,14 +29,14 @@
             this.InvoicesHistory.Clear();
         }
 
-        public void AddIncident(Incident incident)
+        public void AddIncident(Incident incident)/*метод що додає нофий інцидент та після цього видаляє застарілі інциденти*/
         {
             this.History.Insert(0, incident);
             DateTime treshTime = DateTime.Now.AddMonths(-2);
             this.History.RemoveAll(i => i.Date < treshTime);
         }
 
-        public void AddInvoice(Warehouse warehouseMhetod, bool IsExpenditureInvoice)
+        public void AddInvoice(Warehouse warehouseMhetod, bool IsExpenditureInvoice)/*метод що реєструє нову накладну*/
         {
             Invoice invoice = new Invoice(this, IsExpenditureInvoice, this.InvoiceList);
             warehouseMhetod.InvoicesHistory.Insert(0, invoice);
@@ -69,15 +70,15 @@
             DateTime treshTime = DateTime.Now.AddMonths(-2);
             this.InvoicesHistory.RemoveAll(i => i.Date < treshTime);
         }
-        public void DeleteItemInNewInvoice(int id)
+        public void DeleteItemInNewInvoice(int id)/*метод що видаляє конкретний товар з накладної*/
         {
             this.InvoiceList.RemoveAll(i => i.Id == id);
         }
-        public void ClearNewInvoice()
+        public void ClearNewInvoice()/*метод що видаляє усе що було заповнено у нову незбережену накладну */
         {
             this.InvoiceList.Clear();
         }
-        public bool DovloadDataToInvoice(string inputId, string inputQuantity,string inputPrice, string inputOldQuantity, int selectedIndex)
+        public bool DovloadDataToInvoice(string inputId, string inputQuantity,string inputPrice, string inputOldQuantity, int selectedIndex)/*метод що додає новий товар до нової накладної*/
         {
             if (int.TryParse(inputId, out int id) && int.TryParse(inputQuantity, out int quantity) && double.TryParse(inputPrice, out double price) && int.TryParse(inputOldQuantity, out int oldQuantity))
             {
@@ -111,21 +112,21 @@
             }
             return false;
         }
-        public bool IsNewInvoiceEmpty()
+        public bool IsNewInvoiceEmpty()/*метод що перевіряє чи порожня накладна*/
         {
             return this.InvoiceList == null || this.InvoiceList.Count == 0;
         }
-        public Invoice TakeInvoice(int id)
+        public Invoice TakeInvoice(int id)/*метод що поверне накладну за її Id*/
         {
             return this.InvoicesHistory.FirstOrDefault(inv => inv.InvoiceId == id) ?? new Invoice();
         }
 
-        public void AddProduct(Product productLink)
+        public void AddProduct(Product productLink)/*метод для реєстрації нового продукту на склад*/
         {
             Product product = new Product(productLink, this);
             this.Products.Add(product);
         }
-        public void ChangeInfoOfProduct(Product newProductLink)
+        public void ChangeInfoOfProduct(Product newProductLink)/*метод що змінює інформацію о продукті на складі*/
         {
             int index = this.Products.FindIndex(p => p.Id == newProductLink.Id);
             if (index != -1)
@@ -133,7 +134,7 @@
                 this.Products[index] = new Product(newProductLink, this, false);
             }
         }
-        public void RemoveProduct(int id)
+        public void RemoveProduct(int id)/*Метод що відповідає за видалення товару зі складу*/
         {
             int index = this.Products.FindIndex(p => p.Id == id);
             int indexNewInvoice = this.InvoiceList.FindIndex(p => p.Id == id);
@@ -156,18 +157,18 @@
                 MessageBox.Show("Товар не можна видалити якщо він приймає участь у створенні нової накладної.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public Product TakeProduct(int id)
+        public Product TakeProduct(int id)/*метод що повертає продукт за його Id*/
         {
             return this.Products.FirstOrDefault(p => p.Id == id) ?? new Product();
 
         }
-        public void CleanHistoryProduct(int id)
+        public void CleanHistoryProduct(int id)/*метод що видаляє усі записи пов'язані з продуктом з цим Id*/
         {
             this.History.RemoveAll(h => h.ElementId == id);
             Product product = this.TakeProduct(id);
             this.AddIncident(new Incident(date: DateTime.Now, "Історію продукта: " + product.Name + ", було видалено", id));
         }
-        public bool ExportProductsToFile(SaveFileDialog saveDialog)
+        public bool ExportProductsToFile(SaveFileDialog saveDialog)/*метод що зберігає список Products у текстовий файл який користувач може прочитати без допомоги програми*/
         {
             try
             {
@@ -194,7 +195,7 @@
             }
         }
 
-        public (List<Product> itemsForPage, int pageNumber, int totalPages, int totalItems) DataProductTable(int pageNumber, string searchText, string selectedItem, bool isSearchOn)
+        public (List<Product> itemsForPage, int pageNumber, int totalPages, int totalItems) DataProductTable(int pageNumber, string searchText, string selectedItem, bool isSearchOn)/*Цікавий метод що повертає за допомогою кортежу список який має відобразити таблиця, кілкість сторінок та товарів а також поточну сторінку і це все з урахуванням пгінації та налаштувань пошуку*/
         {
             List<Product> sourceList = this.Products;
             if (isSearchOn)
@@ -228,7 +229,7 @@
                     .ToList();
             return (itemsForPage, pageNumber, totalPages, totalItems);
         }
-        public (List<Incident> itemsForTable, int pageNumber, int totalPages, int totalItems) HistoryDataTable(int pageNumber, int id = 0)
+        public (List<Incident> itemsForTable, int pageNumber, int totalPages, int totalItems) HistoryDataTable(int pageNumber, int id = 0)/*метод що повертає список та данні необхідні для відображення поточної сторінки історії*/
         {
             List<Incident> incidentsForTable = this.History;
             if (id != 0)
@@ -246,7 +247,7 @@
                     .ToList();
             return (itemsForTable, pageNumber, totalPages, totalItems);
         }
-        public (List<Invoice> itemsForPage, int pageNumber, int totalPages, int totalItems) ItemsToInvoiceHistoryTable(int pageNumber)
+        public (List<Invoice> itemsForPage, int pageNumber, int totalPages, int totalItems) ItemsToInvoiceHistoryTable(int pageNumber)/*метод що повертає необхідні данні для відображення накладних у їх історії*/
         {
             int totalItems = this.InvoicesHistory.Count;
             int totalPages = (int)Math.Ceiling((double)totalItems / Constants.PAGE_SIZE);

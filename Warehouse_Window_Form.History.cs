@@ -2,6 +2,7 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
+        /*частина класу що відповідає за сторінку з історією*/
         public void LoadDataToHistoryTable(string pageNumber,int num = 0)
         {
             if (!int.TryParse(pageNumber, out int pageNumberInt))

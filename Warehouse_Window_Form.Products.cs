@@ -2,6 +2,7 @@
 {
 	public partial class Warehouse_Window_Form : Form
     {
+        /*чатсина класу що відповідальна за сторінку перегляду та пошуку усіх наявних товарів на складі */
         /*перегляд списку товарів*/
         private void LoadDataToTable(string pageNumber, int num = 0)
         {

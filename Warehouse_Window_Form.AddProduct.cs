@@ -2,6 +2,7 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
+        /*частина класу що відповідає за сторінку додання нового товару на склад*/
         private void AddProduct_Addproduct_Button_Click(object sender, EventArgs e)
         {
             string inputName = name_AddProduct_TextBox.Text.Trim();

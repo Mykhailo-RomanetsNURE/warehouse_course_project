@@ -2,7 +2,8 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
-        public void LoadItemsToInvoiceTable()
+        /*частина класу що відповідає функціоналу форми на сторінці додання накладної*/
+        public void LoadItemsToInvoiceTable()/*метод для оновлення відображення поточної накладної*/
         {
             warehouse.InvoiceList.RemoveAll(x => x == null);
             idOfInvoice_Invoice_Label.Text = warehouse.InvoiceLastId.ToString();
@@ -19,7 +20,7 @@
                 typeOfInvoice_Invoice_ComboBox.Enabled = false;
             }
         }
-        public void VisibleInvoiceItemControls(bool visible)
+        public void VisibleInvoiceItemControls(bool visible)/*метод для відображення необхідних елементів форми*/
         {
             productName_Invoice_LabelText.Visible = visible;
             productName_Invoice_Label.Visible = visible;
@@ -34,7 +35,7 @@
             noProduct_Invoice_Button.Visible = visible;
             okProduct_Invoice_Button.Visible = visible;
         }
-        public void LoadItemData(Product? product)
+        public void LoadItemData(Product? product) /*завантаження данних товару*/
         {
             if (product != null)
             {
@@ -52,7 +53,7 @@
                 thisProductPrice_Invoice_LabelNumber.Text = "";
             }
         }
-        public void LoadProductDataInvoniceItem()
+        public void LoadProductDataInvoniceItem()/*метод для корегування відображуваних елементів необхідних для додання або зміни інформації товару у накладній*/
         {
             string input = productId_Invoice_TextBox.Text.Trim();
             if (int.TryParse(input, out int productId))
@@ -83,7 +84,7 @@
             VisibleInvoiceItemControls(false);
             panelName_Invoice_Label.Text = "Додавання товару в накладну";
         }
-        public void AddNewInvoice()
+        public void AddNewInvoice()/*метод для збереження нової накладної у історію*/
         {
             bool IsExpenditureInvoice = typeOfInvoice_Invoice_ComboBox.SelectedIndex == 0;
             if (productInfo_ViewProducts_Panel.Visible == true)

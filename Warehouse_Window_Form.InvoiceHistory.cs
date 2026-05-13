@@ -2,7 +2,8 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
-        public void LoadItemsToInvoiceHistoryTable(string pageNumberStr, int num = 0)
+        /*частина класу що відповідає сторінці перегляду історії накладних*/
+        public void LoadItemsToInvoiceHistoryTable(string pageNumberStr, int num = 0)/*метод що відповідає за завантаження данних на цю сторінку історії*/
         {
             if (int.TryParse(pageNumberStr, out int pageNumber))
             {
@@ -22,7 +23,7 @@
             gatePage_InvoiceHistory_TextBox.Text = result.pageNumber.ToString();
             lastPage_InvoiceHistory_Label.Text = result.totalPages.ToString();
         }
-        public void LoadInvoiceInInvoiceHistoryPage(int id)
+        public void LoadInvoiceInInvoiceHistoryPage(int id)/*метод що відповідає за завантаження данних накладної з цим Id*/
         {
             var invoice = warehouse.TakeInvoice(id);
             if (invoice.InvoiceId != 0)

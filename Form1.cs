@@ -2,10 +2,11 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     public partial class Warehouse_Window_Form : Form
     {
-        public Warehouse warehouse;
-        public TabPage helpTab;
+        /*клас для взаємодії форми з іншими класами, для зручності роботи з методами код поділен на декілька файлів*/
+        public Warehouse warehouse;/*поле в якому зберігається поточний стан обєкту склад підчас роботи з програмою*/
+        public TabPage helpTab;/*Зміна в якій зберігається інформація о допоміжній сторінці, щоб вона не відображалась користувачам яким це непотрібно*/
         private System.Windows.Forms.Timer _notificationTimer = new System.Windows.Forms.Timer();
-        public Warehouse_Window_Form(Warehouse warehouse)
+        public Warehouse_Window_Form(Warehouse warehouse)/*конструктор класу який задає початкові налаштування форми та складу після запуску програми*/
         {
             this.InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;

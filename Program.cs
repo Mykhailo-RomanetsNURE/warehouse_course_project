@@ -2,7 +2,7 @@ namespace Курсовий_проєкт_на_тему_склад
 {
     internal static class Program
     {
-        
+        /*клас що запускає програму*/
         [STAThread]
         static void Main()
         {

@@ -2,6 +2,7 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
+        /*частина класу відповідна за сторінку додаткових можливостей*/
         private void DeleteAllData_AdditionalFeatures_Button_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Ви впевненні що хочете видалити всі данні, повернутись назад буде неможливо","Підтвердження", MessageBoxButtons.YesNo,MessageBoxIcon.Question);

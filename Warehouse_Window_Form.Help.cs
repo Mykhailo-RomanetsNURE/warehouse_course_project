@@ -2,6 +2,7 @@
 {
     public partial class Warehouse_Window_Form : Form
     {
+        /*частина класу що відповідає за сторінку з допомогою*/
         private void HelpHide_Help_Button_Click(object sender, EventArgs e)
         {
             program_TabControl.SelectedIndex = 0;
